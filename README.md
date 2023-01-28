@@ -1,3 +1,3 @@
-# Fachtcher-App
+# Fachtcher App
 
-- Facetcher flutter application.
+Facetcher app flutter application.
