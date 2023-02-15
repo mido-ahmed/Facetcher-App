@@ -19,7 +19,7 @@ class AppRoutes {
             builder: (
               context,
             ) {
-              return const SplashScreen();
+              return const DrawingScreen();
             },
             settings: routeSettings);
 
