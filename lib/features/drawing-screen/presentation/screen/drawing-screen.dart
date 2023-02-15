@@ -10,6 +10,13 @@ class DrawingScreen extends StatefulWidget {
 class _DrawingScreenState extends State<DrawingScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Material(
+      child: Scaffold(
+        body: Column(
+          children: [
+          ],
+        ),
+      ),
+    );
   }
 }
