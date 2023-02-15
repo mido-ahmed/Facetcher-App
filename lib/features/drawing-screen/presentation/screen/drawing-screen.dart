@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
+import 'package:flutter_starter/core/widgets/buttons/button_widget.dart';
 import 'package:flutter_starter/features/drawing-screen/presentation/widget/app-bar.dart';
 
 class DrawingScreen extends StatefulWidget {
@@ -16,7 +17,10 @@ class _DrawingScreenState extends State<DrawingScreen> {
       child: Scaffold(
         body: SafeArea(
           child: Column(
-            children: [AppBarWidget()],
+            children: [
+              AppBarWidget(),
+              ButtonWidget(text: "Next", Icon: Icons.arrow_forward),
+            ],
           ),
         ),
       ),
