@@ -7,14 +7,15 @@ class AppColors {
   static Color hint = HexColor('#FFFFFF');
 
   static Color error = HexColor('#900C3F');
-  static Color background = HexColor('#000020');
+  static Color background = HexColor('#3D4149');
+  static Color text = HexColor('#EAEAEA');
 
   static Color fontPrimary = HexColor('#FFFFFF');
   static Color fontSecondary = HexColor('#E8C39E');
 
   static Color border = HexColor('#2F2C79');
 
-  static Color button = HexColor('#2F2C79');
+  static Color button = HexColor('#07ABB3');
   static Color snackbar = HexColor('#2F2C79');
   static Color navigator = HexColor('#000020');
 
