@@ -23,7 +23,7 @@ class _DrawingState extends State<Drawing> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height / 1.36,
-      width: MediaQuery.of(context).size.width / 1.25,
+      width: MediaQuery.of(context).size.width / 1.098,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(20),
