@@ -46,7 +46,6 @@ class _DrawingState extends State<Drawing> {
             child: Column(
               children: [
                 _buildColorToolbar(context),
-                _buildStrokeToolbar(context),
               ],
             ),
           )
@@ -137,17 +136,18 @@ class _DrawingState extends State<Drawing> {
           ),
           _buildClearButton(context),
           const Divider(
-            height: 10.0,
+            height: 2.0,
           ),
           // _buildPointerModeSwitcher(context,
           //     penMode:
           //         state.allowedPointersMode == ScribblePointerMode.penOnly),
           const Divider(
-            height: 10.0,
+            height: 2.0,
           ),
           _buildEraserButton(context, isSelected: state is Erasing),
           _buildColorButton(context,
               color: AppColors.black, state: state, icon: Icon(Icons.add)),
+          _buildStrokeToolbar(context),
           //_buildPenButton(state: state , icon: Icon(Icons.add) , color: Colors.transparent),
         ],
       ),
