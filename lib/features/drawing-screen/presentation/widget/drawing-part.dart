@@ -41,10 +41,13 @@ class _DrawingState extends State<Drawing> {
             drawPen: true,
           ),
           Positioned(
-            top: 16,
+            bottom: 16,
             right: 16,
             child: Column(
-              children: [],
+              children: [
+                _buildColorToolbar(context),
+                _buildStrokeToolbar(context),
+              ],
             ),
           )
         ],
@@ -66,7 +69,7 @@ class _DrawingState extends State<Drawing> {
   Widget _buildStrokeToolbar(BuildContext context) {
     return StateNotifierBuilder<ScribbleState>(
       stateNotifier: notifier,
-      builder: (context, state, _) => Column(
+      builder: (context, state, _) => Row(
         //TODO : END END
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +111,7 @@ class _DrawingState extends State<Drawing> {
                 ),
                 border: state.map(
                   drawing: (_) => null,
-                  erasing: (_) => Border.all(width: 1),
+                  erasing: (_) => Border.all(width: 5),
                 ),
                 borderRadius: BorderRadius.circular(50.0)),
           ),
@@ -120,30 +123,32 @@ class _DrawingState extends State<Drawing> {
   Widget _buildColorToolbar(BuildContext context) {
     return StateNotifierBuilder<ScribbleState>(
       stateNotifier: notifier,
-      builder: (context, state, _) => Column(
+      builder: (context, state, _) => Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           _buildUndoButton(context),
           const Divider(
-            height: 4.0,
+            height: 2.0,
           ),
           _buildRedoButton(context),
           const Divider(
-            height: 4.0,
+            height: 2.0,
           ),
           _buildClearButton(context),
           const Divider(
-            height: 20.0,
+            height: 10.0,
           ),
-          _buildPointerModeSwitcher(context,
-              penMode:
-                  state.allowedPointersMode == ScribblePointerMode.penOnly),
+          // _buildPointerModeSwitcher(context,
+          //     penMode:
+          //         state.allowedPointersMode == ScribblePointerMode.penOnly),
           const Divider(
-            height: 20.0,
+            height: 10.0,
           ),
           _buildEraserButton(context, isSelected: state is Erasing),
-          _buildColorButton(context, color: AppColors.black, state: state),
+          _buildColorButton(context,
+              color: AppColors.black, state: state, icon: Icon(Icons.add)),
+          //_buildPenButton(state: state , icon: Icon(Icons.add) , color: Colors.transparent),
         ],
       ),
     );
@@ -193,7 +198,9 @@ class _DrawingState extends State<Drawing> {
   Widget _buildColorButton(
     BuildContext context, {
     required Color color,
-    required ScribbleState state,}) {
+    required ScribbleState state,
+    required Icon icon,
+  }) {
     final isSelected = state is Drawing == color.value;
     return Padding(
       padding: const EdgeInsets.all(4),
@@ -203,7 +210,7 @@ class _DrawingState extends State<Drawing> {
           shape: !isSelected
               ? const CircleBorder()
               : RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(6),
                 ),
           child: Container(),
           onPressed: () => notifier.setColor(color)),
@@ -214,8 +221,8 @@ class _DrawingState extends State<Drawing> {
     return FloatingActionButton.small(
       tooltip: "Undo",
       onPressed: notifier.canUndo ? notifier.undo : null,
-      disabledElevation: 0,
-      backgroundColor: notifier.canUndo ? Colors.blueGrey : Colors.grey,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
       child: const Icon(
         Icons.undo_rounded,
         color: Colors.white,
@@ -227,8 +234,8 @@ class _DrawingState extends State<Drawing> {
     return FloatingActionButton.small(
       tooltip: "Redo",
       onPressed: notifier.canRedo ? notifier.redo : null,
-      disabledElevation: 0,
-      backgroundColor: notifier.canRedo ? Colors.blueGrey : Colors.grey,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
       child: const Icon(
         Icons.redo_rounded,
         color: Colors.white,
@@ -240,9 +247,9 @@ class _DrawingState extends State<Drawing> {
     return FloatingActionButton.small(
       tooltip: "Clear",
       onPressed: notifier.clear,
-      disabledElevation: 0,
-      backgroundColor: Colors.blueGrey,
-      child: const Icon(Icons.clear),
+      backgroundColor: Colors.transparent,
+      child: const Icon(Icons.delete_forever),
+      elevation: 0,
     );
   }
 }
