@@ -13,7 +13,7 @@ class AppColors {
   static Color fontPrimary = HexColor('#FFFFFF');
   static Color fontSecondary = HexColor('#E8C39E');
 
-  static Color border = HexColor('#2F2C79');
+  static Color border = HexColor('#B3B4B4');
 
   static Color button = HexColor('#07ABB3');
   static Color snackbar = HexColor('#2F2C79');

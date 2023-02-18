@@ -25,6 +25,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+3
   im_animations: ^0.1.2
   flutter_snake_navigationbar: ^0.6.1
+  scribble: ^0.9.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
