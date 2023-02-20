@@ -8,5 +8,5 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   Bloc.observer = AppBlocObserver();
-  runApp(const FlutterStarterApp());
+  runApp(const FacetcherApp());
 }

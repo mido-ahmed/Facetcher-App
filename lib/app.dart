@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_starter/core/utils/app_colors.dart';
 import 'config/locale/app_localizations_setup.dart';
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
@@ -7,8 +9,8 @@ import 'core/utils/app_strings.dart';
 import 'features/splash/presentation/cubit/localization_cubit.dart';
 import 'injection_container.dart' as di;
 
-class FlutterStarterApp extends StatelessWidget {
-  const FlutterStarterApp({Key? key}) : super(key: key);
+class FacetcherApp extends StatelessWidget {
+  const FacetcherApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +23,18 @@ class FlutterStarterApp extends StatelessWidget {
             return previousState != currentState;
           },
           builder: (context, state) {
-            return MaterialApp(
-              title: AppStrings.appName,
-              locale: state.locale,
-              debugShowCheckedModeBanner: false,
-              theme: appTheme(),
-              onGenerateRoute: AppRoutes.onGenerateRoute,
-              supportedLocales: AppLocalizationsSetup.supportedLocales,
-              localeResolutionCallback:
-              AppLocalizationsSetup.localeResolutionCallback,
-              localizationsDelegates:
-              AppLocalizationsSetup.localizationsDelegates,
+            return AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: AppColors.background),
+              child: MaterialApp(
+                title: AppStrings.appName,
+                locale: state.locale,
+                debugShowCheckedModeBanner: false,
+                theme: appTheme(),
+                onGenerateRoute: AppRoutes.onGenerateRoute,
+                supportedLocales: AppLocalizationsSetup.supportedLocales,
+                localeResolutionCallback: AppLocalizationsSetup.localeResolutionCallback,
+                localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
+              ),
             );
           },
         ));
