@@ -25,4 +25,11 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyComfortaa,
   );
+
+  static TextStyle? navigatorItem = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: AppColors.navigatorFont,
+    fontFamily: AppStrings.fontFamilyComfortaa,
+  );
 }
