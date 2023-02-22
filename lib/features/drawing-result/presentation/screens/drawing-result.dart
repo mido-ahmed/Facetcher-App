@@ -55,34 +55,7 @@ class _DrawingResultState extends State<DrawingResult> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ButtonWidget(
-                      backgroundColor: AppColors.primary,
-                      onPress: () {},
-                      child: Row(
-                        children: [
-                          Text("Edit"),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(Icons.edit_calendar),
-                        ],
-                      ),
-                    ),
-                    ButtonWidget(
-                      backgroundColor: AppColors.navigatorItem,
-                      onPress: () {},
-                      child: Row(
-                        children: [
-                          Text("Next"),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(Icons.arrow_forward_sharp),
-                        ],
-                      ),
-                    ),
-                  ],
+                  children: [],
                 )
               ],
             ),

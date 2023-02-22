@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
 
 class ButtonWidget extends StatefulWidget {
-  final Widget child;
+  final Text text;
+  final Icon icon;
   final Color backgroundColor;
   final VoidCallback onPress;
 
-  const ButtonWidget(
-      {Key? key,
-      required this.backgroundColor,
-      required this.onPress,
-      required this.child})
-      : super(key: key);
+  const ButtonWidget({
+    Key? key,
+    required this.backgroundColor,
+    required this.onPress,
+    required this.text,
+    required this.icon,
+  }) : super(key: key);
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -31,27 +33,42 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         width: 140,
         height: 40,
         child: ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                  side: BorderSide(
-                    width: 1,
-                    color: Colors.white,
-                  ),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(widget.backgroundColor),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+                side: BorderSide(
+                  width: 1,
+                  color: Colors.white,
                 ),
               ),
-              backgroundColor:
-                  MaterialStateProperty.all(widget.backgroundColor),
             ),
-            onPressed: widget.onPress,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                widget.child,
-              ],
-            )),
+          ),
+          onPressed: widget.onPress,
+          child: null,
+        ),
       ),
     );
   }
 }
+// style: ButtonStyle(
+//               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+//                 RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(25.0),
+//                   side: BorderSide(
+//                     width: 1,
+//                     color: Colors.white,
+//                   ),
+//                 ),
+//               ),
+//               backgroundColor:
+//                   MaterialStateProperty.all(widget.backgroundColor),
+//             ),
+//             onPressed: widget.onPress,
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 widget.child,
+//               ],
+//             )
