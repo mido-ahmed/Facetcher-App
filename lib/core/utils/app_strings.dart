@@ -3,6 +3,7 @@ class AppStrings {
 
   static const String fontFamilyComfortaa = 'Comfortaa';
   static const String fontFamilyBarlow = 'Barlow';
+  static const String fontFamilyInter = 'Inter';
 
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';

@@ -32,4 +32,18 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.navigatorFont,
     fontFamily: AppStrings.fontFamilyComfortaa,
   );
+
+  static TextStyle? drawingScreenTitle = TextStyle(
+    fontSize: 35,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+    fontFamily: AppStrings.fontFamilyInter,
+  );
+
+  static TextStyle? drawingScreenTitleDetails = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.white,
+    fontFamily: AppStrings.fontFamilyInter,
+  );
 }
