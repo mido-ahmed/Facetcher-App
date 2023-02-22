@@ -57,15 +57,15 @@ class _DrawingResultState extends State<DrawingResult> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ButtonWidget(
-                    backgroundColor: AppColors.primary,
-                    onPress: () {},
-                    child: Row(
-                      children: [
-                        Text("Edit"),
-                        Icon(Icons.edit_attributes_outlined),
-                      ],
+                      backgroundColor: AppColors.primary,
+                      onPress: () {},
+                      child: Row(
+                        children: [
+                          Text("Edit"),
+                          Icon(Icons.edit_attributes_outlined),
+                        ],
+                      ),
                     ),
-                  ),
                     ButtonWidget(
                       backgroundColor: AppColors.navigatorItem,
                       onPress: () {},
@@ -76,10 +76,8 @@ class _DrawingResultState extends State<DrawingResult> {
                         ],
                       ),
                     ),
-
                   ],
                 )
-
               ],
             ),
           ),

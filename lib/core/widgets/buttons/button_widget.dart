@@ -38,7 +38,8 @@ class _ButtonWidgetState extends State<ButtonWidget> {
                   side: BorderSide(width: 1, color: Colors.white),
                 ),
               ),
-              backgroundColor: MaterialStateProperty.all(widget.backgroundColor),
+              backgroundColor:
+                  MaterialStateProperty.all(widget.backgroundColor),
             ),
             onPressed: widget.onPress,
             child: Row(
