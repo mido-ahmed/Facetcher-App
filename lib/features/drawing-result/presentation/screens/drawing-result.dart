@@ -62,7 +62,10 @@ class _DrawingResultState extends State<DrawingResult> {
                       child: Row(
                         children: [
                           Text("Edit"),
-                          Icon(Icons.edit_attributes_outlined),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(Icons.edit_calendar),
                         ],
                       ),
                     ),
@@ -72,6 +75,9 @@ class _DrawingResultState extends State<DrawingResult> {
                       child: Row(
                         children: [
                           Text("Next"),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Icon(Icons.arrow_forward_sharp),
                         ],
                       ),
