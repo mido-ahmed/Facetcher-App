@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/features/drawing-result/presentation/screens/drawing-result.dart';
 import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
@@ -11,30 +12,48 @@ class Routes {
   static const String appHome = '/app-home';
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
+  static const String userDrawingResult = '/user-drawing-result';
 }
 
 class AppRoutes {
   static Route? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initial:
-        return MaterialPageRoute(builder: (context,) {
-          return const SplashScreen();
-        }, settings: routeSettings);
+        return MaterialPageRoute(
+            builder: (
+              context,
+            ) {
+              return const SplashScreen();
+            },
+            settings: routeSettings);
 
       case Routes.appHome:
-        return MaterialPageRoute(builder: (context) {
-          return const HomeScreen();
-        }, settings: routeSettings);
+        return MaterialPageRoute(
+            builder: (context) {
+              return const HomeScreen();
+            },
+            settings: routeSettings);
 
       case Routes.userHistory:
-        return MaterialPageRoute(builder: (context) {
-          return const UserHistoryScreen();
-        }, settings: routeSettings);
+        return MaterialPageRoute(
+            builder: (context) {
+              return const UserHistoryScreen();
+            },
+            settings: routeSettings);
 
       case Routes.userProfile:
-        return MaterialPageRoute(builder: (context) {
-          return const UserProfileScreen();
-        }, settings: routeSettings);
+        return MaterialPageRoute(
+            builder: (context) {
+              return const UserProfileScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.userDrawingResult:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingResult();
+            },
+            settings: routeSettings);
 
       default:
         return undefinedRoute();
@@ -43,11 +62,10 @@ class AppRoutes {
 
   static Route<dynamic> undefinedRoute() {
     return MaterialPageRoute(
-        builder: ((context) =>
-        const Scaffold(
-          body: Center(
-            child: Text(AppStrings.noRouteFound),
-          ),
-        )));
+        builder: ((context) => const Scaffold(
+              body: Center(
+                child: Text(AppStrings.noRouteFound),
+              ),
+            )));
   }
 }
