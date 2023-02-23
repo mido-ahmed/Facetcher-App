@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_text_style.dart';
 import 'package:flutter_starter/core/widgets/buttons/button_widget.dart';
+import 'package:flutter_starter/features/drawing-result/presentation/widgets/edit_button.dart';
 import 'package:flutter_starter/features/drawing-result/presentation/widgets/output_Image.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -55,7 +56,37 @@ class _DrawingResultState extends State<DrawingResult> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [],
+                  children: [
+                    EditButton(
+                        backgroundColor: AppColors.primary,
+                        onPress: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Edit"),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Icon(Icons.edit_calendar),
+                          ],
+                        )),
+                    ButtonWidget(
+                      backgroundColor: AppColors.navigatorItem,
+                      onPress: () {},
+                      icon: Icon(Icons.arrow_forward_sharp),
+                      text: "Next",
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Next"),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(Icons.arrow_forward_outlined),
+                        ],
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),
