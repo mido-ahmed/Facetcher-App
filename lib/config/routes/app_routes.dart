@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/features/drawing-report/presentation/screens/drawing_report_screen.dart';
 import 'package:flutter_starter/features/drawing-result/presentation/screens/drawing-result.dart';
 import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
 
@@ -13,6 +14,7 @@ class Routes {
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
   static const String userDrawingResult = '/user-drawing-result';
+  static const String userDrawingReport = '/user-drawing-report';
 }
 
 class AppRoutes {
@@ -23,7 +25,7 @@ class AppRoutes {
             builder: (
               context,
             ) {
-              return const DrawingResult();
+              return const DrawingReport();
             },
             settings: routeSettings);
 
@@ -52,6 +54,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingResult();
+            },
+            settings: routeSettings);
+
+      case Routes.userDrawingReport:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingReport();
             },
             settings: routeSettings);
 
