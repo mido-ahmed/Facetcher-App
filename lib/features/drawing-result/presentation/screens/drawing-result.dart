@@ -63,11 +63,11 @@ class _DrawingResultState extends State<DrawingResult> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Edit"),
+                            Text("Edit" , style: AppTextStyle.editButtonText,),
                             SizedBox(
                               width: 5,
                             ),
-                            Icon(Icons.edit_calendar),
+                            Image.asset('assets/icons/Vector.png'),
                           ],
                         )),
                     ButtonWidget(
@@ -78,11 +78,11 @@ class _DrawingResultState extends State<DrawingResult> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Next"),
+                          Text("Next" , style: AppTextStyle.primaryButtonText,),
                           SizedBox(
                             width: 5,
                           ),
-                          Icon(Icons.arrow_forward_outlined),
+                          Image.asset('assets/icons/shape.png'),
                         ],
                       ),
                     ),

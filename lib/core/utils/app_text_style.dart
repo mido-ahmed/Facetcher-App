@@ -46,4 +46,18 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.text,
     fontFamily: AppStrings.fontFamilyInter,
   );
+
+  static TextStyle? editButtonText = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+    color: AppColors.text,
+    fontFamily: AppStrings.fontFamilyInter,
+  );
+
+  static TextStyle? primaryButtonText = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+    color: AppColors.navigatorFont,
+    fontFamily: AppStrings.fontFamilyInter,
+  );
 }

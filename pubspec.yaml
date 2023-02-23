@@ -39,6 +39,8 @@ flutter:
     - lang/ar.json
     - lang/en.json
     - assets/images/user.png
+    - assets/icons/Vector.png
+    - assets/icons/shape.png
 
   fonts:
     - family: Tajawal
