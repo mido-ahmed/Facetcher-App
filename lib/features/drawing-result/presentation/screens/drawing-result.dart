@@ -43,7 +43,7 @@ class _DrawingResultState extends State<DrawingResult> {
                   ),
                   subtitle: Text(
                     "It’s the required person according your gender choice and your drawing. If it’s not the person you need please let us know.",
-                    maxLines: 2,
+                    maxLines: 3,
                     style: AppTextStyle.drawingScreenTitleDetails,
                   ),
                 ),
