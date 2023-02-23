@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/features/drawing-report/presentation/widgets/face_details.dart';
 
+import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 
 class DrawingReport extends StatefulWidget {
@@ -19,6 +21,18 @@ class _DrawingReportState extends State<DrawingReport> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.menu,
+                          size: 30,
+                        ),
+                        color: AppColors.navigatorFont),
+                  ],
+                ),
                 ListTile(
                   title: Text(
                     "Submit",
@@ -29,6 +43,30 @@ class _DrawingReportState extends State<DrawingReport> {
                     maxLines: 3,
                     style: AppTextStyle.drawingScreenTitleDetails,
                   ),
+                ),
+                SizedBox(
+                  height: 51,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Details",
+                      style: AppTextStyle.textDrawingReport,
+                    ),
+                    Image.asset('assets/icons/Vector.png'),
+                  ],
+                ),
+                FaceDetails(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Your drawing and output",
+                      style: AppTextStyle.textDrawingReport,
+                    ),
+                    Image.asset('assets/icons/Vector.png'),
+                  ],
                 ),
               ],
             ),

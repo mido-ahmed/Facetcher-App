@@ -36,7 +36,7 @@ class AppTextStyle with Diagnosticable {
   static TextStyle? drawingScreenTitle = TextStyle(
     fontSize: 35,
     fontWeight: FontWeight.w700,
-    color: AppColors.white,
+    color: AppColors.navigatorFont,
     fontFamily: AppStrings.fontFamilyInter,
   );
 
@@ -58,6 +58,20 @@ class AppTextStyle with Diagnosticable {
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: AppColors.navigatorFont,
+    fontFamily: AppStrings.fontFamilyInter,
+  );
+
+  static TextStyle? textDrawingReport = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.navigatorFont,
+    fontFamily: AppStrings.fontFamilyInter,
+  );
+
+  static TextStyle? textDescribtion = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    color: AppColors.text,
     fontFamily: AppStrings.fontFamilyInter,
   );
 }

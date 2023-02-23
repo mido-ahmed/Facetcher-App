@@ -33,7 +33,7 @@ class _DrawingResultState extends State<DrawingResult> {
                           Icons.menu,
                           size: 30,
                         ),
-                        color: AppColors.white),
+                        color: AppColors.navigatorFont),
                   ],
                 ),
                 ListTile(
