@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
 
 class OutputImage extends StatefulWidget {
-  const OutputImage({Key? key}) : super(key: key);
+  final double width;
+  final double height;
+  final String image;
+
+  const OutputImage(
+      {Key? key,
+      required this.width,
+      required this.height,
+      required this.image})
+      : super(key: key);
 
   @override
   State<OutputImage> createState() => _OutputImageState();
@@ -12,8 +21,8 @@ class _OutputImageState extends State<OutputImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width / 0.1,
-        height: MediaQuery.of(context).size.height / 1.8,
+        width: widget.width,
+        height: widget.height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
         ),
@@ -25,8 +34,7 @@ class _OutputImageState extends State<OutputImage> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(30.0),
             child: Image.network(
-              // color: AppColors.text,
-              'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+              widget.image,
               fit: BoxFit.cover,
             ),
           ),

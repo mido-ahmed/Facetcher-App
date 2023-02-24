@@ -41,6 +41,7 @@ flutter:
     - assets/images/user.png
     - assets/icons/Vector.png
     - assets/icons/shape.png
+    - assets/images/1.5x/person.png
 
   fonts:
     - family: Tajawal

@@ -25,7 +25,7 @@ class AppRoutes {
             builder: (
               context,
             ) {
-              return const DrawingReport();
+              return const DrawingResult();
             },
             settings: routeSettings);
 

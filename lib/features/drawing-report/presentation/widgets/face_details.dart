@@ -69,7 +69,7 @@ class _FaceDetailsState extends State<FaceDetails> {
             style: AppTextStyle.textDescribtion,
           ),
           SizedBox(
-            height: 30,
+            height: 10,
           ),
         ],
       ),
