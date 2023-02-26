@@ -46,7 +46,8 @@ class _DrawingResultState extends State<DrawingResult> {
                   height: 50,
                 ),
                 OutputImage(
-                  image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+                  image:
+                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
                   height: MediaQuery.of(context).size.height / 1.8,
                   width: MediaQuery.of(context).size.width / 0.1,
                 ),
