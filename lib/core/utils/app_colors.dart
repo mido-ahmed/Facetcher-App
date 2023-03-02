@@ -7,12 +7,12 @@ class AppColors {
   static Color hint = HexColor('#FFFFFF');
 
   static Color navigatorItem = HexColor('#07ABB3');
+  static Color text = HexColor('#B3B4B4');
   static Color navigatorFont = HexColor('#EAEAEA');
   static Color navigatorBackground = HexColor('#1E1E1E');
 
   static Color error = HexColor('#900C3F');
   static Color background = HexColor('#3D4149');
-  static Color text = HexColor('#EAEAEA');
 
   static Color fontPrimary = HexColor('#FFFFFF');
   static Color fontSecondary = HexColor('#E8C39E');

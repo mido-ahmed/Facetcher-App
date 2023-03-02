@@ -40,6 +40,9 @@ flutter:
     - lang/ar.json
     - lang/en.json
     - assets/images/user.png
+    - assets/icons/Vector.png
+    - assets/icons/shape.png
+    - assets/images/1.5x/person.png
 
   fonts:
     - family : Century Gothic

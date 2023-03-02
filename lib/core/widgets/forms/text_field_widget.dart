@@ -6,31 +6,37 @@ import '../../validation/text_field_validation.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String label;
+  final TextStyle? style;
   final TextStyle? labelStyle;
   final TextStyle? errorStyle;
   final double borderWidth;
   final Color borderColor;
   final Color errorBorderColor;
+  final Color? cursorColor;
   final bool secureText;
   final String validateType;
   final TextInputType keyboardType;
   final FormFieldSetter onSave;
   final TextAlign textAlign;
+  final EdgeInsets contentPadding;
 
-  const TextFieldWidget(
-      {Key? key,
-      required this.label,
-      required this.labelStyle,
-      required this.errorStyle,
-      required this.borderWidth,
-      required this.borderColor,
-      required this.errorBorderColor,
-      required this.secureText,
-      required this.validateType,
-      required this.keyboardType,
-      required this.onSave,
-      required this.textAlign})
-      : super(key: key);
+  const TextFieldWidget({
+    Key? key,
+    required this.label,
+    required this.labelStyle,
+    required this.errorStyle,
+    required this.borderWidth,
+    required this.borderColor,
+    required this.errorBorderColor,
+    required this.secureText,
+    required this.validateType,
+    required this.keyboardType,
+    required this.onSave,
+    required this.textAlign,
+    required this.contentPadding,
+    required this.style,
+    required this.cursorColor,
+  }) : super(key: key);
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -50,9 +56,10 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       enableSuggestions: false,
       style: widget.labelStyle,
       onSaved: widget.onSave,
+      cursorColor: widget.cursorColor,
       decoration: InputDecoration(
           labelText: widget.label,
-          floatingLabelStyle: TextStyle(color: AppColors.fontPrimary),
+          floatingLabelStyle: widget.labelStyle,
           contentPadding: const EdgeInsets.only(left: 22, right: 22),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),
@@ -87,7 +94,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         validation = ValidateTextFiled.validate(value, widget.validateType)!;
       },
       validator: (value) {
-        return validation == "" ? null : AppLocalizations.of(context)!.translate(validation)!;
+        return validation == ""
+            ? null
+            : AppLocalizations.of(context)!.translate(validation)!;
       },
     );
   }

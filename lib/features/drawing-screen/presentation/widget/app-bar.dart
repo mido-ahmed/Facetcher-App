@@ -17,14 +17,14 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       children: [
         IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               size: 30,
             ),
             color: AppColors.white),
         IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.menu,
               size: 30,
             ),

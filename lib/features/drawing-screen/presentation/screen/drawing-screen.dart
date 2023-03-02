@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/app_colors.dart';
-import 'package:flutter_starter/core/widgets/buttons/button_widget.dart';
 import 'package:flutter_starter/features/drawing-screen/presentation/widget/app-bar.dart';
 import 'package:flutter_starter/features/drawing-screen/presentation/widget/drawing-part.dart';
 
@@ -24,7 +22,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                children: [
+                children: const [
                   AppBarWidget(),
                   ListTitleWidget(
                     title: "Start drawing",
@@ -36,7 +34,8 @@ class _DrawingScreenState extends State<DrawingScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  ButtonWidget(text: "Next", Icon: Icons.arrow_forward),
+                  // TODO : update with the last button widget
+                  // ButtonWidget(text: "Next", icon: Icons.arrow_forward),
                 ],
               ),
             ),

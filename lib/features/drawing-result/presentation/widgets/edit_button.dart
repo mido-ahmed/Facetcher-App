@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
 
-class ButtonWidget extends StatefulWidget {
-  final String text;
-  final Icon icon;
+class EditButton extends StatefulWidget {
+  final Widget child;
   final Color backgroundColor;
   final VoidCallback onPress;
-  final Widget child;
 
-  const ButtonWidget({
-    Key? key,
-    required this.backgroundColor,
-    required this.onPress,
-    required this.text,
-    required this.icon,
-    required this.child,
-  }) : super(key: key);
+  const EditButton(
+      {Key? key,
+      required this.backgroundColor,
+      required this.onPress,
+      required this.child})
+      : super(key: key);
 
   @override
-  State<ButtonWidget> createState() => _ButtonWidgetState();
+  _EditButtonState createState() => _EditButtonState();
 }
 
-class _ButtonWidgetState extends State<ButtonWidget> {
+class _EditButtonState extends State<EditButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +27,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         color: AppColors.white,
         borderRadius: BorderRadiusDirectional.circular(26),
       ),
-      child: SizedBox(
+      child: Container(
         width: 140,
         height: 40,
         child: ElevatedButton(
@@ -40,11 +36,15 @@ class _ButtonWidgetState extends State<ButtonWidget> {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.0),
+                side: BorderSide(
+                  width: 1,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
           onPressed: widget.onPress,
-          child: widget.child,
+          child: widget.child
         ),
       ),
     );
