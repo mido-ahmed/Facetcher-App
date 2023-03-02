@@ -24,10 +24,8 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initial:
         return MaterialPageRoute(
-            builder: (
-              context,
-            ) {
-              return const DrawingScreen();
+            builder: (context) {
+              return const SplashScreen();
             },
             settings: routeSettings);
 
