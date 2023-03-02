@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
+import 'package:flutter_starter/core/utils/media_query_values.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:scribble/scribble.dart';
 
@@ -22,10 +23,10 @@ class _DrawingState extends State<Drawing> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 1.52,
-      width: MediaQuery.of(context).size.width / 1.098,
+      height: context.height / 1.52,
+      width: context.width / 1.098,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(20),
         ),
         border: Border.all(
