@@ -9,6 +9,7 @@ class AppColors {
   static Color error = HexColor('#900C3F');
   static Color background = HexColor('#3D4149');
   static Color text = HexColor('#EAEAEA');
+  static Color navigatorBackground = HexColor('#1E1E1E');
 
   static Color fontPrimary = HexColor('#FFFFFF');
   static Color fontSecondary = HexColor('#E8C39E');
