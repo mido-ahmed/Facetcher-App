@@ -36,7 +36,7 @@ class AppTextStyle with Diagnosticable {
   static TextStyle? drawingScreenTitle = TextStyle(
     fontSize: 35,
     fontWeight: FontWeight.w700,
-    color: AppColors.navigatorFont,
+    color: AppColors.text,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 

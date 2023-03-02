@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/features/drawing-report/presentation/screens/drawing_report_screen.dart';
 import 'package:flutter_starter/features/drawing-result/presentation/screens/drawing-result.dart';
+import 'package:flutter_starter/features/drawing-screen/presentation/screen/drawing-screen.dart';
 import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
@@ -11,6 +12,7 @@ import '../../features/user-profile/presentation/screens/user_profile_screen.dar
 class Routes {
   static const String initial = '/';
   static const String appHome = '/app-home';
+  static const String drawingScreen = '/app-drawing-screen';
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
   static const String userDrawingResult = '/user-drawing-result';
@@ -25,7 +27,7 @@ class AppRoutes {
             builder: (
               context,
             ) {
-              return const DrawingResult();
+              return const DrawingScreen();
             },
             settings: routeSettings);
 

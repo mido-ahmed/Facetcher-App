@@ -31,7 +31,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
         color: AppColors.white,
         borderRadius: BorderRadiusDirectional.circular(26),
       ),
-      child: Container(
+      child: SizedBox(
         width: 140,
         height: 40,
         child: ElevatedButton(

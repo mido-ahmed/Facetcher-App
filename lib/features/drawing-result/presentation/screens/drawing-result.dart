@@ -30,19 +30,19 @@ class _DrawingResultState extends State<DrawingResult> {
                   children: [
                     IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.menu,
                           size: 30,
                         ),
                         color: AppColors.navigatorFont),
                   ],
                 ),
-                ListTitleWidget(
+                const ListTitleWidget(
                   title: "The Required",
                   subtitle:
                       "It’s the required person according your gender choice and your drawing. If it’s not the person you need please let us know.",
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 OutputImage(
@@ -51,7 +51,7 @@ class _DrawingResultState extends State<DrawingResult> {
                   height: MediaQuery.of(context).size.height / 1.8,
                   width: MediaQuery.of(context).size.width / 0.1,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -67,7 +67,7 @@ class _DrawingResultState extends State<DrawingResult> {
                               "Edit",
                               style: AppTextStyle.editButtonText,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                             Image.asset('assets/icons/Vector.png'),
@@ -78,7 +78,7 @@ class _DrawingResultState extends State<DrawingResult> {
                       onPress: () {
                         Navigator.of(context).pushNamed('/user-drawing-report');
                       },
-                      icon: Icon(Icons.arrow_forward_sharp),
+                      icon: const Icon(Icons.arrow_forward_sharp),
                       text: "Next",
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -87,7 +87,7 @@ class _DrawingResultState extends State<DrawingResult> {
                             "Next",
                             style: AppTextStyle.primaryButtonText,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Image.asset('assets/icons/shape.png'),

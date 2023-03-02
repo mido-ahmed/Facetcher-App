@@ -24,6 +24,7 @@ dependencies:
   shared_preferences: ^2.0.15
   loading_animation_widget: ^1.2.0+3
   im_animations: ^0.1.2
+  scribble: ^0.9.1
   font_awesome_flutter: ^10.4.0
 
 dev_dependencies:
@@ -44,22 +45,6 @@ flutter:
     - assets/images/1.5x/person.png
 
   fonts:
-    - family: Tajawal
-      fonts:
-        - asset: assets/fonts/Tajawal-Black.ttf
-          weight: 900
-        - asset: assets/fonts/Tajawal-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/Tajawal-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Tajawal-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Tajawal-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Tajawal-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Tajawal-ExtraLight.ttf
-          weight: 200
     - family : Century Gothic
       fonts :
         - asset: assets/fonts/Century Gothic.otf
