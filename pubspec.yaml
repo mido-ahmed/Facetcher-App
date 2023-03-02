@@ -58,3 +58,7 @@ flutter:
           weight: 300
         - asset: assets/fonts/Tajawal-ExtraLight.ttf
           weight: 200
+    - family : Century Gothic
+      fonts :
+        - asset: assets/fonts/Century Gothic.otf
+        - asset: assets/fonts/Century Gothic Bold.otf
