@@ -4,6 +4,8 @@ class AppStrings {
   static const String fontFamilyComfortaa = 'Comfortaa';
   static const String fontFamilyBarlow = 'Barlow';
   static const String fontFamilyInter = 'Inter';
+  static const String fontFamilyCenturtGothic = 'Century Gothic';
+  static const String fontFamilyCenturtGothicBold = 'Century Gothic Bold';
 
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';

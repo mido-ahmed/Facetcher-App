@@ -37,14 +37,14 @@ class AppTextStyle with Diagnosticable {
     fontSize: 35,
     fontWeight: FontWeight.w700,
     color: AppColors.navigatorFont,
-    fontFamily: AppStrings.fontFamilyInter,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? drawingScreenTitleDetails = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColors.text,
-    fontFamily: AppStrings.fontFamilyInter,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? editButtonText = TextStyle(
