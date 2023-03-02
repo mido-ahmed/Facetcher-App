@@ -26,6 +26,13 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyComfortaa,
   );
 
+  static TextStyle? navigatorItem = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: AppColors.navigatorFont,
+    fontFamily: AppStrings.fontFamilyComfortaa,
+  );
+
   static TextStyle? drawingScreenTitle = TextStyle(
     fontSize: 35,
     fontWeight: FontWeight.w700,

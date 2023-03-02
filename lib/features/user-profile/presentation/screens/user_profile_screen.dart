@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/widgets/navigator/navigation_bar_wrapper.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
+import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class UserProfileScreen extends StatefulWidget {
+  const UserProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<UserProfileScreen> createState() => _UserProfileScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _UserProfileScreenState extends State<UserProfileScreen> {
   bool _toggleNavigationBar = false;
 
   void _handleToggleNavigationBar() {
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             resizeToAvoidBottomInset: true,
             body: Center(
               child: Text(
-                "Home",
+                "Profile",
                 style: AppTextStyle.homeText,
               ),
             )),

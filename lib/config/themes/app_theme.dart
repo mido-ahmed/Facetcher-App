@@ -5,6 +5,12 @@ import '../../core/utils/app_strings.dart';
 
 ThemeData appTheme() {
   return ThemeData(
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: OpenUpwardsPageTransitionsBuilder(),
+        },
+      ),
       backgroundColor: AppColors.background,
       primaryColor: AppColors.background,
       hintColor: AppColors.white,
@@ -15,8 +21,7 @@ ThemeData appTheme() {
           centerTitle: true,
           color: Colors.transparent,
           elevation: 0,
-          titleTextStyle: TextStyle(
-              fontWeight: FontWeight.w500, color: Colors.black, fontSize: 20)),
+          titleTextStyle: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 20)),
       textTheme: TextTheme(
         titleMedium: TextStyle(
           height: 1.3,
