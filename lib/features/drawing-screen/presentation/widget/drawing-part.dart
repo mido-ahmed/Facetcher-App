@@ -22,7 +22,7 @@ class _DrawingState extends State<Drawing> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 1.36,
+      height: MediaQuery.of(context).size.height / 1.52,
       width: MediaQuery.of(context).size.width / 1.098,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
