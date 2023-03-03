@@ -29,7 +29,7 @@ class _OutputImageState extends State<OutputImage> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30.0),
-            border: Border.all(width: 1, color: AppColors.text),
+            border: Border.all(width: 1, color: AppColors.textPrimary),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(30.0),
