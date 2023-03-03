@@ -6,11 +6,10 @@ class ListTitleWidget extends StatefulWidget {
   final String title;
   final String subtitle;
 
-  const ListTitleWidget({Key? key, required this.title, required this.subtitle})
-      : super(key: key);
+  const ListTitleWidget({Key? key, required this.title, required this.subtitle}) : super(key: key);
 
   @override
-  _ListTitleWidgetState createState() => _ListTitleWidgetState();
+  State<ListTitleWidget> createState() => _ListTitleWidgetState();
 }
 
 class _ListTitleWidgetState extends State<ListTitleWidget> {
