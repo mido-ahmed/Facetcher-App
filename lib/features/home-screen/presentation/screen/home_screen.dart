@@ -72,14 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:30.0 ),
+                padding: const EdgeInsets.only(top: 30.0),
                 child: Text(
                   "From sketch",
                   style: AppTextStyle.homeScreenTextOne,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 55.0 , top: 7.0),
+                padding: const EdgeInsets.only(left: 55.0, top: 7.0),
                 child: Text(
                   "To Life",
                   style: AppTextStyle.homeScreenTextTwo,
