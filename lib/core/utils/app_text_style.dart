@@ -39,6 +39,12 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.textPrimary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+  static TextStyle? appBarUserProfile = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
 
   static TextStyle? drawingScreenTitleDetails = TextStyle(
     fontSize: 12,
