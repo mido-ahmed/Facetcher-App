@@ -2,43 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
 import 'package:flutter_starter/core/utils/app_text_style.dart';
 
-class CircularProfile extends StatefulWidget {
-  const CircularProfile({Key? key}) : super(key: key);
+class CircularButton extends StatefulWidget {
+  const CircularButton(
+      {Key? key,
+      required this.image,
+      required this.function,
+      required this.circleRadius})
+      : super(key: key);
+
+  final String image;
+  final VoidCallback function;
+  final double? circleRadius;
 
   @override
-  State<CircularProfile> createState() => _CircularProfileState();
+  State<CircularButton> createState() => _CircularButtonState();
 }
 
-class _CircularProfileState extends State<CircularProfile> {
+class _CircularButtonState extends State<CircularButton> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: widget.function,
           child: CircleAvatar(
-            child: Image.asset('assets/images/1.5x/shape.png'),
-            radius: 25,
+            child: Image.asset(widget.image),
+            radius: widget.circleRadius,
             backgroundColor: AppColors.navigatorItem,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 14),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Hey,User",
-                style: AppTextStyle.appBarUserProfile,
-              ),
-              Text(
-                "Let’s sketch today",
-                style: AppTextStyle.drawingScreenTitleDetails,
-              ),
-            ],
-          ),
-        )
       ],
     );
   }
