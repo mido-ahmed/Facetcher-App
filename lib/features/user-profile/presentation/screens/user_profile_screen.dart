@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/core/widgets/icons/animated_icon_button.dart';
 
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_style.dart';
+import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 
 class UserProfileScreen extends StatefulWidget {
@@ -27,35 +28,25 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       path: ModalRoute.of(context)?.settings.name,
       child: Material(
         child: Scaffold(
-            appBar: AppBar(
-              centerTitle: false,
-              title: Padding(
-                padding: const EdgeInsets.only(top: 30.0, left: 30.0),
-                child: Text(
-                  "Hello Developer!",
-                  style: AppTextStyle.homeText,
-                ),
-              ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 25.0, right: 35.0),
-                  child: IconButton(
-                      onPressed: () => _handleToggleNavigationBar(),
-                      icon: const Icon(
-                        Icons.menu,
-                        size: 30,
-                      ),
-                      color: AppColors.white),
-                ),
-              ],
-            ),
             extendBody: true,
             resizeToAvoidBottomInset: true,
-            body: Center(
-              child: Text(
-                "Profile",
-                style: AppTextStyle.homeText,
-              ),
+            body: Column(
+              children: [
+                AppBarWidget(
+                  leftChild: IconButton(
+                    icon: Icon(Icons.arrow_back, color: AppColors.white),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  rightChild: AnimatedIconButton(
+                    icon: AnimatedIcons.menu_close,
+                    color: AppColors.fontPrimary,
+                    onPressed: () => _handleToggleNavigationBar(),
+                    durationMilliseconds: 500,
+                    size: 32.0,
+                    end: 0.5,
+                  ),
+                ),
+              ],
             )),
       ),
     );
