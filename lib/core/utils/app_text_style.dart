@@ -46,6 +46,20 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
+  static TextStyle? homeScreenDetails = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? homeScreenHistory = TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
   static TextStyle? drawingScreenTitleDetails = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
@@ -53,10 +67,31 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
+  static TextStyle? historyButton = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: AppColors.textSecondary,
+      fontFamily: AppStrings.fontFamilyCenturtGothic,
+      decoration: TextDecoration.underline);
+
+  static TextStyle? homeScreenTextOne = TextStyle(
+    fontSize: 50,
+    fontWeight: FontWeight.w400,
+    color: AppColors.navigatorFont,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? homeScreenTextTwo = TextStyle(
+    fontSize: 90,
+    fontWeight: FontWeight.bold,
+    color: AppColors.navigatorItem,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
   static TextStyle? editButtonText = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
-    color: AppColors.textPrimary,
+    color: AppColors.navigatorItem,
     fontFamily: AppStrings.fontFamilyInter,
   );
 
