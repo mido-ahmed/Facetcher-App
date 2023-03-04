@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/features/drawing-report/presentation/screens/drawing_report_screen.dart';
 import 'package:flutter_starter/features/drawing-result/presentation/screens/drawing-result.dart';
@@ -16,6 +18,7 @@ class Routes {
   static const String userProfile = '/user-profile';
   static const String userDrawingResult = '/user-drawing-result';
   static const String userDrawingReport = '/user-drawing-report';
+  static const String userHomeScreen = '/user-home-screen';
 }
 
 class AppRoutes {
@@ -60,6 +63,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingReport();
+            },
+            settings: routeSettings);
+
+      case Routes.userHomeScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const HomeScreen();
             },
             settings: routeSettings);
 
