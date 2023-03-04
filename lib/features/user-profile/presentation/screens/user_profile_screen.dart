@@ -43,7 +43,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     onPressed: () => _handleToggleNavigationBar(),
                     durationMilliseconds: 500,
                     size: 32.0,
-                    end: 0.5,
+                    end: 1.0,
                   ),
                 ),
               ],
