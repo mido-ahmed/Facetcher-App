@@ -14,7 +14,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 25, top: 50, bottom: 10),
+      padding: const EdgeInsets.only(left: 20, right: 30, top: 50, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [widget.leftChild, widget.rightChild],
