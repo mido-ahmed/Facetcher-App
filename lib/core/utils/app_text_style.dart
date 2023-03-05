@@ -12,12 +12,12 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyComfortaa,
   );
 
-  static TextStyle? splashText = TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.w400,
-    color: AppColors.white,
-    fontFamily: AppStrings.fontFamilyComfortaa,
-  );
+  // static TextStyle? splashText = TextStyle(
+  //   fontSize: 32,
+  //   fontWeight: FontWeight.w400,
+  //   color: AppColors.white,
+  //   fontFamily: AppStrings.fontFamilyComfortaa,
+  // );
 
   static TextStyle? homeText = TextStyle(
     fontSize: 18,
@@ -92,28 +92,28 @@ class AppTextStyle with Diagnosticable {
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: AppColors.navigatorItem,
-    fontFamily: AppStrings.fontFamilyInter,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? primaryButtonText = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: AppColors.navigatorFont,
-    fontFamily: AppStrings.fontFamilyInter,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? textDrawingReport = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
     color: AppColors.navigatorFont,
-    fontFamily: AppStrings.fontFamilyInter,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? textDescribtion = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondary,
-    fontFamily: AppStrings.fontFamilyInter,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? animatedButtonText = TextStyle(
