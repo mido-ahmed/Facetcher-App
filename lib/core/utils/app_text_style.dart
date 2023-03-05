@@ -115,4 +115,11 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyInter,
   );
+
+  static TextStyle? animatedButtonText = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    color: AppColors.animatedButtonText,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
 }
