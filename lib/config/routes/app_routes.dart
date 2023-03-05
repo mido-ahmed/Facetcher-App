@@ -25,7 +25,7 @@ class AppRoutes {
       case Routes.initial:
         return MaterialPageRoute(
             builder: (context) {
-              return const HomeScreen();
+              return const SplashScreen();
             },
             settings: routeSettings);
 
