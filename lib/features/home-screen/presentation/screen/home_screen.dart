@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_text_style.dart';
 import 'package:flutter_starter/core/widgets/navigator/navigation_bar_wrapper.dart';
 import 'package:flutter_starter/features/home-screen/presentation/widget/History.dart';
+import 'package:flutter_starter/features/home-screen/presentation/widget/animated_button.dart';
 import 'package:flutter_starter/features/home-screen/presentation/widget/circle_profile.dart';
 
 import '../../../../core/utils/app_colors.dart';
@@ -128,16 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularButton(
-                    function: () {},
-                    image: 'assets/images/1.5x/plus.png',
-                    circleRadius: 50,
-                  ),
-                ],
-              )
+              AnimatedCircleContainer()
             ],
           ),
         ),
