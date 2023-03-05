@@ -58,7 +58,7 @@ class _AnimatedCircleContainerState extends State<AnimatedCircleContainer>
       position: _animationPosition,
       child: Row(
         children: [
-          InkWell(
+          GestureDetector(
             onTap: () {},
             child: Container(
               width: 175,
