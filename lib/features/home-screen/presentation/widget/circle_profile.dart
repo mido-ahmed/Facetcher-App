@@ -23,7 +23,7 @@ class _CircularButtonState extends State<CircularButton> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        InkWell(
+        GestureDetector(
           onTap: widget.function,
           child: CircleAvatar(
             child: Image.asset(widget.image),
