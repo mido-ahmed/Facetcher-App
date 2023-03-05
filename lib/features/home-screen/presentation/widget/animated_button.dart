@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
+import 'package:flutter_starter/core/utils/app_text_style.dart';
 
 class AnimatedCircleContainer extends StatefulWidget {
   @override
@@ -71,9 +72,8 @@ class _AnimatedCircleContainerState extends State<AnimatedCircleContainer>
               child: Center(
                   child: Text(
                 "Start drawing",
-                style: TextStyle(
-                  color: AppColors.animatedButtonText,
-                ),
+                style: AppTextStyle.animatedButtonText,
+                textAlign: TextAlign.center,
               )),
             ),
           )
