@@ -16,7 +16,7 @@ class Routes {
   static const String userProfile = '/user-profile';
   static const String userDrawingResult = '/user-drawing-result';
   static const String userDrawingReport = '/user-drawing-report';
-  static const String HomeScreen = '/app-home-screen';
+  static const String homeScreen = '/app-home-screen';
 }
 
 class AppRoutes {
@@ -64,7 +64,7 @@ class AppRoutes {
             },
             settings: routeSettings);
 
-      case Routes.HomeScreen:
+      case Routes.homeScreen:
         return MaterialPageRoute(
             builder: (context) {
               return const HomeScreen();
