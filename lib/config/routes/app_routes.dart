@@ -5,6 +5,7 @@ import 'package:flutter_starter/features/home-screen/presentation/screen/home_sc
 import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
+import '../../features/drawing-screen/presentation/screen/drawing_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
 

@@ -106,6 +106,12 @@ class _AnimatedCircleContainerState extends State<AnimatedCircleContainer>
                       width: 90,
                       height: 90,
                       decoration: BoxDecoration(
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //       color: Colors.grey, //New
+                        //       blurRadius: 25.0,
+                        //       offset: Offset(0, -10))
+                        // ],
                         shape: BoxShape.circle,
                         color: AppColors.navigatorItem,
                       ),
