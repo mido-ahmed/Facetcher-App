@@ -33,4 +33,7 @@ class AppColors {
   static Color underlinePrimary = HexColor('#2F2C79');
 
   static Color profileBarPrimary = HexColor('#2F2C79');
+  static Color historyBorder = HexColor('#EAEAEA').withOpacity(0.20);
+
+  static Color animatedButtonText = HexColor('#3D4149');
 }

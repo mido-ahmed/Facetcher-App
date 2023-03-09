@@ -38,7 +38,9 @@ class _AnimatedIconButtonState extends State<AnimatedIconButton>
       vsync: this,
       duration: Duration(milliseconds: widget.durationMilliseconds),
     );
-    _animation = Tween<double>(begin: widget.begin ?? 0.0, end: widget.end ?? 1.0).animate(_controller);
+    _animation =
+        Tween<double>(begin: widget.begin ?? 0.0, end: widget.end ?? 1.0)
+            .animate(_controller);
   }
 
   @override

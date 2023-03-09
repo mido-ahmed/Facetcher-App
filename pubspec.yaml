@@ -43,6 +43,8 @@ flutter:
     - assets/icons/Vector.png
     - assets/icons/shape.png
     - assets/images/1.5x/person.png
+    - assets/images/1.5x/shape.png
+    - assets/images/1.5x/plus.png
 
   fonts:
     - family : Century Gothic

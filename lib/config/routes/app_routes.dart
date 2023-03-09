@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/features/drawing-report/presentation/screens/drawing_report_screen.dart';
 import 'package:flutter_starter/features/drawing-result/presentation/screens/drawing-result.dart';
+import 'package:flutter_starter/features/home-screen/presentation/screen/home_screen.dart';
 import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
-import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/drawing-screen/presentation/screen/drawing_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
 
@@ -16,6 +17,7 @@ class Routes {
   static const String userProfile = '/user-profile';
   static const String userDrawingResult = '/user-drawing-result';
   static const String userDrawingReport = '/user-drawing-report';
+  static const String homeScreen = '/app-home-screen';
 }
 
 class AppRoutes {
@@ -60,6 +62,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingReport();
+            },
+            settings: routeSettings);
+
+      case Routes.homeScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const HomeScreen();
             },
             settings: routeSettings);
 
