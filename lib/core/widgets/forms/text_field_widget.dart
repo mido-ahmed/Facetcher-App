@@ -5,9 +5,10 @@ import '../../utils/app_colors.dart';
 import '../../validation/text_field_validation.dart';
 
 class TextFieldWidget extends StatefulWidget {
-  final String label;
+  final String hintText;
+  final TextStyle? hintTextStyle;
+  final int? maxLines;
   final TextStyle? style;
-  final TextStyle? labelStyle;
   final TextStyle? errorStyle;
   final double borderWidth;
   final Color borderColor;
@@ -22,12 +23,12 @@ class TextFieldWidget extends StatefulWidget {
 
   const TextFieldWidget({
     Key? key,
-    required this.label,
-    required this.labelStyle,
+    required this.hintText,
+    required this.hintTextStyle,
     required this.errorStyle,
+    required this.errorBorderColor,
     required this.borderWidth,
     required this.borderColor,
-    required this.errorBorderColor,
     required this.secureText,
     required this.validateType,
     required this.keyboardType,
@@ -36,6 +37,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.contentPadding,
     required this.style,
     required this.cursorColor,
+    required this.maxLines,
   }) : super(key: key);
 
   @override
@@ -48,48 +50,51 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: widget.maxLines ,
       keyboardType: widget.keyboardType,
       obscureText: widget.secureText,
       obscuringCharacter: "*",
       autocorrect: false,
       textAlign: widget.textAlign,
       enableSuggestions: false,
-      style: widget.labelStyle,
+      style: widget.style,
       onSaved: widget.onSave,
       cursorColor: widget.cursorColor,
       decoration: InputDecoration(
-          labelText: widget.label,
-          floatingLabelStyle: widget.labelStyle,
-          contentPadding: const EdgeInsets.only(left: 22, right: 22),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
-            borderSide: BorderSide(
-              color: widget.borderColor,
-              width: widget.borderWidth,
-            ),
+        hintText: widget.hintText,
+        hintStyle: widget.hintTextStyle,
+        floatingLabelStyle: TextStyle(color: AppColors.fontPrimary),
+        contentPadding: widget.contentPadding,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0),
+          borderSide: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
-            borderSide: BorderSide(
-              color: widget.borderColor,
-              width: widget.borderWidth,
-            ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0),
+          borderSide: BorderSide(
+            color: widget.borderColor,
+            width: widget.borderWidth,
           ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
-            borderSide: BorderSide(
-              color: widget.errorBorderColor,
-              width: widget.borderWidth,
-            ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0),
+          borderSide: BorderSide(
+            color: widget.errorBorderColor,
+            width: widget.borderWidth,
           ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
-            borderSide: BorderSide(
-              color: widget.errorBorderColor,
-              width: widget.borderWidth,
-            ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0),
+          borderSide: BorderSide(
+            color: widget.errorBorderColor,
+            width: widget.borderWidth,
           ),
-          errorStyle: widget.errorStyle),
+        ),
+        errorStyle: widget.errorStyle,
+      ),
       onChanged: (value) {
         validation = ValidateTextFiled.validate(value, widget.validateType)!;
       },
