@@ -1,7 +1,7 @@
 class EndPoints {
   // base
   static const String baseStagingUrl = 'http://192.168.1.7:8010/';
-  static const String baseProductionUrl = '';
+  static const String baseProductionUrl = 'http://3.138.186.26:8010/';
 
   // auth
   static const String signin = '$baseProductionUrl/auth/log-in';
