@@ -7,45 +7,39 @@ import 'app_strings.dart';
 class AppTextStyle with Diagnosticable {
   static TextStyle? snackbar = TextStyle(
     fontSize: 16,
-    fontWeight: FontWeight.w400,
     color: AppColors.fontPrimary,
-    fontFamily: AppStrings.fontFamilyComfortaa,
-  );
-
-  static TextStyle? splashText = TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.w400,
-    color: AppColors.white,
-    fontFamily: AppStrings.fontFamilyComfortaa,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? homeText = TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.w400,
     color: AppColors.white,
-    fontFamily: AppStrings.fontFamilyComfortaa,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
-  static TextStyle? loginDetailsText = TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.w400,
+  static TextStyle? loginDescriptionText = TextStyle(
+      fontSize: 18,
       color: AppColors.textSecondary,
-      fontFamily: AppStrings.fontFamilyBarlow,
-      height: 1.2);
-
-  static TextStyle? loginText = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: AppColors.white,
-    fontFamily: AppStrings.fontFamilyComfortaa,
-    height: 1,
-
+      fontFamily: AppStrings.fontFamilyCenturtGothic,
+      height: 1.2
   );
 
-  static TextStyle? loginTextDescribtion = TextStyle(
+  static TextStyle? loginNoteText = TextStyle(
+    fontSize: 16,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothicBold,
+    height: 1,
+  );
+
+  static TextStyle? loginFieldText = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AppColors.textSecondary,
+    color: AppColors.textPrimary.withOpacity(0.9),
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? loginButton = TextStyle(
+    fontSize: 16,
+    color: AppColors.fontPrimary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
