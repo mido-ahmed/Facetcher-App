@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../../../config/routes/app_routes.dart';
+import '../../../../core/utils/assets_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -26,10 +27,10 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   _startDelay() {
-    _timer = Timer(const Duration(milliseconds: 8000), () => _goNext());
+    _timer = Timer(const Duration(milliseconds: 5000), () => _goNext());
   }
 
-  _goNext() => {Navigator.pushReplacementNamed(context, Routes.login)};
+  _goNext() => {Navigator.pushReplacementNamed(context, Routes.appSignin)};
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
               AnimatedSize(
                 duration: const Duration(seconds: 2),
                 curve: Curves.elasticInOut,
-                child: Image.asset('assets/images/2x/Group.png'),
+                child: Hero(tag: 'splash-logo', child: Image.asset(ImgAssets.logoFlat)),
               ),
             ],
           ),
