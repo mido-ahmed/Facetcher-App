@@ -45,6 +45,8 @@ flutter:
     - assets/images/1.5x/person.png
     - assets/images/1.5x/shape.png
     - assets/images/1.5x/plus.png
+    - assets/images/2x/Group.png
+    - assets/images/2x/Login.png
 
   fonts:
     - family : Century Gothic
