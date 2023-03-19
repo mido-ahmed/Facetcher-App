@@ -17,14 +17,14 @@ class _ButtonFormWidgetState extends State<ButtonFormWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80,
+      height: 70,
       child: Stack(
         alignment: Alignment.center,
         children: [
           Positioned(
             top: 3,
             child: SizedBox(
-              height: 49,
+              height: 45,
               width: 170,
               child: ElevatedButton(
                 onPressed: () {
