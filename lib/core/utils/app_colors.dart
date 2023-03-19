@@ -6,7 +6,7 @@ class AppColors {
   static Color primary = HexColor('#3D4149');
   static Color hint = HexColor('#FFFFFF');
 
-  static Color textPrimary = HexColor('##EAEAEA');
+  static Color textPrimary = HexColor('#EAEAEA');
   static Color textSecondary = HexColor('#B3B4B4');
 
   static Color navigatorItem = HexColor('#07ABB3');
@@ -19,7 +19,7 @@ class AppColors {
   static Color fontPrimary = HexColor('#FFFFFF');
   static Color fontSecondary = HexColor('#E8C39E');
 
-  static Color border = HexColor('#B3B4B4');
+  static Color border = HexColor('#808080');
 
   static Color button = HexColor('#07ABB3');
   static Color snackbar = HexColor('#2F2C79');
