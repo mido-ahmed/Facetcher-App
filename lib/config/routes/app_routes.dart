@@ -5,30 +5,41 @@ import 'package:flutter_starter/features/home-screen/presentation/screen/home_sc
 import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
-import '../../features/drawing-screen/presentation/screen/drawing_screen.dart';
-import '../../features/login/presentation/screens/login_screen.dart';
-import '../../features/splash/presentation/screens/splash_screen.dart';
+import '../../features/app-signin/presentation/screens/signin_screen.dart';
+import '../../features/app-splash/presentation/screens/splash_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
 
 class Routes {
   static const String initial = '/';
   static const String appHome = '/app-home';
-  static const String login = '/login';
-  static const String drawingScreen = '/app-drawing-screen';
+  static const String appSignin = '/app-signin';
+
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
-  static const String userDrawingResult = '/user-drawing-result';
-  static const String userDrawingReport = '/user-drawing-report';
-  static const String homeScreen = '/app-home-screen';
+
+  static const String appDrawingScreen = '/app-drawing-screen';
+  static const String appDrawingResult = '/app-drawing-result';
+  static const String appDrawingReport = '/app-drawing-report';
 }
 
 class AppRoutes {
   static Route? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initial:
-        return MaterialPageRoute(builder: (context,) {
-          return const SplashScreen();
-        }, settings: routeSettings);
+        return MaterialPageRoute(
+            builder: (
+              context,
+            ) {
+              return const SplashScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appSignin:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const SigninScreen();
+            },
+            settings: routeSettings);
 
       case Routes.appHome:
         return MaterialPageRoute(
@@ -51,31 +62,17 @@ class AppRoutes {
             },
             settings: routeSettings);
 
-      case Routes.userDrawingResult:
+      case Routes.appDrawingResult:
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingResult();
             },
             settings: routeSettings);
 
-      case Routes.userDrawingReport:
+      case Routes.appDrawingReport:
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingReport();
-            },
-            settings: routeSettings);
-
-      case Routes.login:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const LoginScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.homeScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const HomeScreen();
             },
             settings: routeSettings);
 
