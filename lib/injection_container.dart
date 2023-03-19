@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_starter/features/app-signin/domain/usecases/signin_usecase.dart';
+import 'package:flutter_starter/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,9 +20,9 @@ import 'data/repositories/user/user_repository_impl.dart';
 import 'data/datasources/localization/localization_local_data_source.dart';
 import 'data/repositories/localization/localization_repository_impl.dart';
 import 'data/repositories/localization/localization_repository.dart';
-import 'features/splash/domain/usecases/change_lang_usecase.dart';
-import 'features/splash/domain/usecases/get_saved_lang_usecase.dart';
-import 'features/splash/presentation/cubit/localization_cubit.dart';
+import 'features/app-splash/domain/usecases/change_lang_usecase.dart';
+import 'features/app-splash/domain/usecases/get_saved_lang_usecase.dart';
+import 'features/app-splash/presentation/cubit/localization_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -29,12 +31,18 @@ Future<void> init() async {
   // !---- Cubits ----!
   // splash
   sl.registerFactory<LocalizationCubit>(() => LocalizationCubit(getSavedLangUseCase: sl(), changeLangUseCase: sl()));
+  
+  // signin
+  sl.registerFactory<SigninCubit>(() => SigninCubit(signinUseCase: sl()));
 
 
   // !---- Use cases ----!
   // splash
   sl.registerLazySingleton<ChangeLangUseCase>(() => ChangeLangUseCase(langRepository: sl()));
   sl.registerLazySingleton<GetSavedLangUseCase>(() => GetSavedLangUseCase(langRepository: sl()));
+
+  // signin
+  sl.registerLazySingleton<SigninUseCase>(() => SigninUseCase(authenticationRepository: sl()));
 
 
   // !---- Repository ----!
