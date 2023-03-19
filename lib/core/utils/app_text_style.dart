@@ -12,18 +12,41 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyComfortaa,
   );
 
-  // static TextStyle? splashText = TextStyle(
-  //   fontSize: 32,
-  //   fontWeight: FontWeight.w400,
-  //   color: AppColors.white,
-  //   fontFamily: AppStrings.fontFamilyComfortaa,
-  // );
+  static TextStyle? splashText = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.w400,
+    color: AppColors.white,
+    fontFamily: AppStrings.fontFamilyComfortaa,
+  );
 
   static TextStyle? homeText = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyComfortaa,
+  );
+
+  static TextStyle? loginDetailsText = TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w400,
+      color: AppColors.textSecondary,
+      fontFamily: AppStrings.fontFamilyBarlow,
+      height: 1.2);
+
+  static TextStyle? loginText = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+    fontFamily: AppStrings.fontFamilyComfortaa,
+    height: 1,
+
+  );
+
+  static TextStyle? loginTextDescribtion = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? navigatorItem = TextStyle(

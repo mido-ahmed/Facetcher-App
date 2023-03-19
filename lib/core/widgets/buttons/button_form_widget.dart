@@ -25,7 +25,7 @@ class _ButtonFormWidgetState extends State<ButtonFormWidget> {
             top: 3,
             child: SizedBox(
               height: 49,
-              width: 340,
+              width: 170,
               child: ElevatedButton(
                 onPressed: () {
                   widget.onPress.call();

@@ -6,12 +6,14 @@ import 'package:flutter_starter/features/user-history/presentation/screens/user_
 
 import '../../core/utils/app_strings.dart';
 import '../../features/drawing-screen/presentation/screen/drawing_screen.dart';
+import '../../features/login/presentation/screens/login_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
 
 class Routes {
   static const String initial = '/';
   static const String appHome = '/app-home';
+  static const String login = '/login';
   static const String drawingScreen = '/app-drawing-screen';
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
@@ -24,11 +26,9 @@ class AppRoutes {
   static Route? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initial:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const SplashScreen();
-            },
-            settings: routeSettings);
+        return MaterialPageRoute(builder: (context,) {
+          return const SplashScreen();
+        }, settings: routeSettings);
 
       case Routes.appHome:
         return MaterialPageRoute(
@@ -62,6 +62,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingReport();
+            },
+            settings: routeSettings);
+
+      case Routes.login:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const LoginScreen();
             },
             settings: routeSettings);
 
