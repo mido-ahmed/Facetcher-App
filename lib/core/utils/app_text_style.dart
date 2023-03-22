@@ -139,4 +139,29 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.animatedButtonText,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+  static TextStyle? profileTitles = TextStyle(
+    fontSize: 35,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+  static TextStyle? profileSubTitles = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? userProfileTitle = TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+  static TextStyle? userProfileDetails = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+    color: AppColors.grey,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
 }
