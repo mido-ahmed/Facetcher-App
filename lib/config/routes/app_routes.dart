@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/features/drawing-report/presentation/screens/drawing_report_screen.dart';
 import 'package:flutter_starter/features/drawing-result/presentation/screens/drawing-result.dart';
 import 'package:flutter_starter/features/home-screen/presentation/screen/home_screen.dart';
+import 'package:flutter_starter/features/user-changing_password/presentation/screens/user_changing_password.dart';
 import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
@@ -16,6 +17,7 @@ class Routes {
 
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
+  static const String userChangingPassword = '/user-changing-password';
 
   static const String appDrawingScreen = '/app-drawing-screen';
   static const String appDrawingResult = '/app-drawing-result';
@@ -59,6 +61,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const UserProfileScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.userChangingPassword:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const ChangingPassword();
             },
             settings: routeSettings);
 
