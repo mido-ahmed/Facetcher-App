@@ -23,7 +23,8 @@ class SigninFormWidget extends StatefulWidget {
 
 class _SigninFormWidgetState extends State<SigninFormWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late SigninRequest signinRequest = SigninRequest();
+  late final SigninRequest _signinRequest = SigninRequest();
+  bool _isFormEnabled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +38,18 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Please Login with your generated \n\t\t\t\t\taccount that you received',
-                style: AppTextStyle.loginNoteText,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                child: Text(
+                  'Please Login with your generated account that you received',
+                  style: AppTextStyle.loginNoteText,
+                  textAlign: TextAlign.center,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0, left: 30, right: 30),
                 child: TextFieldWidget(
+                  enabled: _isFormEnabled,
                   hintText: 'Email',
                   hintTextStyle: AppTextStyle.loginFieldText,
                   keyboardType: TextInputType.emailAddress,
@@ -58,7 +64,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                   cursorColor: AppColors.textSecondary,
                   secureText: false,
                   onSave: (value) {
-                    signinRequest.email = value;
+                    _signinRequest.email = value;
                   },
                   contentPadding: const EdgeInsets.only(
                     top: 12,
@@ -68,29 +74,32 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
-                child: TextFieldWidget(
-                  hintText: 'Password',
-                  hintTextStyle: AppTextStyle.loginFieldText,
-                  keyboardType: TextInputType.visiblePassword,
-                  validateType: ValidationTypes.signinPassword,
-                  errorStyle: TextStyle(color: AppColors.error),
-                  errorBorderColor: AppColors.error,
-                  borderColor: AppColors.border,
-                  borderWidth: 1,
-                  maxLines: 1,
-                  textAlign: TextAlign.start,
-                  style: AppTextStyle.loginFieldText,
-                  cursorColor: AppColors.textSecondary,
-                  secureText: true,
-                  onSave: (value) {
-                    signinRequest.password = value;
-                  },
-                  contentPadding: const EdgeInsets.only(
-                    top: 12,
-                    left: 30,
+                child: AbsorbPointer(
+                  child: TextFieldWidget(
+                    enabled: _isFormEnabled,
+                    hintText: 'Password',
+                    hintTextStyle: AppTextStyle.loginFieldText,
+                    keyboardType: TextInputType.visiblePassword,
+                    validateType: ValidationTypes.signinPassword,
+                    errorStyle: TextStyle(color: AppColors.error),
+                    errorBorderColor: AppColors.error,
+                    borderColor: AppColors.border,
+                    borderWidth: 1,
+                    maxLines: 1,
+                    textAlign: TextAlign.start,
+                    style: AppTextStyle.loginFieldText,
+                    cursorColor: AppColors.textSecondary,
+                    secureText: true,
+                    onSave: (value) {
+                      _signinRequest.password = value;
+                    },
+                    contentPadding: const EdgeInsets.only(
+                      top: 12,
+                      left: 30,
+                    ),
                   ),
                 ),
-              ), // Padding(
+              ),
               Expanded(
                 flex: 2,
                 child: Center(
@@ -117,22 +126,19 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                             onPress: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState?.save();
-                                if (signinRequest.email.isEmpty) {
+                                if (_signinRequest.email.isEmpty) {
                                   Constants.showErrorDialog(
                                       context: context,
-                                      message: AppLocalizations.of(context)!
-                                          .translate('blank_email')!);
+                                      message: AppLocalizations.of(context)!.translate('blank_email')!);
                                   return;
                                 }
-                                if (signinRequest.password.isEmpty) {
+                                if (_signinRequest.password.isEmpty) {
                                   Constants.showErrorDialog(
                                       context: context,
-                                      message: AppLocalizations.of(context)!
-                                          .translate('blank_password')!);
+                                      message: AppLocalizations.of(context)!.translate('blank_password')!);
                                   return;
                                 }
-                                BlocProvider.of<SigninCubit>(context)
-                                    .signin(signinRequest);
+                                BlocProvider.of<SigninCubit>(context).signin(_signinRequest);
                               }
                             },
                             child:
@@ -142,14 +148,21 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                       }),
                       listener: ((context, state) {
                         if (state is SigninError) {
-                          Constants.showErrorDialog(
-                              context: context, message: state.message);
+                          Constants.showErrorDialog(context: context, message: state.message);
                         } else if (state is SigninSuccess) {
                           Constants.showSnackBar(
                               context: context,
                               message: state.signinClaimsResponse.message);
-                          Navigator.pushReplacementNamed(
-                              context, Routes.appHome);
+                          Navigator.pushReplacementNamed(context, Routes.appHome);
+                        }
+                        if (state is SigninLoading) {
+                          setState(() {
+                            _isFormEnabled = false;
+                          });
+                        } else {
+                          setState(() {
+                            _isFormEnabled = true;
+                          });
                         }
                       }),
                     ),
