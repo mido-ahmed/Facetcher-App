@@ -15,6 +15,7 @@ class TextFieldWidget extends StatefulWidget {
   final Color errorBorderColor;
   final Color? cursorColor;
   final bool secureText;
+  final bool enabled;
   final String validateType;
   final TextInputType keyboardType;
   final FormFieldSetter onSave;
@@ -30,6 +31,7 @@ class TextFieldWidget extends StatefulWidget {
     required this.borderWidth,
     required this.borderColor,
     required this.secureText,
+    required this.enabled,
     required this.validateType,
     required this.keyboardType,
     required this.onSave,
@@ -50,7 +52,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLines: widget.maxLines ,
+      enabled: widget.enabled,
+      maxLines: widget.maxLines,
       keyboardType: widget.keyboardType,
       obscureText: widget.secureText,
       obscuringCharacter: "*",
@@ -60,41 +63,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       style: widget.style,
       onSaved: widget.onSave,
       cursorColor: widget.cursorColor,
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        hintStyle: widget.hintTextStyle,
-        floatingLabelStyle: TextStyle(color: AppColors.fontPrimary),
-        contentPadding: widget.contentPadding,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40.0),
-          borderSide: BorderSide(
-            color: widget.borderColor,
-            width: widget.borderWidth,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40.0),
-          borderSide: BorderSide(
-            color: widget.borderColor,
-            width: widget.borderWidth,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40.0),
-          borderSide: BorderSide(
-            color: widget.errorBorderColor,
-            width: widget.borderWidth,
-          ),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40.0),
-          borderSide: BorderSide(
-            color: widget.errorBorderColor,
-            width: widget.borderWidth,
-          ),
-        ),
-        errorStyle: widget.errorStyle,
-      ),
+      decoration: widget.enabled
+          ? _buildEnabledDecoration()
+          : _buildDisabledDecoration(),
       onChanged: (value) {
         validation = ValidateTextFiled.validate(value, widget.validateType)!;
       },
@@ -103,6 +74,60 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             ? null
             : AppLocalizations.of(context)!.translate(validation)!;
       },
+    );
+  }
+
+  InputDecoration _buildEnabledDecoration() {
+    return InputDecoration(
+      hintText: widget.hintText,
+      hintStyle: widget.hintTextStyle,
+      floatingLabelStyle: TextStyle(color: AppColors.fontPrimary),
+      contentPadding: widget.contentPadding,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        borderSide: BorderSide(
+          color: widget.borderColor,
+          width: widget.borderWidth,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        borderSide: BorderSide(
+          color: widget.borderColor,
+          width: widget.borderWidth,
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        borderSide: BorderSide(
+          color: widget.errorBorderColor,
+          width: widget.borderWidth,
+        ),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        borderSide: BorderSide(
+          color: widget.errorBorderColor,
+          width: widget.borderWidth,
+        ),
+      ),
+      errorStyle: widget.errorStyle,
+    );
+  }
+
+  InputDecoration _buildDisabledDecoration() {
+    return InputDecoration(
+      hintText: widget.hintText,
+      hintStyle: widget.hintTextStyle,
+      floatingLabelStyle: TextStyle(color: AppColors.fontPrimary),
+      contentPadding: widget.contentPadding,
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        borderSide: BorderSide(
+          color: widget.borderColor,
+          width: widget.borderWidth,
+        ),
+      ),
     );
   }
 }
