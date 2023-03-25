@@ -34,7 +34,7 @@ class SigninScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       child: Text(
-                        'What we try to do is to reach the criminal together and get the best result in the shortest time.',
+                        'We strive to work together to achieve the best results in fastest ways, bringing swift optimal ones.',
                         style: AppTextStyle.loginDescriptionText,
                         textAlign: TextAlign.center,
                       ),
