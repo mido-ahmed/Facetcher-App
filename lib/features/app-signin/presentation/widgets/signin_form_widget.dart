@@ -34,7 +34,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.only(top: 40.0, bottom: 10),
+          padding: const EdgeInsets.only(top: 35.0, bottom: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -73,7 +73,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
+                padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
                 child: TextFieldWidget(
                   enabled: _isFormEnabled,
                   hintText: 'Password',
