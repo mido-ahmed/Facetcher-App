@@ -74,29 +74,27 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
-                child: AbsorbPointer(
-                  child: TextFieldWidget(
-                    enabled: _isFormEnabled,
-                    hintText: 'Password',
-                    hintTextStyle: AppTextStyle.loginFieldText,
-                    keyboardType: TextInputType.visiblePassword,
-                    validateType: ValidationTypes.signinPassword,
-                    errorStyle: AppTextStyle.loginFieldErrorText,
-                    errorBorderColor: AppColors.error,
-                    borderColor: AppColors.border,
-                    borderWidth: 1,
-                    maxLines: 1,
-                    textAlign: TextAlign.start,
-                    style: AppTextStyle.loginFieldText,
-                    cursorColor: AppColors.textSecondary,
-                    secureText: true,
-                    onSave: (value) {
-                      _signinRequest.password = value;
-                    },
-                    contentPadding: const EdgeInsets.only(
-                      top: 12,
-                      left: 30,
-                    ),
+                child: TextFieldWidget(
+                  enabled: _isFormEnabled,
+                  hintText: 'Password',
+                  hintTextStyle: AppTextStyle.loginFieldText,
+                  keyboardType: TextInputType.visiblePassword,
+                  validateType: ValidationTypes.signinPassword,
+                  errorStyle: AppTextStyle.loginFieldErrorText,
+                  errorBorderColor: AppColors.error,
+                  borderColor: AppColors.border,
+                  borderWidth: 1,
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
+                  style: AppTextStyle.loginFieldText,
+                  cursorColor: AppColors.textSecondary,
+                  secureText: true,
+                  onSave: (value) {
+                    _signinRequest.password = value;
+                  },
+                  contentPadding: const EdgeInsets.only(
+                    top: 12,
+                    left: 30,
                   ),
                 ),
               ),
