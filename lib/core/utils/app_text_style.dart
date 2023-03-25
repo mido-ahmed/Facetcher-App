@@ -32,7 +32,13 @@ class AppTextStyle with Diagnosticable {
   );
 
   static TextStyle? loginFieldText = TextStyle(
-    fontSize: 16,
+    fontSize: 15,
+    color: AppColors.white,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? loginFieldErrorText  = TextStyle(
+    fontSize: 13,
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );

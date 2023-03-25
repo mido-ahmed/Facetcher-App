@@ -41,7 +41,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 80.0),
                 child: Text(
-                  'Please Login with your generated account that you received',
+                  'Please log in using the account credentials that you received.',
                   style: AppTextStyle.loginNoteText,
                   textAlign: TextAlign.center,
                 ),
@@ -54,7 +54,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                   hintTextStyle: AppTextStyle.loginFieldText,
                   keyboardType: TextInputType.emailAddress,
                   validateType: ValidationTypes.signinEmail,
-                  errorStyle: TextStyle(color: AppColors.error),
+                  errorStyle: AppTextStyle.loginFieldErrorText,
                   errorBorderColor: AppColors.error,
                   borderColor: AppColors.border,
                   borderWidth: 1,
@@ -81,7 +81,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                     hintTextStyle: AppTextStyle.loginFieldText,
                     keyboardType: TextInputType.visiblePassword,
                     validateType: ValidationTypes.signinPassword,
-                    errorStyle: TextStyle(color: AppColors.error),
+                    errorStyle: AppTextStyle.loginFieldErrorText,
                     errorBorderColor: AppColors.error,
                     borderColor: AppColors.border,
                     borderWidth: 1,
