@@ -22,7 +22,7 @@ class AppColors {
   static Color border = HexColor('#808080');
 
   static Color button = HexColor('#07ABB3');
-  static Color snackbar = HexColor('#2F2C79');
+  static Color snackbar = HexColor('#07ABB3');
   static Color navigator = HexColor('#000020');
 
   static Color black = HexColor('#000000');
