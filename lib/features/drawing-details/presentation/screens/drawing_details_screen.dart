@@ -33,63 +33,66 @@ class _DrawingDetailsState extends State<DrawingDetails> {
         child: Scaffold(
           extendBody: true,
           resizeToAvoidBottomInset: true,
-          body: Column(
-            children: [
-              AppBarWidget(
-                leftChild: IconButton(
-                  icon: Icon(Icons.arrow_back, color: AppColors.white),
-                  onPressed: () => Navigator.pop(context),
+          body: SingleChildScrollView(
+            physics: ScrollPhysics(),
+            child: Column(
+              children: [
+                AppBarWidget(
+                  leftChild: IconButton(
+                    icon: Icon(Icons.arrow_back, color: AppColors.white),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  rightChild: AnimatedIconButton(
+                    icon: AnimatedIcons.menu_close,
+                    color: AppColors.fontPrimary,
+                    onPressed: () => _handleToggleNavigationBar(),
+                    durationMilliseconds: 500,
+                    size: 32.0,
+                    end: 1.0,
+                  ),
                 ),
-                rightChild: AnimatedIconButton(
-                  icon: AnimatedIcons.menu_close,
-                  color: AppColors.fontPrimary,
-                  onPressed: () => _handleToggleNavigationBar(),
-                  durationMilliseconds: 500,
-                  size: 32.0,
-                  end: 1.0,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    Text(
-                      "Add drawing details",
-                      style: AppTextStyle.drawingScreenTitle,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(
-                        "Enter all the details and description for the drawing, as all what you do here is recorded",
-                        style: AppTextStyle.drawingScreenTitleDetails,
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Add drawing details",
+                        style: AppTextStyle.drawingScreenTitle,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          "Enter all the details and description for the drawing, as all what you do here is recorded",
+                          style: AppTextStyle.drawingScreenTitleDetails,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              DrawingDetailsForms(),
-              ButtonWidget(
-                backgroundColor: AppColors.navigatorItem,
-                onPress: () {
-                  Navigator.of(context).pushNamed('/app-drawing-screen');
-                },
-                text: "Next",
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Next",
-                      style: AppTextStyle.buttonText,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_sharp,
-                      color: AppColors.textPrimary,
-                      size: 17,
-                    ),
-                  ],
+                DrawingDetailsForms(),
+                ButtonWidget(
+                  backgroundColor: AppColors.navigatorItem,
+                  onPress: () {
+                    Navigator.of(context).pushNamed('/app-drawing-screen');
+                  },
+                  text: "Next",
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Next",
+                        style: AppTextStyle.buttonText,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_sharp,
+                        color: AppColors.textPrimary,
+                        size: 17,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
