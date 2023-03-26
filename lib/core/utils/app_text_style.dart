@@ -145,4 +145,10 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.animatedButtonText,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+  static TextStyle? drawingDetailsField = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
 }
