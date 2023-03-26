@@ -89,12 +89,9 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   ),
                 ),
                 isExpanded: true,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(25),
                 dropdownColor: AppColors.background,
-                style: TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 18,
-                ),
+                style: AppTextStyle.dropDownItem,
                 hint: Text(
                   'Choose the Gender ...',
                   style: AppTextStyle.drawingDetailsField,
