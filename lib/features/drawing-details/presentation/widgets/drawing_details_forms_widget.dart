@@ -71,10 +71,10 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 iconSize: 35,
                 icon: Icon(
                   Icons.keyboard_arrow_down_rounded,
-                  color: AppColors.grey,
+                  color: AppColors.textSecondary,
                 ),
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 30, right: 10),
+                  contentPadding: const EdgeInsets.only(left: 20, right: 10),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.grey, width: 1),
                     borderRadius: BorderRadius.circular(50),
@@ -91,8 +91,8 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 isExpanded: true,
                 borderRadius: BorderRadius.circular(20),
                 dropdownColor: AppColors.background,
-                style: const TextStyle(
-                  color: Colors.grey,
+                style: TextStyle(
+                  color: AppColors.textSecondary,
                   fontSize: 18,
                 ),
                 hint: Text(
