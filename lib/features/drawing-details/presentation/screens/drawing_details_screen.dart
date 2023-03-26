@@ -36,16 +36,9 @@ class _DrawingDetailsState extends State<DrawingDetails> {
           body: Column(
             children: [
               AppBarWidget(
-                leftChild: Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_back_sharp,
-                          size: 35,
-                          color: AppColors.white,
-                        ))
-                  ],
+                leftChild: IconButton(
+                  icon: Icon(Icons.arrow_back, color: AppColors.white),
+                  onPressed: () => Navigator.pop(context),
                 ),
                 rightChild: AnimatedIconButton(
                   icon: AnimatedIcons.menu_close,
