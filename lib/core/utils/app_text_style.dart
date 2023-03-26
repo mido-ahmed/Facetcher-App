@@ -117,6 +117,13 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
+  static TextStyle? buttonText = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
   static TextStyle? primaryButtonText = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
