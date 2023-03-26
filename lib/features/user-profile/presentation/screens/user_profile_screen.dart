@@ -22,7 +22,6 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
-
   bool _toggleNavigationBar = false;
 
   void _handleToggleNavigationBar() {
@@ -30,12 +29,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       _toggleNavigationBar = true;
     });
   }
-  PickedFile? _imageFile;
-  final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
-    // double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return NavigationBarWrapper(
       toggleNavigationBar: _toggleNavigationBar,
       path: ModalRoute.of(context)?.settings.name,
@@ -48,68 +43,21 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               AppBarWidget(
                 leftChild: IconButton(
                   icon: Icon(Icons.arrow_back, color: AppColors.white),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                rightChild: AnimatedIconButton(
-                  icon: AnimatedIcons.menu_close,
-                  color: AppColors.fontPrimary,
-                  onPressed: () => _handleToggleNavigationBar(),
-                  durationMilliseconds: 500,
-                  size: 32.0,
-                  end: 1.0,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Stack(
-                      children: [
-                          const SizedBox(
-                                width: 160,
-                                height: 160,
-                                child: ProfileWidget(
-                                  userProfileName: 'UserName',
-                                  userEmail: '@username',
-                                  userProfileUrl: 'assets/images/1.5x/shape.png',
-                                ),
-                              ),
-
-                        Positioned(
-                          bottom: 20,
-                          right: 30,
-                          top: 25,
-                          child: InkWell(
-                            hoverColor: AppColors.background.withOpacity(0),
-                            child: Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  width: 1,
-                                  color: AppColors.white,
-                                ),
-                                color: AppColors.background.withOpacity(0.4),
-                              ),
-                              child: Icon(
-                                Icons.edit,
-                                size: 20,
-                                color: AppColors.white,
-                              ),
-                            ),
-                            onTap: () {
-                              showModalBottomSheet(
-                                backgroundColor: AppColors.background,
-                                context: context,
-                                builder: (context) => uploadingProfilePicture(),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
+                    onPressed: () => Navigator.pop(context),
                   ),
+                  rightChild: AnimatedIconButton(
+                    icon: AnimatedIcons.menu_close,
+                    color: AppColors.fontPrimary,
+                    onPressed: () => _handleToggleNavigationBar(),
+                    durationMilliseconds: 500,
+                    size: 32.0,
+                    end: 1.0,
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                  const UploadingProfilePicture(),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 45),
                     child: Column(
@@ -159,7 +107,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 40),
+                    padding: const EdgeInsets.only(top: 25),
                     child: ButtonFormWidget(
                       onPress: () {},
                       child: const Text('Log out'),
@@ -170,78 +118,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-  // takenPhoto(ImageSource source) async {
-  //   final pickedFile = await _picker.pickImage(source: source);
-  //   setState(() {
-  //     _imageFile = pickedFile as PickedFile;
-  //   });
-  // }
-  uploadingProfilePicture() {
-    return Container(
-      height: 130,
-      width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 25),
-            child: Text(
-              'Choose Your Profile Picture',
-              style: AppTextStyle.userProfileTitle,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppColors.button),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                  ),
-                ),
-                onPressed: () {
-                  // takenPhoto(ImageSource.camera);
-                },
-                icon: Icon(
-                  Icons.camera_alt,
-                  color: AppColors.white,
-                ),
-                label: Text(
-                  'Camera',
-                  style: AppTextStyle.userProfileInfo,
-                ),
-              ),
-              ElevatedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppColors.button),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                  ),
-                ),
-                onPressed: () {
-                  // widget.takenPhoto;
-                  // takenPhoto(ImageSource.gallery);
-                },
-                icon: Icon(
-                  Icons.image,
-                  color: AppColors.white,
-                ),
-                label: Text(
-                  'Gallery',
-                  style: AppTextStyle.userProfileInfo,
-                ),
-              )
-            ],
-          )
-        ],
       ),
     );
   }
