@@ -1,5 +1,6 @@
-class DrawingDetailsRequest{
+class DrawingDetailsRequest {
   late String title;
-  late var gender ;
+  late var gender;
+
   late String description;
 }

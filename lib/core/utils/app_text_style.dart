@@ -21,8 +21,7 @@ class AppTextStyle with Diagnosticable {
       fontSize: 18,
       color: AppColors.textSecondary,
       fontFamily: AppStrings.fontFamilyCenturtGothic,
-      height: 1.2
-  );
+      height: 1.2);
 
   static TextStyle? loginNoteText = TextStyle(
     fontSize: 16,
@@ -37,7 +36,7 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
-  static TextStyle? loginFieldErrorText  = TextStyle(
+  static TextStyle? loginFieldErrorText = TextStyle(
     fontSize: 13,
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
