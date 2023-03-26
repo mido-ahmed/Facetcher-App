@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
+import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../widgets/drawing_details_forms_widget.dart';
@@ -73,7 +74,28 @@ class _DrawingDetailsState extends State<DrawingDetails> {
                   ],
                 ),
               ),
-              DrawingDetailsForms()
+              DrawingDetailsForms(),
+              ButtonWidget(
+                backgroundColor: AppColors.navigatorItem,
+                onPress: () {
+                  Navigator.of(context).pushNamed('/app-drawing-screen');
+                },
+                text: "Next",
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Next",
+                      style: AppTextStyle.buttonText,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_sharp,
+                      color: AppColors.textPrimary,
+                      size: 17,
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
