@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/widgets/forms/profile_widget.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/app_text_style.dart';
@@ -22,7 +24,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics:  const AlwaysScrollableScrollPhysics(),
+      physics: const AlwaysScrollableScrollPhysics(),
       child: Center(
         child: Stack(
           children: [
@@ -91,7 +93,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
     if (pickedFile == null) return;
 
     File? img = File(pickedFile.path);
-
+    img = await _cropImage(imageFile: img);
     setState(() {
       imageFile = img;
       Navigator.of(context).pop();
@@ -103,7 +105,10 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
       height: 150,
       duration: const Duration(milliseconds: 600),
       curve: Curves.easeInOut,
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
             topRight: Radius.circular(70),
@@ -122,7 +127,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 20,left: 10,
+            padding: const EdgeInsets.only(top: 30, bottom: 20, left: 10,
                 right: 10),
             child: Text(
               'Choose Your Profile Picture',
@@ -142,6 +147,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                   ),
                 ),
                 onPressed: () {
+
                   takenPhoto(ImageSource.camera);
                 },
                 icon: Icon(
@@ -181,4 +187,35 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
       ),
     );
   }
+
+  Future<File?> _cropImage({required File imageFile}) async {
+    CroppedFile? croppedImage = await ImageCropper().cropImage(sourcePath:
+    imageFile.path,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.ratio4x3,
+        CropAspectRatioPreset.ratio16x9
+      ],
+      uiSettings: [
+        AndroidUiSettings(
+            activeControlsWidgetColor: AppColors.button,
+            toolbarTitle: 'Cropper',
+            toolbarColor: AppColors.background,
+            toolbarWidgetColor: AppColors.button,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        IOSUiSettings(
+          title: 'Cropper',
+        ),
+        WebUiSettings(
+          context: context,
+        ),
+      ],
+    );
+    if (croppedImage == null) return null;
+    return File(croppedImage.path);
+  }
+
 }
