@@ -5,7 +5,6 @@ import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
-import '../../../home-screen/presentation/widget/circle_profile.dart';
 import '../widgets/drawing_details_forms_widget.dart';
 
 class DrawingDetails extends StatefulWidget {
