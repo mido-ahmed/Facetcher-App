@@ -99,9 +99,6 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   'Choose the Gender ...',
                   style: AppTextStyle.drawingDetailsField,
                 ),
-                onSaved: (value) {
-                  _drawingDetailsRequest.gender = value;
-                },
                 items: ['Male', 'Female']
                     .map(
                       (e) => DropdownMenuItem(
@@ -117,6 +114,10 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   });
                 },
                 value: selectedItem,
+                onSaved: (value) {
+                  //TODO: value or selecteditem
+                  _drawingDetailsRequest.gender = selectedItem;
+                },
               ),
             ),
             Padding(
