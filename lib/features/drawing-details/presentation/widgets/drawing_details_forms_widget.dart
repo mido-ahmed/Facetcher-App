@@ -30,7 +30,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
               child: TextFieldWidget(
                 enabled: _isFormEnabled,
                 hintText: 'Title',
@@ -56,7 +56,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 90, top: 15, bottom: 10),
+              padding: const EdgeInsets.only(right: 90, bottom: 10),
               child: RichText(
                 text: TextSpan(
                   text: 'Choose the drawing gender',
@@ -118,22 +118,22 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: TextFieldWidget(
                 enabled: _isFormEnabled,
-                hintText: 'Password',
+                hintText: 'What do you think about that ...',
                 hintTextStyle: AppTextStyle.drawingDetailsField,
-                keyboardType: TextInputType.visiblePassword,
+                keyboardType: TextInputType.emailAddress,
                 validateType: ValidationTypes.drawingDetailsDescription,
                 errorStyle: AppTextStyle.loginFieldErrorText,
                 errorBorderColor: AppColors.error,
                 borderColor: AppColors.border,
                 borderWidth: 1,
-                maxLines: 1,
+                maxLines: 15,
                 textAlign: TextAlign.start,
                 style: AppTextStyle.loginFieldText,
                 cursorColor: AppColors.textSecondary,
-                secureText: true,
+                secureText: false,
                 onSave: (value) {
                   _drawingDetailsRequest.description = value;
                 },
