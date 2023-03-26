@@ -48,7 +48,7 @@ class _DrawingDetailsState extends State<DrawingDetails> {
                   ],
                 ),
                 rightChild: AnimatedIconButton(
-                  icon: AnimatedIcons.close_menu,
+                  icon: AnimatedIcons.menu_close,
                   color: AppColors.fontPrimary,
                   onPressed: () => _handleToggleNavigationBar(),
                   durationMilliseconds: 500,
