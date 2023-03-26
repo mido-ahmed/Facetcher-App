@@ -21,61 +21,67 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: [
-          SizedBox(
-            width: 160,
-            height: 160,
-            child: ProfileWidget(
-              userProfileName: 'UserName',
-              userEmail: '@username',
-              userProfileUrl: imageFile == null
-                  ? Image.asset('assets/images/1.5x/shape.png')
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(150.0),
-                      child: Image.file(
-                        File(imageFile!.path),
-                        height: 300.0,
-                        width: 300.0,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-            ),
-          ),
-          Positioned(
-            bottom: 20,
-            right: 30,
-            top: 25,
-            child: InkWell(
-              hoverColor: AppColors.background.withOpacity(0),
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 1,
-                    color: AppColors.white,
+    return SingleChildScrollView(
+      physics:  const AlwaysScrollableScrollPhysics(),
+      child: Center(
+        child: Stack(
+          children: [
+            SizedBox(
+              width: 160,
+              height: 160,
+              child: ProfileWidget(
+                userProfileName: 'UserName',
+                userEmail: '@username',
+                userProfileUrl: imageFile == null
+                    ? Image.asset('assets/images/1.5x/shape.png')
+                    : ClipRRect(
+                  borderRadius: BorderRadius.circular(150.0),
+                  child: Image.file(
+                    File(imageFile!.path),
+                    height: 300.0,
+                    width: 300.0,
+                    fit: BoxFit.fill,
                   ),
-                  color: AppColors.background.withOpacity(0.4),
-                ),
-                child: Icon(
-                  Icons.edit,
-                  size: 20,
-                  color: AppColors.white,
                 ),
               ),
-              onTap: () {
-                showModalBottomSheet(
-                  backgroundColor: AppColors.background,
-                  context: context,
-                  builder: (context) => uploadingProfilePicture(takenPhoto),
-                );
-              },
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 20,
+              right: 30,
+              top: 25,
+              child: InkWell(
+                hoverColor: AppColors.background.withOpacity(0.1),
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 1,
+                      color: AppColors.white,
+                    ),
+                    color: AppColors.background.withOpacity(0.4),
+                  ),
+                  child: Icon(
+                    Icons.edit,
+                    size: 20,
+                    color: AppColors.white,
+                  ),
+                ),
+                onTap: () {
+                  showModalBottomSheet(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(90.0),
+                    ),
+                    backgroundColor: AppColors.background,
+                    context: context,
+                    builder: (context) => uploadingProfilePicture(takenPhoto),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -116,7 +122,8 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            padding: const EdgeInsets.only(top: 30, bottom: 20,left: 10,
+                right: 10),
             child: Text(
               'Choose Your Profile Picture',
               style: AppTextStyle.userProfileTitle,
