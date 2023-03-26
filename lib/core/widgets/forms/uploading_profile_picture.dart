@@ -37,14 +37,14 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                 userProfileUrl: imageFile == null
                     ? Image.asset('assets/images/1.5x/shape.png')
                     : ClipRRect(
-                  borderRadius: BorderRadius.circular(150.0),
-                  child: Image.file(
-                    File(imageFile!.path),
-                    height: 300.0,
-                    width: 300.0,
-                    fit: BoxFit.fill,
-                  ),
-                ),
+                        borderRadius: BorderRadius.circular(150.0),
+                        child: Image.file(
+                          File(imageFile!.path),
+                          height: 300.0,
+                          width: 300.0,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
               ),
             ),
             Positioned(
@@ -70,15 +70,24 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                     color: AppColors.white,
                   ),
                 ),
-                onTap: () {
-                  showModalBottomSheet(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(90.0),
-                    ),
-                    backgroundColor: AppColors.background,
-                    context: context,
-                    builder: (context) => uploadingProfilePicture(takenPhoto),
-                  );
+                onTap: () async {
+                  Map<Permission, PermissionStatus> statuses = await [
+                    Permission.storage,
+                    Permission.camera,
+                  ].request();
+                  if (statuses[Permission.storage]!.isGranted &&
+                      statuses[Permission.camera]!.isGranted) {
+                    showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(90.0),
+                      ),
+                      backgroundColor: AppColors.background,
+                      context: context,
+                      builder: (context) => uploadingProfilePicture(takenPhoto),
+                    );
+                  } else {
+                    print('no permission provided');
+                  }
                 },
               ),
             ),
@@ -105,10 +114,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
       height: 150,
       duration: const Duration(milliseconds: 600),
       curve: Curves.easeInOut,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
             topRight: Radius.circular(70),
@@ -127,8 +133,8 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 20, left: 10,
-                right: 10),
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 20, left: 10, right: 10),
             child: Text(
               'Choose Your Profile Picture',
               style: AppTextStyle.userProfileTitle,
@@ -147,7 +153,6 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                   ),
                 ),
                 onPressed: () {
-
                   takenPhoto(ImageSource.camera);
                 },
                 icon: Icon(
@@ -168,8 +173,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                     ),
                   ),
                 ),
-                onPressed: () {
-                  // widget.takenPhoto;
+                onPressed: () async {
                   takenPhoto(ImageSource.gallery);
                 },
                 icon: Icon(
@@ -189,8 +193,8 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
   }
 
   Future<File?> _cropImage({required File imageFile}) async {
-    CroppedFile? croppedImage = await ImageCropper().cropImage(sourcePath:
-    imageFile.path,
+    CroppedFile? croppedImage = await ImageCropper().cropImage(
+      sourcePath: imageFile.path,
       aspectRatioPresets: [
         CropAspectRatioPreset.square,
         CropAspectRatioPreset.ratio3x2,
@@ -217,5 +221,4 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
     if (croppedImage == null) return null;
     return File(croppedImage.path);
   }
-
 }
