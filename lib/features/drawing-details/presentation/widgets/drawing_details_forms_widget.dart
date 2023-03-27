@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/core/utils/constants.dart';
 
+import '../../../../config/locale/app_localizations.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/validation/validation_types.dart';
+import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/forms/text_field_widget.dart';
 import '../../domain/entities/drawing_details_request.dart';
 
@@ -149,6 +152,51 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   top: 12,
                   left: 30,
                 ),
+              ),
+            ),
+            ButtonWidget(
+              backgroundColor: AppColors.navigatorItem,
+              onPress: () {
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState?.save();
+                  if (_drawingDetailsRequest.title.isEmpty) {
+                    Constants.showErrorDialog(
+                        context: context,
+                        message: AppLocalizations.of(context)!
+                            .translate('blank_email')!);
+                    return;
+                  }
+                  if (_drawingDetailsRequest.gender.isEmpty) {
+                    Constants.showErrorDialog(
+                        context: context,
+                        message: AppLocalizations.of(context)!
+                            .translate('blank_email')!);
+                    return;
+                  }
+                  if (_drawingDetailsRequest.description.isEmpty) {
+                    Constants.showErrorDialog(
+                        context: context,
+                        message: AppLocalizations.of(context)!
+                            .translate('blank_email')!);
+                    return;
+                  }
+                }
+                Navigator.of(context).pushNamed('/app-drawing-screen');
+              },
+              text: "Next",
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Next",
+                    style: AppTextStyle.buttonText,
+                  ),
+                  Icon(
+                    Icons.arrow_forward_sharp,
+                    color: AppColors.textPrimary,
+                    size: 17,
+                  ),
+                ],
               ),
             ),
           ],
