@@ -48,6 +48,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 secureText: false,
                 onSave: (value) {
                   _drawingDetailsRequest.title = value;
+                  print(value);
                 },
                 contentPadding: const EdgeInsets.only(
                   top: 12,
@@ -112,13 +113,19 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 },
                 value: selectedItem,
                 onSaved: (value) {
-                  //TODO: value or selecteditem
+                  if (value == "Male") {
+                    selectedItem = "MALE";
+                    print(selectedItem);
+                  } else {
+                    selectedItem = "FEMALE";
+                    print(selectedItem);
+                  }
                   _drawingDetailsRequest.gender = selectedItem;
                 },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20 , bottom: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               child: TextFieldWidget(
                 enabled: _isFormEnabled,
                 hintText: 'What do you think about that ...',
@@ -136,6 +143,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 secureText: false,
                 onSave: (value) {
                   _drawingDetailsRequest.description = value;
+                  print(value);
                 },
                 contentPadding: const EdgeInsets.only(
                   top: 12,
