@@ -70,27 +70,6 @@ class _DrawingDetailsState extends State<DrawingDetails> {
                   ),
                 ),
                 DrawingDetailsForms(),
-                ButtonWidget(
-                  backgroundColor: AppColors.navigatorItem,
-                  onPress: () {
-                    Navigator.of(context).pushNamed('/app-drawing-screen');
-                  },
-                  text: "Next",
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Next",
-                        style: AppTextStyle.buttonText,
-                      ),
-                      Icon(
-                        Icons.arrow_forward_sharp,
-                        color: AppColors.textPrimary,
-                        size: 17,
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
