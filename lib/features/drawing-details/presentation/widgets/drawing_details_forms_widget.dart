@@ -114,10 +114,10 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 value: selectedItem,
                 onSaved: (value) {
                   if (value == "Male") {
-                    selectedItem = "MALE";
+                    selectedItem = value.toString().toUpperCase();
                     print(selectedItem);
                   } else {
-                    selectedItem = "FEMALE";
+                    selectedItem = value.toString().toUpperCase();
                     print(selectedItem);
                   }
                   _drawingDetailsRequest.gender = selectedItem;
