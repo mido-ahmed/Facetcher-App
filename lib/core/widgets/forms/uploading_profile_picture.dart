@@ -51,8 +51,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
               bottom: 20,
               right: 30,
               top: 25,
-              child: InkWell(
-                hoverColor: AppColors.background.withOpacity(0.1),
+              child: GestureDetector(
                 child: Container(
                   height: 30,
                   width: 30,
