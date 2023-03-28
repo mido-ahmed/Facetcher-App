@@ -5,6 +5,7 @@ import 'package:flutter_starter/core/utils/assets_manager.dart';
 import 'package:flutter_starter/core/widgets/icons/animated_icon_button.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
@@ -29,6 +30,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       _toggleNavigationBar = true;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return NavigationBarWrapper(
@@ -43,20 +45,20 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               AppBarWidget(
                 leftChild: IconButton(
                   icon: Icon(Icons.arrow_back, color: AppColors.white),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  rightChild: AnimatedIconButton(
-                    icon: AnimatedIcons.menu_close,
-                    color: AppColors.fontPrimary,
-                    onPressed: () => _handleToggleNavigationBar(),
-                    durationMilliseconds: 500,
-                    size: 32.0,
-                    end: 1.0,
-                  ),
+                  onPressed: () => Navigator.pop(context),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                rightChild: AnimatedIconButton(
+                  icon: AnimatedIcons.menu_close,
+                  color: AppColors.fontPrimary,
+                  onPressed: () => _handleToggleNavigationBar(),
+                  durationMilliseconds: 500,
+                  size: 32.0,
+                  end: 1.0,
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   const UploadingProfilePicture(),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 45),
@@ -75,8 +77,16 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 40),
-                              child:
-                                  Image.asset('assets/images/1.5x/Vector.png'),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushReplacementNamed(
+                                    context,
+                                    Routes.appDrawingResult,
+                                  );
+                                },
+                                child: Image.asset('assets/images/1'
+                                    '.5x/Vector.png'),
+                              ),
                             ),
                           ],
                         ),
@@ -109,7 +119,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.only(top: 25),
                     child: ButtonFormWidget(
-                      onPress: () {},
+                      onPress: () {
+                      },
                       child: const Text('Log out'),
                     ),
                   ),
