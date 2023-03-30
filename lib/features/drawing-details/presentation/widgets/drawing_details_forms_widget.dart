@@ -77,7 +77,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   color: AppColors.textSecondary,
                 ),
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(left: 20, right: 10),
+                  contentPadding: const EdgeInsets.only(left: 30, right: 10),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.grey, width: 1),
                     borderRadius: BorderRadius.circular(50),
