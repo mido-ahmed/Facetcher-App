@@ -71,6 +71,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
               padding:
                   const EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0),
               child: DropdownButtonFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 iconSize: 35,
                 icon: Icon(
                   Icons.keyboard_arrow_down_rounded,
@@ -102,12 +103,14 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 items: ['Male', 'Female']
                     .map(
                       (e) => DropdownMenuItem(
+                        enabled: true,
                         alignment: Alignment.centerLeft,
                         value: e,
                         child: Text(e),
                       ),
                     )
                     .toList(),
+                itemHeight: null,
                 onChanged: (val) {
                   setState(() {
                     selectedItem = val;
