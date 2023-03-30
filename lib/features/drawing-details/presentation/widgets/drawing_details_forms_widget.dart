@@ -161,23 +161,17 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   _formKey.currentState?.save();
                   if (_drawingDetailsRequest.title.isEmpty) {
                     Constants.showErrorDialog(
-                        context: context,
-                        message: AppLocalizations.of(context)!
-                            .translate('blank_email')!);
+                        context: context, message: "Title Missing");
                     return;
                   }
-                  if (_drawingDetailsRequest.gender.isEmpty) {
+                  if (_drawingDetailsRequest.gender == "NULL") {
                     Constants.showErrorDialog(
-                        context: context,
-                        message: AppLocalizations.of(context)!
-                            .translate('blank_email')!);
+                        context: context, message: "Gender Missing");
                     return;
                   }
                   if (_drawingDetailsRequest.description.isEmpty) {
                     Constants.showErrorDialog(
-                        context: context,
-                        message: AppLocalizations.of(context)!
-                            .translate('blank_email')!);
+                        context: context, message: "Description Missing");
                     return;
                   }
                   Navigator.of(context).pushNamed('/app-drawing-screen');
