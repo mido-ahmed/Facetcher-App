@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
+import 'package:flutter_starter/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
 import 'package:flutter_starter/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'config/locale/app_localizations_setup.dart';
 import 'config/routes/app_routes.dart';
@@ -18,6 +19,7 @@ class FacetcherApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => di.sl<SigninCubit>()),
+          BlocProvider(create: (context) => di.sl<AppGetStartedCubit>()),
           BlocProvider(create: (context) => di.sl<LocalizationCubit>()),
         ],
         child: BlocBuilder<LocalizationCubit, LocalizationState>(
