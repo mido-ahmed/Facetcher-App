@@ -188,7 +188,9 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                     "Next",
                     style: AppTextStyle.buttonText,
                   ),
-                  SizedBox(width: 2,),
+                  SizedBox(
+                    width: 2,
+                  ),
                   Icon(
                     Icons.arrow_forward_sharp,
                     color: AppColors.textPrimary,
