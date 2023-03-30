@@ -41,7 +41,7 @@ class AuthenticationRemoteDataSourceImpl implements AuthenticationRemoteDataSour
   Future<ResponseModel<SigninClaims>> signin(Signin signin) async {
     final response = await apiConsumer.post(EndPoints.signin, body: signin.toJson());
     if (response[AppStrings.success].toString() == AppStrings.boolFalse) {
-      throw GenericException(message: response[AppStrings.message]);
+      throw const GenericException(message: AppStrings.badCredentials);
     } else {
       return ResponseModel(
           success: response[AppStrings.success], message: response[AppStrings.message],

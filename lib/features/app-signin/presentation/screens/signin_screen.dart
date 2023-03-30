@@ -6,8 +6,26 @@ import 'package:flutter_starter/core/utils/media_query_values.dart';
 
 import '../widgets/signin_form_widget.dart';
 
-class SigninScreen extends StatelessWidget {
+class SigninScreen extends StatefulWidget {
   const SigninScreen({Key? key}) : super(key: key);
+
+  @override
+  _SigninScreenState createState() => _SigninScreenState();
+}
+
+class _SigninScreenState extends State<SigninScreen> {
+  late bool _isExpanded;
+
+  @override
+  void initState() {
+    super.initState();
+    _isExpanded = false;
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        _isExpanded = true;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,38 +47,37 @@ class SigninScreen extends StatelessWidget {
                       tag: 'splash-logo', child: Image.asset(ImgAssets.logo)),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       child: Text(
-                        'What we try to do is to reach the criminal together and get the best result in the shortest time.',
+                        'We strive to work together to achieve the best results in fastest ways, bringing swift optimal ones.',
                         style: AppTextStyle.loginDescriptionText,
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 5,
-                  child: Container(
-                    height: context.height * 0.4,
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(70),
-                          topLeft: Radius.circular(70),
-                        ),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Color.fromRGBO(48, 48, 48, 1),
-                              offset: Offset(0, -2),
-                              blurRadius: 8,
-                              blurStyle: BlurStyle.normal,
-                              spreadRadius: 2),
-                        ],
-                        color: AppColors.background),
-                    child: const SigninFormWidget(),
-                  ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 600),
+                  curve: Curves.easeInOut,
+                  height: _isExpanded ? context.height * 0.46 : context.height * 0.35,
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(70),
+                        topLeft: Radius.circular(70),
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color.fromRGBO(48, 48, 48, 1),
+                            offset: Offset(0, -2),
+                            blurRadius: 8,
+                            blurStyle: BlurStyle.normal,
+                            spreadRadius: 2),
+                      ],
+                      color: AppColors.background),
+                  child: const SigninFormWidget(),
                 ),
               ],
             ),
