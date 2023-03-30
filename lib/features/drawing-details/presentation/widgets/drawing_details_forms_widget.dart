@@ -19,7 +19,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final DrawingDetailsRequest _drawingDetailsRequest =
       DrawingDetailsRequest();
-   final _isFormEnabled = true;
+  final _isFormEnabled = true;
   var selectedItem;
 
   @override
