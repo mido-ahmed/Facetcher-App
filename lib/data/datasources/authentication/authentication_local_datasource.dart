@@ -59,8 +59,8 @@ class AuthenticationLocalDataSourceImpl implements AuthenticationLocalDataSource
 
   @override
   Future<void> clearCache() async {
-    bool isAppWelcomedUser = sharedPreferences.getBool(AppStrings.cachedIsAppWelcomedUser) ?? false;
+    bool isAppWelcomedUser = sharedPreferences.getBool(AppStrings.cachedIsUserGetStarted) ?? false;
     sharedPreferences.clear();
-    sharedPreferences.setBool(AppStrings.cachedIsAppWelcomedUser, isAppWelcomedUser);
+    sharedPreferences.setBool(AppStrings.cachedIsUserGetStarted, isAppWelcomedUser);
   }
 }
