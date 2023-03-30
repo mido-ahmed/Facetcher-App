@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_starter/core/utils/app_strings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/assets_manager.dart';
 
@@ -10,13 +14,14 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+  bool _isUserGetStarted = false;
   late Timer _timer;
 
   @override
   void initState() {
     super.initState();
+    _isUserGetStartedCache();
     _startDelay();
   }
 
@@ -27,10 +32,20 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   _startDelay() {
-    _timer = Timer(const Duration(milliseconds: 5000), () => _goNext());
+    _timer = Timer(const Duration(milliseconds: 8000), () => _goNext());
   }
 
-  _goNext() => {Navigator.pushReplacementNamed(context, Routes.appSignin)};
+  _goNext() => {
+        if (_isUserGetStarted)
+          {Navigator.pushReplacementNamed(context, Routes.appSignin)}
+        else
+          {Navigator.pushReplacementNamed(context, Routes.appGetStarted)}
+      };
+
+  Future _isUserGetStartedCache() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    _isUserGetStarted = sharedPreferences.getBool(AppStrings.cachedIsUserGetStarted) ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
               AnimatedSize(
                 duration: const Duration(seconds: 2),
                 curve: Curves.elasticInOut,
-                child: Hero(tag: 'splash-logo', child: Image.asset(ImgAssets.logoFlat)),
+                child: Image.asset(ImgAssets.logoFlat),
               ),
             ],
           ),
