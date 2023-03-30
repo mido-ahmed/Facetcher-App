@@ -8,6 +8,7 @@ class AppColors {
 
   static Color textPrimary = HexColor('#EAEAEA');
   static Color textSecondary = HexColor('#B3B4B4');
+  static Color textSecondary2 = HexColor('#07ABB3');
 
   static Color navigatorItem = HexColor('#07ABB3');
   static Color navigatorFont = HexColor('#EAEAEA');
