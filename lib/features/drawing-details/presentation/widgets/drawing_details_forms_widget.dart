@@ -138,7 +138,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 errorBorderColor: AppColors.error,
                 borderColor: AppColors.border,
                 borderWidth: 1,
-                maxLines: 15,
+                maxLines: 16,
                 textAlign: TextAlign.start,
                 style: AppTextStyle.loginFieldText,
                 cursorColor: AppColors.textSecondary,
