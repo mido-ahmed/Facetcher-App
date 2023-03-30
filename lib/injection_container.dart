@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_starter/features/app-get-started/data/usecases/app_get_started_usecase.dart';
+import 'package:flutter_starter/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
 import 'package:flutter_starter/features/app-signin/domain/usecases/signin_usecase.dart';
 import 'package:flutter_starter/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -31,7 +33,10 @@ Future<void> init() async {
   // !---- Cubits ----!
   // splash
   sl.registerFactory<LocalizationCubit>(() => LocalizationCubit(getSavedLangUseCase: sl(), changeLangUseCase: sl()));
-  
+
+  // get started
+  sl.registerFactory<AppGetStartedCubit>(() => AppGetStartedCubit(appGetStartedUseCase: sl()));
+
   // signin
   sl.registerFactory<SigninCubit>(() => SigninCubit(signinUseCase: sl()));
 
@@ -40,6 +45,9 @@ Future<void> init() async {
   // splash
   sl.registerLazySingleton<ChangeLangUseCase>(() => ChangeLangUseCase(langRepository: sl()));
   sl.registerLazySingleton<GetSavedLangUseCase>(() => GetSavedLangUseCase(langRepository: sl()));
+
+  // get started
+  sl.registerLazySingleton<AppGetStartedUseCase>(() => AppGetStartedUseCase(userRepository: sl()));
 
   // signin
   sl.registerLazySingleton<SigninUseCase>(() => SigninUseCase(authenticationRepository: sl()));
