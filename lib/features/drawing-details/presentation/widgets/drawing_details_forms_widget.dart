@@ -181,7 +181,6 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   );
                 }
               },
-              text: "Next",
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -189,6 +188,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                     "Next",
                     style: AppTextStyle.buttonText,
                   ),
+                  SizedBox(width: 2,),
                   Icon(
                     Icons.arrow_forward_sharp,
                     color: AppColors.textPrimary,
