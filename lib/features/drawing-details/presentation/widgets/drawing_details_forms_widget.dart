@@ -93,6 +93,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   ),
                 ),
                 isExpanded: true,
+                isDense: true,
                 borderRadius: BorderRadius.circular(25),
                 dropdownColor: AppColors.background,
                 style: AppTextStyle.dropDownItem,
