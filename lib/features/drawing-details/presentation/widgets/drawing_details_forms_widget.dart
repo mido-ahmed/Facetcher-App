@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/constants.dart';
 
-import '../../../../config/locale/app_localizations.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/validation/validation_types.dart';
@@ -20,7 +19,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final DrawingDetailsRequest _drawingDetailsRequest =
       DrawingDetailsRequest();
-  bool _isFormEnabled = true;
+   final _isFormEnabled = true;
   var selectedItem;
 
   @override
