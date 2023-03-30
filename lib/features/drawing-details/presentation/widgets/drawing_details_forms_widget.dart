@@ -32,7 +32,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: TextFieldWidget(
                 enabled: _isFormEnabled,
                 hintText: 'Title',
@@ -58,21 +58,14 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 90, bottom: 10),
-              child: RichText(
-                text: TextSpan(
-                  text: 'Choose the drawing gender',
-                  style: AppTextStyle.drawingDetailsField,
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0),
+            //TODO: Change widget to plugin animated_custom_dropdown: ^1.5.0
+            Container(
+              padding: EdgeInsets.only(
+                  left: 25.0, right: 25.0, top: 20.0, bottom: 20.0),
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
               child: DropdownButtonFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                iconSize: 35,
+                iconSize: 30,
                 icon: Icon(
                   Icons.keyboard_arrow_down_rounded,
                   color: AppColors.textSecondary,
@@ -98,7 +91,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 dropdownColor: AppColors.background,
                 style: AppTextStyle.dropDownItem,
                 hint: Text(
-                  'Choose the Gender ...',
+                  'Gender',
                   style: AppTextStyle.drawingDetailsField,
                 ),
                 items: ['Male', 'Female']
@@ -131,10 +124,10 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
               child: TextFieldWidget(
                 enabled: _isFormEnabled,
-                hintText: 'What do you think about that ...',
+                hintText: 'Description',
                 hintTextStyle: AppTextStyle.drawingDetailsField,
                 keyboardType: TextInputType.emailAddress,
                 validateType: ValidationTypes.drawingDetailsDescription,
@@ -142,7 +135,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                 errorBorderColor: AppColors.error,
                 borderColor: AppColors.border,
                 borderWidth: 1,
-                maxLines: 16,
+                maxLines: 14,
                 textAlign: TextAlign.start,
                 style: AppTextStyle.loginFieldText,
                 cursorColor: AppColors.textSecondary,
@@ -152,7 +145,7 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   print(value);
                 },
                 contentPadding: const EdgeInsets.only(
-                  top: 12,
+                  top: 40,
                   left: 30,
                 ),
               ),
@@ -164,25 +157,21 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                   _formKey.currentState?.save();
                   if (_drawingDetailsRequest.title.isEmpty) {
                     Constants.showErrorDialog(
-                        context: context, message: "Title Missing");
+                        context: context, message: "Title can't be blank");
                     return;
                   }
                   if (_drawingDetailsRequest.gender == "NULL") {
                     Constants.showErrorDialog(
-                        context: context, message: "Gender Missing");
+                        context: context, message: "Gender must be assigned");
                     return;
                   }
                   if (_drawingDetailsRequest.description.isEmpty) {
                     Constants.showErrorDialog(
-                        context: context, message: "Description Missing");
+                        context: context,
+                        message: "Description can't be blank");
                     return;
                   }
                   Navigator.of(context).pushNamed('/app-drawing-screen');
-                } else {
-                  Constants.showSnackBar(
-                    context: context,
-                    message: "Something Missing",
-                  );
                 }
               },
               child: Row(

@@ -52,15 +52,18 @@ class _DrawingDetailsState extends State<DrawingDetails> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(
+                      left: 30.0, right: 30.0, top: 10.0, bottom: 20.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Add drawing details",
+                        "Drawing Details",
+                        textAlign: TextAlign.left,
                         style: AppTextStyle.drawingScreenTitle,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
                         child: Text(
                           "Enter all the details and description for the drawing, as all what you do here is recorded",
                           style: AppTextStyle.drawingScreenTitleDetails,
