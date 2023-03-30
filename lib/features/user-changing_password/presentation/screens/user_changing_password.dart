@@ -10,12 +10,12 @@ import '../../../../core/widgets/forms/profile_widget.dart';
 
 class ChangingPassword extends StatefulWidget {
   const ChangingPassword({Key? key}) : super(key: key);
+
   @override
   State<ChangingPassword> createState() => _ChangingPasswordState();
 }
 
 class _ChangingPasswordState extends State<ChangingPassword> {
-
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -54,7 +54,7 @@ class _ChangingPasswordState extends State<ChangingPassword> {
                           flex: 1,
                           child: Column(
                             children: [
-                             const ProfileWidget(
+                              const ProfileWidget(
                                 userProfileName: 'UserName',
                                 atUserProfileName: '@username',
                                 userProfileIcon: 'assets/images/1.5x/shape.png',
@@ -112,6 +112,7 @@ class _ChangingPasswordState extends State<ChangingPassword> {
                                           style: AppTextStyle.textDescribtion,
                                           cursorColor: AppColors.grey,
                                           maxLines: 1,
+                                          enabled: true,
                                         ),
                                       ),
                                     ),
@@ -146,6 +147,7 @@ class _ChangingPasswordState extends State<ChangingPassword> {
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 10),
                                         child: TextFieldWidget(
+                                          enabled: true,
                                           hintText:
                                               'Please, Enter your new password',
                                           hintTextStyle:
@@ -180,6 +182,7 @@ class _ChangingPasswordState extends State<ChangingPassword> {
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 10),
                                         child: TextFieldWidget(
+                                          enabled: true,
                                           hintText:
                                               'Please, Enter your new password again',
                                           hintTextStyle:
