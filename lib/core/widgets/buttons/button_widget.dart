@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/utils/app_colors.dart';
 
 class ButtonWidget extends StatefulWidget {
-  final String text;
-  final Icon ?icon;
+  final String? text;
+  final Icon ? icon;
   final Color backgroundColor;
   final VoidCallback onPress;
   final Widget child;
@@ -12,7 +12,7 @@ class ButtonWidget extends StatefulWidget {
     Key? key,
     required this.backgroundColor,
     required this.onPress,
-    required this.text,
+     this.text,
      this.icon,
     required this.child,
   }) : super(key: key);
