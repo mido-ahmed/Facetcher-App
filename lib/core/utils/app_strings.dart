@@ -17,6 +17,7 @@ class AppStrings {
   static const String serverFailure = 'Server Failure';
   static const String cacheFailure = 'Cache Failure';
   static const String unexpectedError = 'Unexpected Error';
+  static const String badCredentials = 'Invalid email or password';
 
   static const String locale = 'locale';
   static const String arabicCode = 'ar';

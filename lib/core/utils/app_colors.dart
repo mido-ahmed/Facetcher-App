@@ -13,7 +13,7 @@ class AppColors {
   static Color navigatorFont = HexColor('#EAEAEA');
   static Color navigatorBackground = HexColor('#1E1E1E');
 
-  static Color error = HexColor('#900C3F');
+  static Color error = HexColor('#FF1744');
   static Color background = HexColor('#3D4149');
 
   static Color fontPrimary = HexColor('#FFFFFF');
@@ -22,7 +22,7 @@ class AppColors {
   static Color border = HexColor('#808080');
 
   static Color button = HexColor('#07ABB3');
-  static Color snackbar = HexColor('#2F2C79');
+  static Color snackbar = HexColor('#07ABB3');
   static Color navigator = HexColor('#000020');
 
   static Color black = HexColor('#000000');
