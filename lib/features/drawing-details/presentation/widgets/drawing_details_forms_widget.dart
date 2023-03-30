@@ -180,8 +180,13 @@ class _DrawingDetailsFormsState extends State<DrawingDetailsForms> {
                             .translate('blank_email')!);
                     return;
                   }
+                  Navigator.of(context).pushNamed('/app-drawing-screen');
+                } else {
+                  Constants.showSnackBar(
+                    context: context,
+                    message: "Something Missing",
+                  );
                 }
-                Navigator.of(context).pushNamed('/app-drawing-screen');
               },
               text: "Next",
               child: Row(
