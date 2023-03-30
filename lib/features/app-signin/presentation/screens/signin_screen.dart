@@ -42,7 +42,7 @@ class _SigninScreenState extends State<SigninScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 130,
+                  width: 210,
                   child: Hero(
                       tag: 'splash-logo', child: Image.asset(ImgAssets.logo)),
                 ),
