@@ -1,4 +1,4 @@
-import 'package:flutter_starter/core/validation/validation_types.dart';
+import 'package:facetcher/core/validation/validation_types.dart';
 
 class ValidateTextFiled {
   final String value;

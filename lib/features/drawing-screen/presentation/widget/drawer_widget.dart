@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/app_colors.dart';
-import 'package:flutter_starter/core/utils/media_query_values.dart';
+import 'package:facetcher/core/utils/app_colors.dart';
+import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:scribble/scribble.dart';
 
 import '../../../../core/widgets/drawer/scribble_drawer.dart';

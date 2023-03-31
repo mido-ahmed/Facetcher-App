@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/widgets/icons/animated_icon_button.dart';
+import 'package:facetcher/core/widgets/icons/animated_icon_button.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_bar_widget.dart';

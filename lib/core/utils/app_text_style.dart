@@ -5,6 +5,28 @@ import 'app_colors.dart';
 import 'app_strings.dart';
 
 class AppTextStyle with Diagnosticable {
+  static TextStyle? splashTextOne = TextStyle(
+    fontSize: 50,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? splashTextTwo = TextStyle(
+    fontSize: 80,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textSecondary2,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? splashButtonText = TextStyle(
+    fontSize: 18,
+    letterSpacing: 1.1,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
   static TextStyle? snackbar = TextStyle(
     fontSize: 16,
     color: AppColors.fontPrimary,
@@ -18,7 +40,7 @@ class AppTextStyle with Diagnosticable {
   );
 
   static TextStyle? loginDescriptionText = TextStyle(
-      fontSize: 18,
+      fontSize: 16,
       color: AppColors.textSecondary,
       fontFamily: AppStrings.fontFamilyCenturtGothic,
       height: 1.2

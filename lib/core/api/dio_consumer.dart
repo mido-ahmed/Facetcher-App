@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_starter/injection_container.dart' as di;
+import 'package:facetcher/injection_container.dart' as di;
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_starter/core/api/status_code.dart';
+import 'package:facetcher/core/api/status_code.dart';
 
 import '../error/exceptions.dart';
 import 'api_consumer.dart';

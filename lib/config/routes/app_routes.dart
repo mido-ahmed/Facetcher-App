@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/features/drawing-report/presentation/screens/drawing_report_screen.dart';
-import 'package:flutter_starter/features/drawing-result/presentation/screens/drawing-result.dart';
-import 'package:flutter_starter/features/home-screen/presentation/screen/home_screen.dart';
-import 'package:flutter_starter/features/user-changing_password/presentation/screens/user_changing_password.dart';
-import 'package:flutter_starter/features/user-history/presentation/screens/user_history_screen.dart';
+import 'package:facetcher/features/drawing-report/presentation/screens/drawing_report_screen.dart';
+import 'package:facetcher/features/drawing-result/presentation/screens/drawing-result.dart';
+import 'package:facetcher/features/home-screen/presentation/screen/home_screen.dart';
+import 'package:facetcher/features/user-changing_password/presentation/screens/user_changing_password.dart';
+import 'package:facetcher/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
+import '../../features/app-get-started/presentation/screens/get_started_screen.dart';
 import '../../features/app-signin/presentation/screens/signin_screen.dart';
 import '../../features/app-splash/presentation/screens/splash_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
@@ -14,6 +15,7 @@ class Routes {
   static const String initial = '/';
   static const String appHome = '/app-home';
   static const String appSignin = '/app-signin';
+  static const String appGetStarted = '/app-get-started';
 
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
@@ -33,6 +35,15 @@ class AppRoutes {
               context,
             ) {
               return const SplashScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appGetStarted:
+        return MaterialPageRoute(
+            builder: (
+                context,
+                ) {
+              return const GetStartedScreen();
             },
             settings: routeSettings);
 

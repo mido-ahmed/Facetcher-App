@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/app_text_style.dart';
-import 'package:flutter_starter/core/widgets/buttons/button_widget.dart';
-import 'package:flutter_starter/core/widgets/list_title_widget.dart';
-import 'package:flutter_starter/features/drawing-result/presentation/widgets/edit_button.dart';
-import 'package:flutter_starter/features/drawing-result/presentation/widgets/output_Image.dart';
+import 'package:facetcher/core/utils/app_text_style.dart';
+import 'package:facetcher/core/widgets/buttons/button_widget.dart';
+import 'package:facetcher/core/widgets/list_title_widget.dart';
+import 'package:facetcher/features/drawing-result/presentation/widgets/edit_button.dart';
+import 'package:facetcher/features/drawing-result/presentation/widgets/output_Image.dart';
 
 import '../../../../core/utils/app_colors.dart';
 
