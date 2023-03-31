@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 
    <application
-        android:label="flutter_starter"
+        android:label="facetcher"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
