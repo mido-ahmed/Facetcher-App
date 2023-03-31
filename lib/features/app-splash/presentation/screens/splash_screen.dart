@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_starter/core/utils/app_strings.dart';
+import 'package:facetcher/core/utils/app_strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../config/routes/app_routes.dart';

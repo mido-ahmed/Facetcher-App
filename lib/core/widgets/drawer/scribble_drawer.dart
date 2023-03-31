@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/widgets/drawer/scribble_painter.dart';
+import 'package:facetcher/core/widgets/drawer/scribble_painter.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:scribble/src/scribble.notifier.dart';
 import 'package:scribble/src/state/scribble.state.dart';

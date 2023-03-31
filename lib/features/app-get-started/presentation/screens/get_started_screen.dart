@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
+import 'package:facetcher/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../config/routes/app_routes.dart';

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_starter/features/app-get-started/data/usecases/app_get_started_usecase.dart';
-import 'package:flutter_starter/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
-import 'package:flutter_starter/features/app-signin/domain/usecases/signin_usecase.dart';
-import 'package:flutter_starter/features/app-signin/presentation/cubit/signin_cubit.dart';
+import 'package:facetcher/features/app-get-started/data/usecases/app_get_started_usecase.dart';
+import 'package:facetcher/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
+import 'package:facetcher/features/app-signin/domain/usecases/signin_usecase.dart';
+import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';

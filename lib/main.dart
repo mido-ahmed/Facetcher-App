@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/app.dart';
+import 'package:facetcher/app.dart';
 import 'bloc_observer.dart';
 import 'injection_container.dart' as di;
 
