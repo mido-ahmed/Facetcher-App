@@ -109,7 +109,7 @@ class AppRoutes {
       case Routes.appDrawingDetails:
         return MaterialPageRoute(
             builder: (context) {
-              return const DrawingDetails();
+              return const DrawingDetailsScreen();
             },
             settings: routeSettings);
 

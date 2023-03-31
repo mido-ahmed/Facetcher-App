@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
-import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../widgets/drawing_details_forms_widget.dart';
 
-class DrawingDetails extends StatefulWidget {
-  const DrawingDetails({Key? key}) : super(key: key);
+class DrawingDetailsScreen extends StatefulWidget {
+  const DrawingDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  State<DrawingDetails> createState() => _DrawingDetailsState();
+  State<DrawingDetailsScreen> createState() => DrawingDetailsState();
 }
 
-class _DrawingDetailsState extends State<DrawingDetails> {
+class DrawingDetailsState extends State<DrawingDetailsScreen> {
   bool _toggleNavigationBar = false;
 
   void _handleToggleNavigationBar() {
@@ -34,7 +33,7 @@ class _DrawingDetailsState extends State<DrawingDetails> {
           extendBody: true,
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             child: Column(
               children: [
                 AppBarWidget(
@@ -52,8 +51,7 @@ class _DrawingDetailsState extends State<DrawingDetails> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 30.0, right: 30.0, top: 10.0, bottom: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 35.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -72,7 +70,7 @@ class _DrawingDetailsState extends State<DrawingDetails> {
                     ],
                   ),
                 ),
-                DrawingDetailsForms(),
+                const DrawingDetailsForm(),
               ],
             ),
           ),
