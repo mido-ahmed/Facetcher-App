@@ -26,6 +26,7 @@ dependencies:
   im_animations: ^0.1.2
   scribble: ^0.9.1
   font_awesome_flutter: ^10.4.0
+  animated_custom_dropdown: ^1.5.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
