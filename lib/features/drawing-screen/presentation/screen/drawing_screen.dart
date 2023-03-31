@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/widgets/navigator/navigation_bar_wrapper.dart';
-import 'package:flutter_starter/features/drawing-screen/presentation/widget/drawer_widget.dart';
+import 'package:facetcher/core/widgets/navigator/navigation_bar_wrapper.dart';
+import 'package:facetcher/features/drawing-screen/presentation/widget/drawer_widget.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';

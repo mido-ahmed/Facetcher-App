@@ -1,5 +1,5 @@
-name: flutter_starter
-description: A new Flutter project.
+name: facetcher
+description: facetcher app project.
 
 version: 1.0.0+1
 
@@ -26,6 +26,7 @@ dependencies:
   im_animations: ^0.1.2
   scribble: ^0.9.1
   font_awesome_flutter: ^10.4.0
+  permission_handler: ^10.2.0
 
   animated_custom_dropdown: ^1.5.0
   dropdown_button2: ^2.0.0

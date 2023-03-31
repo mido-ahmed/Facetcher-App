@@ -27,7 +27,7 @@ class AppStrings {
   static const String cachedRememberMe = "CACHED_REMEMBER_ME";
   static const String cachedSigninClaims = "CACHED_SIGNIN_CLAIMS";
   static const String cachedIsAuthenticated = "CACHED_IS_AUTHENTICATED";
-  static const String cachedIsAppWelcomedUser = "CACHED_IS_APP_WELCOMED_USER";
+  static const String cachedIsUserGetStarted = "CACHED_IS_USER_GET_STARTED";
   static const String cachedIsUserLogging = "CACHED_IS_USER_LOGGING";
   static const String cachedCurrentUser = "CACHED_CURRENT_USER";
 
