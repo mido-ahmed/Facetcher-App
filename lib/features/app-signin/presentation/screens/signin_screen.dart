@@ -10,7 +10,7 @@ class SigninScreen extends StatefulWidget {
   const SigninScreen({Key? key}) : super(key: key);
 
   @override
-  _SigninScreenState createState() => _SigninScreenState();
+  State<SigninScreen> createState() => _SigninScreenState();
 }
 
 class _SigninScreenState extends State<SigninScreen> {
@@ -20,7 +20,7 @@ class _SigninScreenState extends State<SigninScreen> {
   void initState() {
     super.initState();
     _isExpanded = false;
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         _isExpanded = true;
       });
@@ -36,16 +36,12 @@ class _SigninScreenState extends State<SigninScreen> {
             width: context.width,
             height: context.height,
             padding: const EdgeInsets.only(
-              top: 60.0,
+              top: 50.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 210,
-                  child: Hero(
-                      tag: 'splash-logo', child: Image.asset(ImgAssets.logo)),
-                ),
+                Image.network(ImageNetwork.logo, width: 155,),
                 Expanded(
                   flex: 1,
                   child: Center(
