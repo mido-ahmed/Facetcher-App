@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   }
 
   _startDelay() {
-    _timer = Timer(const Duration(milliseconds: 8000), () => _goNext());
+    _timer = Timer(const Duration(milliseconds: 9000), () => _goNext());
   }
 
   _goNext() => {
@@ -56,9 +56,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AnimatedSize(
-                duration: const Duration(seconds: 2),
+                duration: const Duration(seconds: 3),
                 curve: Curves.elasticInOut,
-                child: Image.asset(ImgAssets.logoFlat),
+                child: Image.network(ImageNetwork.logoFlat),
               ),
             ],
           ),
