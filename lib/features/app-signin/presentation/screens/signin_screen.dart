@@ -58,7 +58,9 @@ class _SigninScreenState extends State<SigninScreen> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 600),
                   curve: Curves.easeInOut,
-                  height: _isExpanded ? context.height * 0.46 : context.height * 0.35,
+                  height: _isExpanded
+                      ? context.height * 0.46
+                      : context.height * 0.35,
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(70),

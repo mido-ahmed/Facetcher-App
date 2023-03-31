@@ -40,6 +40,18 @@ class ValidateTextFiled {
         {
           return _validateSignupYearBirthday(value!);
         }
+      case (ValidationTypes.drawingDetailsTitle):
+        {
+          return _validateDrawDetailsTitle(value!);
+        }
+      case (ValidationTypes.drawingDetailsGender):
+        {
+          return _validateDrawDetailsGender(value!);
+        }
+      case (ValidationTypes.drawingDetailsDescription):
+        {
+          return _validateDrawDetailsDescription(value!);
+        }
       default:
         return null;
     }
@@ -126,6 +138,30 @@ String? _validateSignupMonthBirthday(String value) {
   }
 }
 
+String? _validateDrawDetailsTitle(String value) {
+  if (value.isEmpty) {
+    return "required";
+  } else {
+    return "";
+  }
+}
+
+String? _validateDrawDetailsGender(String value) {
+  if (value.isEmpty) {
+    return "required";
+  } else {
+    return "";
+  }
+}
+
+String? _validateDrawDetailsDescription(String value) {
+  if (value.isEmpty) {
+    return "required";
+  } else {
+    return "";
+  }
+}
+
 String? _validateSignupYearBirthday(String value) {
   var date = DateTime.now();
   var minYear = DateTime(date.year - 5).year;
@@ -145,7 +181,9 @@ String? _validateSignupYearBirthday(String value) {
 }
 
 bool _isValidEmail(String value) {
-  return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value);
+  return RegExp(
+          r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+      .hasMatch(value);
 }
 
 bool _isValidPhoneNumber(String value) {

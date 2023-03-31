@@ -9,6 +9,8 @@ import '../../core/utils/app_strings.dart';
 import '../../features/app-get-started/presentation/screens/get_started_screen.dart';
 import '../../features/app-signin/presentation/screens/signin_screen.dart';
 import '../../features/app-splash/presentation/screens/splash_screen.dart';
+import '../../features/drawing-details/presentation/screens/drawing_details_screen.dart';
+import '../../features/drawing-screen/presentation/screen/drawing_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
 
 class Routes {
@@ -24,6 +26,7 @@ class Routes {
   static const String appDrawingScreen = '/app-drawing-screen';
   static const String appDrawingResult = '/app-drawing-result';
   static const String appDrawingReport = '/app-drawing-report';
+  static const String appDrawingDetails = '/app-drawing-details';
 }
 
 class AppRoutes {
@@ -93,6 +96,20 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingReport();
+            },
+            settings: routeSettings);
+
+        case Routes.appDrawingScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingDetails:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingDetailsScreen();
             },
             settings: routeSettings);
 

@@ -7,4 +7,7 @@ class ValidationTypes {
   static const String signupBirthDay = 'signup birthday day';
   static const String signupBirthMonth = 'signup birthday month';
   static const String signupBirthYear = 'signup birthday year';
+  static const String drawingDetailsTitle = 'drawing details title';
+  static const String drawingDetailsGender = 'drawing details gender';
+  static const String drawingDetailsDescription = 'drawing details description';
 }

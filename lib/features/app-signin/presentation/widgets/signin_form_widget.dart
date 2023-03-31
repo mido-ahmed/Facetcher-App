@@ -127,16 +127,19 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                                 if (_signinRequest.email.isEmpty) {
                                   Constants.showErrorDialog(
                                       context: context,
-                                      message: AppLocalizations.of(context)!.translate('blank_email')!);
+                                      message: AppLocalizations.of(context)!
+                                          .translate('blank_email')!);
                                   return;
                                 }
                                 if (_signinRequest.password.isEmpty) {
                                   Constants.showErrorDialog(
                                       context: context,
-                                      message: AppLocalizations.of(context)!.translate('blank_password')!);
+                                      message: AppLocalizations.of(context)!
+                                          .translate('blank_password')!);
                                   return;
                                 }
-                                BlocProvider.of<SigninCubit>(context).signin(_signinRequest);
+                                BlocProvider.of<SigninCubit>(context)
+                                    .signin(_signinRequest);
                               }
                             },
                             child:
@@ -146,12 +149,14 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                       }),
                       listener: ((context, state) {
                         if (state is SigninError) {
-                          Constants.showErrorDialog(context: context, message: state.message);
+                          Constants.showErrorDialog(
+                              context: context, message: state.message);
                         } else if (state is SigninSuccess) {
                           Constants.showSnackBar(
                               context: context,
                               message: state.signinClaimsResponse.message);
-                          Navigator.pushReplacementNamed(context, Routes.appHome);
+                          Navigator.pushReplacementNamed(
+                              context, Routes.appHome);
                         }
                         if (state is SigninLoading) {
                           setState(() {

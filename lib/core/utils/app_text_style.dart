@@ -59,7 +59,7 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
-  static TextStyle? loginFieldErrorText  = TextStyle(
+  static TextStyle? loginFieldErrorText = TextStyle(
     fontSize: 13,
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
@@ -140,6 +140,13 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
+  static TextStyle? buttonText = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
   static TextStyle? primaryButtonText = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
@@ -167,12 +174,14 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.animatedButtonText,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+
   static TextStyle? profileTitles = TextStyle(
     fontSize: 35,
     fontWeight: FontWeight.w700,
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+
   static TextStyle? profileSubTitles = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
@@ -186,10 +195,25 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+
   static TextStyle? userProfileDetails = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
     color: AppColors.grey,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+  static TextStyle? drawingDetailsField = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? dropDownItem = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
 }
