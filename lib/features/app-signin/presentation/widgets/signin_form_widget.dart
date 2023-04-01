@@ -138,8 +138,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                                           .translate('blank_password')!);
                                   return;
                                 }
-                                BlocProvider.of<SigninCubit>(context)
-                                    .signin(_signinRequest);
+                                BlocProvider.of<SigninCubit>(context).signin(_signinRequest);
                               }
                             },
                             child:
@@ -152,11 +151,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                           Constants.showErrorDialog(
                               context: context, message: state.message);
                         } else if (state is SigninSuccess) {
-                          Constants.showSnackBar(
-                              context: context,
-                              message: state.signinClaimsResponse.message);
-                          Navigator.pushReplacementNamed(
-                              context, Routes.appHome);
+                          Navigator.pushReplacementNamed(context, Routes.appHome);
                         }
                         if (state is SigninLoading) {
                           setState(() {
