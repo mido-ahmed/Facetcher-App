@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:facetcher/data/repositories/user-submission/user_submission.dart';
 import 'package:facetcher/features/app-get-started/data/usecases/app_get_started_usecase.dart';
 import 'package:facetcher/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
 import 'package:facetcher/features/app-signin/domain/usecases/signin_usecase.dart';
 import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.dart';
+import 'package:facetcher/features/drawing-details/domain/usecases/create_user_submission_usecase.dart';
+import 'package:facetcher/features/drawing-details/presentation/cubit/create_user_submission_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,10 +16,13 @@ import 'core/api/dio_consumer.dart';
 import 'core/network/network_info.dart';
 import 'data/datasources/authentication/authentication_local_datasource.dart';
 import 'data/datasources/authentication/authentication_remote_datasource.dart';
+import 'data/datasources/user-submission/user_submission_local_datasource.dart';
+import 'data/datasources/user-submission/user_submission_remote_datasource.dart';
 import 'data/datasources/user/user_local_datasource.dart';
 import 'data/datasources/user/user_remote_datasource.dart';
 import 'data/repositories/authentication/authentication_repository.dart';
 import 'data/repositories/authentication/authentication_repository_impl.dart';
+import 'data/repositories/user-submission/user_submission_repository_impl.dart';
 import 'data/repositories/user/user_repository.dart';
 import 'data/repositories/user/user_repository_impl.dart';
 import 'data/datasources/localization/localization_local_data_source.dart';
@@ -33,24 +39,24 @@ Future<void> init() async {
   // !---- Cubits ----!
   // splash
   sl.registerFactory<LocalizationCubit>(() => LocalizationCubit(getSavedLangUseCase: sl(), changeLangUseCase: sl()));
-
   // get started
   sl.registerFactory<AppGetStartedCubit>(() => AppGetStartedCubit(appGetStartedUseCase: sl()));
-
   // signin
   sl.registerFactory<SigninCubit>(() => SigninCubit(signinUseCase: sl()));
+  // user submission
+  sl.registerLazySingleton<CreateUserSubmissionCubit>(() => CreateUserSubmissionCubit(userSubmissionUseCase: sl()));
 
 
   // !---- Use cases ----!
   // splash
   sl.registerLazySingleton<ChangeLangUseCase>(() => ChangeLangUseCase(langRepository: sl()));
   sl.registerLazySingleton<GetSavedLangUseCase>(() => GetSavedLangUseCase(langRepository: sl()));
-
   // get started
   sl.registerLazySingleton<AppGetStartedUseCase>(() => AppGetStartedUseCase(userRepository: sl()));
-
   // signin
   sl.registerLazySingleton<SigninUseCase>(() => SigninUseCase(authenticationRepository: sl()));
+  // user submission
+  sl.registerLazySingleton<CreateUserSubmissionUseCase>(() => CreateUserSubmissionUseCase(userSubmissionRepository: sl()));
 
 
   // !---- Repository ----!
@@ -60,6 +66,8 @@ Future<void> init() async {
   sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(networkInfo: sl(), userLocalDataSource: sl(), userRemoteDataSource: sl(),));
   // localization
   sl.registerLazySingleton<LocalizationRepository>(() => LocalizationRepositoryImpl(localizationLocalDataSource: sl()));
+  // user submission
+  sl.registerLazySingleton<UserSubmissionRepository>(() => UserSubmissionRepositoryImpl(networkInfo: sl(), userSubmissionLocalDataSource: sl(), userSubmissionRemoteDataSource: sl(),));
 
 
   // !---- Data Sources ----!
@@ -71,6 +79,9 @@ Future<void> init() async {
   sl.registerLazySingleton<UserRemoteDataSource>(() => UserRemoteDataSourceImpl(apiConsumer: sl()));
   // localization
   sl.registerLazySingleton<LocalizationLocalDataSource>(() => LocalizationLocalDataSourceImpl(sharedPreferences: sl()));
+  // user submission
+  sl.registerLazySingleton<UserSubmissionRemoteDataSource>(() => UserSubmissionRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<UserSubmissionLocalDataSource>(() => UserSubmissionLocalDataSourceImpl(sharedPreferences: sl()));
 
 
   // !---- Core ----!
