@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:facetcher/data/repositories/user-submission/user_submission.dart';
+import 'package:facetcher/data/repositories/user-submission/user_submission_repository.dart';
 import 'package:facetcher/features/app-get-started/data/usecases/app_get_started_usecase.dart';
 import 'package:facetcher/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
 import 'package:facetcher/features/app-signin/domain/usecases/signin_usecase.dart';
