@@ -18,11 +18,15 @@ import 'data/datasources/authentication/authentication_local_datasource.dart';
 import 'data/datasources/authentication/authentication_remote_datasource.dart';
 import 'data/datasources/user-submission/user_submission_local_datasource.dart';
 import 'data/datasources/user-submission/user_submission_remote_datasource.dart';
+import 'data/datasources/user-trial/user_trial_local_datasource.dart';
+import 'data/datasources/user-trial/user_trial_remote_datasource.dart';
 import 'data/datasources/user/user_local_datasource.dart';
 import 'data/datasources/user/user_remote_datasource.dart';
 import 'data/repositories/authentication/authentication_repository.dart';
 import 'data/repositories/authentication/authentication_repository_impl.dart';
 import 'data/repositories/user-submission/user_submission_repository_impl.dart';
+import 'data/repositories/user-trial/user_trial_repository.dart';
+import 'data/repositories/user-trial/user_trial_repository_impl.dart';
 import 'data/repositories/user/user_repository.dart';
 import 'data/repositories/user/user_repository_impl.dart';
 import 'data/datasources/localization/localization_local_data_source.dart';
@@ -31,6 +35,8 @@ import 'data/repositories/localization/localization_repository.dart';
 import 'features/app-splash/domain/usecases/change_lang_usecase.dart';
 import 'features/app-splash/domain/usecases/get_saved_lang_usecase.dart';
 import 'features/app-splash/presentation/cubit/localization_cubit.dart';
+import 'features/drawing-screen/domain/usecases/create_user_trial_usecase.dart';
+import 'features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -45,6 +51,8 @@ Future<void> init() async {
   sl.registerFactory<SigninCubit>(() => SigninCubit(signinUseCase: sl()));
   // user submission
   sl.registerLazySingleton<CreateUserSubmissionCubit>(() => CreateUserSubmissionCubit(userSubmissionUseCase: sl()));
+  // user trial
+  sl.registerLazySingleton<CreateUserTrialCubit>(() => CreateUserTrialCubit(userTrialUseCase: sl()));
 
 
   // !---- Use cases ----!
@@ -57,6 +65,8 @@ Future<void> init() async {
   sl.registerLazySingleton<SigninUseCase>(() => SigninUseCase(authenticationRepository: sl()));
   // user submission
   sl.registerLazySingleton<CreateUserSubmissionUseCase>(() => CreateUserSubmissionUseCase(userSubmissionRepository: sl()));
+  // user submission
+  sl.registerLazySingleton<CreateUserTrialUseCase>(() => CreateUserTrialUseCase(userTrialRepository: sl()));
 
 
   // !---- Repository ----!
@@ -68,6 +78,8 @@ Future<void> init() async {
   sl.registerLazySingleton<LocalizationRepository>(() => LocalizationRepositoryImpl(localizationLocalDataSource: sl()));
   // user submission
   sl.registerLazySingleton<UserSubmissionRepository>(() => UserSubmissionRepositoryImpl(networkInfo: sl(), userSubmissionLocalDataSource: sl(), userSubmissionRemoteDataSource: sl(),));
+  // user trial
+  sl.registerLazySingleton<UserTrialRepository>(() => UserTrialRepositoryImpl(networkInfo: sl(), userTrialLocalDataSource: sl(), userTrialRemoteDataSource: sl(),));
 
 
   // !---- Data Sources ----!
@@ -82,6 +94,9 @@ Future<void> init() async {
   // user submission
   sl.registerLazySingleton<UserSubmissionRemoteDataSource>(() => UserSubmissionRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UserSubmissionLocalDataSource>(() => UserSubmissionLocalDataSourceImpl(sharedPreferences: sl()));
+  // user submission
+  sl.registerLazySingleton<UserTrialRemoteDataSource>(() => UserTrialRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<UserTrialLocalDataSource>(() => UserTrialLocalDataSourceImpl(sharedPreferences: sl()));
 
 
   // !---- Core ----!
