@@ -7,7 +7,7 @@ import 'package:facetcher/features/drawing-details/domain/entities/drawing_detai
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/models/response_model.dart';
-import '../../../../data/models/submission/user_submission.dart';
+import '../../../../data/models/user-submission/user_submission.dart';
 import '../../domain/usecases/create_user_submission_usecase.dart';
 
 part 'create_user_submission_state.dart';

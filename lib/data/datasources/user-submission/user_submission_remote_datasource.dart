@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:facetcher/core/api/end_points.dart';
-import 'package:facetcher/data/models/submission/user_submission.dart';
+import 'package:facetcher/data/models/user-submission/user_submission.dart';
 
 import '../../../core/api/api_consumer.dart';
 import '../../../core/error/exceptions.dart';
