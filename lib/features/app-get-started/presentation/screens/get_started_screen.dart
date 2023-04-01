@@ -87,13 +87,14 @@ class GetStartedScreenState extends State<GetStartedScreen> {
                       width: 260,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (!_storagePermissionGranted || !_galleryPermissionGranted) {
-                            _requestPermissions();
-                          } else {
-                            _checkPermissions();
-                            BlocProvider.of<AppGetStartedCubit>(context).setAppGetStarted();
-                            Navigator.pushReplacementNamed(context, Routes.appSignin);
-                          }
+                          Navigator.pushReplacementNamed(context, Routes.appSignin);
+                          // TODO : refactor app permissions
+                          BlocProvider.of<AppGetStartedCubit>(context).setAppGetStarted();
+                          // if (!_storagePermissionGranted || !_galleryPermissionGranted) {
+                          //   // _requestPermissions();
+                          // } else {
+                          //   // _checkPermissions();
+                          // }
                         },
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(AppColors.button),
