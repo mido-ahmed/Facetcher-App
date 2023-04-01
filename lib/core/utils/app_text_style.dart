@@ -206,15 +206,19 @@ class AppTextStyle with Diagnosticable {
   );
   static TextStyle? drawingDetailsField = TextStyle(
     fontSize: 15,
-    fontWeight: FontWeight.bold,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? dropDownItemTitle = TextStyle(
+    fontSize: 15,
     color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? dropDownItem = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    color: AppColors.textSecondary,
+    fontSize: 15,
+    color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
