@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:facetcher/features/drawing-report/presentation/screens/drawing_report_screen.dart';
 import 'package:facetcher/features/drawing-result/presentation/screens/drawing-result.dart';
-import 'package:facetcher/features/home-screen/presentation/screen/home_screen.dart';
+import 'package:facetcher/features/app-home-screen/presentation/screen/home_screen.dart';
 import 'package:facetcher/features/user-changing_password/presentation/screens/user_changing_password.dart';
 import 'package:facetcher/features/user-history/presentation/screens/user_history_screen.dart';
 
@@ -34,18 +34,14 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initial:
         return MaterialPageRoute(
-            builder: (
-              context,
-            ) {
+            builder: (context,) {
               return const SplashScreen();
             },
             settings: routeSettings);
 
       case Routes.appGetStarted:
         return MaterialPageRoute(
-            builder: (
-                context,
-                ) {
+            builder: (context,) {
               return const GetStartedScreen();
             },
             settings: routeSettings);
