@@ -20,28 +20,24 @@ class DrawingDetailsState extends State<DrawingDetailsScreen> {
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           physics: const ScrollPhysics(),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 35.0, right: 35.0, top: 90.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Drawing Details",
-                      style: AppTextStyle.drawingScreenTitle,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
-                      child: Text("Enter all the details and description for the drawing, as all what you do here is recorded",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.drawingScreenTitleDetails,
-                      ),
-                    ),
-                    const DrawingDetailsForm(),
-                  ],
+          child: Padding(
+            padding: const EdgeInsets.only(left: 35.0, right: 35.0, top: 80.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Drawing Details",
+                  style: AppTextStyle.drawingScreenTitle,
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
+                  child: Text("Enter all the details and description for the drawing, as all what you do here is recorded",
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.drawingScreenTitleDetails,
+                  ),
+                ),
+                const DrawingDetailsForm(),
+              ],
+            ),
           ),
         ),
       ),
