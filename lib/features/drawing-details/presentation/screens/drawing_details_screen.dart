@@ -55,15 +55,13 @@ class DrawingDetailsState extends State<DrawingDetailsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Drawing Details",
+                      Text("Drawing Details",
                         textAlign: TextAlign.left,
                         style: AppTextStyle.drawingScreenTitle,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
-                        child: Text(
-                          "Enter all the details and description for the drawing, as all what you do here is recorded",
+                        child: Text("Enter all the details and description for the drawing, as all what you do here is recorded",
                           style: AppTextStyle.drawingScreenTitleDetails,
                         ),
                       ),
