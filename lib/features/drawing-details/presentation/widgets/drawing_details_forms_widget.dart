@@ -1,5 +1,8 @@
+import 'package:facetcher/features/drawing-details/presentation/cubit/create_user_submission_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -19,7 +22,7 @@ class DrawingDetailsForm extends StatefulWidget {
 class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final DrawingDetailsRequest _drawingDetailsRequest = DrawingDetailsRequest();
-  final _isFormEnabled = true;
+  bool _isFormEnabled = true;
   var selectedItem;
 
   @override
@@ -82,7 +85,7 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                         enabled: true,
                         alignment: Alignment.centerLeft,
                         value: item,
-                        child: Text(item),
+                        child: Text(item, style: AppTextStyle.loginFieldText,),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -93,9 +96,9 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                     value: selectedItem,
                     onSaved: (value) {
                       if (value == "Male") {
-                        selectedItem = value.toString().toUpperCase();
+                        selectedItem = value;
                       } else {
-                        selectedItem = value.toString().toUpperCase();
+                        selectedItem = value;
                       }
                       _drawingDetailsRequest.gender = selectedItem;
                     },
@@ -123,34 +126,71 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 25.0),
-              child: ButtonWidget(
-                backgroundColor: AppColors.navigatorItem,
-                onPress: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState?.save();
-                    if (_drawingDetailsRequest.title.isEmpty) {
-                      Constants.showErrorDialog(context: context, message: "Title can't be blank");
-                      return;
-                    }
-                    if (_drawingDetailsRequest.gender == "NULL") {
-                      Constants.showErrorDialog(context: context, message: "Gender must be assigned");
-                      return;
-                    }
-                    if (_drawingDetailsRequest.description.isEmpty) {
-                      Constants.showErrorDialog(context: context, message: "Description can't be blank");
-                      return;
-                    }
-                    Navigator.pushReplacementNamed(context, Routes.appDrawingScreen);
+              child: BlocConsumer<CreateUserSubmissionCubit, CreateUserSubmissionState>(
+                builder: ((context, state) {
+                  if (state is CreateUserSubmissionLoading) {
+                    return AbsorbPointer(
+                      absorbing: true,
+                      child: ButtonWidget(
+                        onPress: () {},
+                        backgroundColor: AppColors.navigatorItem,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: LoadingAnimationWidget.staggeredDotsWave(
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return ButtonWidget(
+                      backgroundColor: AppColors.navigatorItem,
+                      onPress: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState?.save();
+                          if (_drawingDetailsRequest.title.isEmpty) {
+                            Constants.showErrorDialog(context: context, message: "Title can't be blank");
+                            return;
+                          }
+                          if (_drawingDetailsRequest.gender == "NULL") {
+                            Constants.showErrorDialog(context: context, message: "Gender must be assigned");
+                            return;
+                          }
+                          if (_drawingDetailsRequest.description.isEmpty) {
+                            Constants.showErrorDialog(context: context, message: "Description can't be blank");
+                            return;
+                          }
+                          BlocProvider.of<CreateUserSubmissionCubit>(context).createUserSubmission(_drawingDetailsRequest);
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Next", style: AppTextStyle.buttonText,),
+                          const SizedBox(width: 4,),
+                          Icon(Icons.arrow_forward_sharp, color: AppColors.textPrimary, size: 17,),
+                        ],
+                      ),
+                    );
                   }
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Next", style: AppTextStyle.buttonText,),
-                    const SizedBox(width: 2,),
-                    Icon(Icons.arrow_forward_sharp, color: AppColors.textPrimary, size: 17,),
-                  ],
-                ),
+                }),
+                listener: ((context, state) {
+                  if (state is CreateUserSubmissionError) {
+                    Constants.showErrorDialog(context: context, message: state.message);
+                  } else if (state is CreateUserSubmissionSuccess) {
+                    Navigator.pushNamed(context, Routes.appDrawingScreen,  arguments: {'submissionId': state.userSubmission.body.id,},);
+                  }
+                  if (state is CreateUserSubmissionLoading) {
+                    setState(() {
+                      _isFormEnabled = false;
+                    });
+                  } else {
+                    setState(() {
+                      _isFormEnabled = true;
+                    });
+                  }
+                }),
               ),
             ),
           ],
