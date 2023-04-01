@@ -92,14 +92,14 @@ class AppTextStyle with Diagnosticable {
   );
 
   static TextStyle? homeScreenDetails = TextStyle(
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? homeScreenHistory = TextStyle(
-    fontSize: 30,
+    fontSize: 23,
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
@@ -113,11 +113,13 @@ class AppTextStyle with Diagnosticable {
   );
 
   static TextStyle? historyButton = TextStyle(
-      fontSize: 12,
+      fontSize: 13,
+      letterSpacing: 1.1,
       fontWeight: FontWeight.w400,
       color: AppColors.textSecondary,
       fontFamily: AppStrings.fontFamilyCenturtGothic,
-      decoration: TextDecoration.underline);
+      decoration: TextDecoration.underline
+  );
 
   static TextStyle? homeScreenTextOne = TextStyle(
     fontSize: 50,
