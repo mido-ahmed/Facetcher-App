@@ -11,4 +11,7 @@ class EndPoints {
 
   // user
   static const String signup = '$baseProductionUrl/user';
+
+  // user submission
+  static const String createUserSubmission = '$baseProductionUrl/user-submission';
 }
