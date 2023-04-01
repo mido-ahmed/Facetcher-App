@@ -1,3 +1,4 @@
+import 'package:facetcher/data/models/user-trial/user_trial.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_text_style.dart';
 import 'package:facetcher/core/widgets/buttons/button_widget.dart';
@@ -17,6 +18,8 @@ class DrawingResult extends StatefulWidget {
 class _DrawingResultState extends State<DrawingResult> {
   @override
   Widget build(BuildContext context) {
+    UserTrial userTrial = ModalRoute.of(context)?.settings.arguments as UserTrial;
+    print(userTrial);
     return Material(
       child: Scaffold(
         body: SafeArea(
