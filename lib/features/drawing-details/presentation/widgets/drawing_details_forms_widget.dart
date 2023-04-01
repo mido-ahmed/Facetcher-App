@@ -192,15 +192,15 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState?.save();
                               if (drawingDetailsRequest.title.isEmpty) {
-                                Constants.showErrorDialog(context: context, message: "Title can't be blank");
+                                Constants.showSnackBar(context: context, message: "Title can't be blank");
                                 return;
                               }
                               if (drawingDetailsRequest.gender == "NULL") {
-                                Constants.showErrorDialog(context: context, message: "Gender must be assigned");
+                                Constants.showSnackBar(context: context, message: "Gender must be assigned");
                                 return;
                               }
                               if (drawingDetailsRequest.description.isEmpty) {
-                                Constants.showErrorDialog(context: context, message: "Description can't be blank");
+                                Constants.showSnackBar(context: context, message: "Description can't be blank");
                                 return;
                               }
                               BlocProvider.of<CreateUserSubmissionCubit>(context).createUserSubmission(drawingDetailsRequest);
@@ -230,14 +230,9 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                     }),
                     listener: ((context, state) {
                       if (state is CreateUserSubmissionError) {
-                        Constants.showErrorDialog(
-                            context: context, message: state.message);
+                        Constants.showSnackBar(context: context, message: state.message);
                       } else if (state is CreateUserSubmissionSuccess) {
-                        Navigator.pushNamed(
-                          context,
-                          Routes.appDrawingScreen,
-                          arguments: state.userSubmission.body.id,
-                        );
+                        Navigator.pushNamed(context, Routes.appDrawingScreen, arguments: state.userSubmission.body.id,);
                       }
                       if (state is CreateUserSubmissionLoading) {
                         setState(() {
