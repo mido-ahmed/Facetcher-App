@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import '../../entities/user-submission/image.dart';
+import 'package:facetcher/data/models/image/image.dart';
 
 class UserSubmission extends Equatable {
   UserSubmission({
@@ -33,13 +32,17 @@ class UserSubmission extends Equatable {
   late String submissionMessage;
   late bool submitted;
 
-  UserSubmission.fromJson(Map<String, dynamic> json){
+  UserSubmission.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['userId'];
     inputImageId = json['inputImageId'] ?? 0;
-    inputImage = json['inputImage'] != null ? Image.fromJson(json['inputImage']) : Image(id: 0, name: "", imageUrl: "");
+    inputImage = json['inputImage'] != null
+        ? Image.fromJson(json['inputImage'])
+        : Image(id: 0, name: "", imageUrl: "");
     outputImageId = json['outputImageId'] ?? 0;
-    outputImage = json['outputImage'] != null ? Image.fromJson(json['outputImage']) : Image(id: 0, name: "", imageUrl: "");
+    outputImage = json['outputImage'] != null
+        ? Image.fromJson(json['outputImage'])
+        : Image(id: 0, name: "", imageUrl: "");
     gender = json['gender'];
     title = json['title'];
     submitted = json['submitted'];
@@ -48,7 +51,6 @@ class UserSubmission extends Equatable {
     submissionDate = json['submissionDate'] ?? "";
     submissionMessage = json['submissionMessage'] ?? "";
   }
-
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
@@ -71,4 +73,3 @@ class UserSubmission extends Equatable {
   @override
   List<Object?> get props => [id];
 }
-
