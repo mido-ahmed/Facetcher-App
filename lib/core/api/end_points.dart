@@ -14,4 +14,8 @@ class EndPoints {
 
   // user submission
   static const String createUserSubmission = '$baseProductionUrl/user-submission';
+
+  // user trial
+  // TODO: change create user trial path
+  static const String createUserTrial = '$baseProductionUrl/user-trial/processs';
 }
