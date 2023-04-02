@@ -10,4 +10,5 @@ class ImageNetwork {
   static const String logoFlat = 'https://d178ormcbshsy5.cloudfront.net/logo_flat.png';
   static const String userIcon = 'https://d178ormcbshsy5.cloudfront.net/user_icon.png';
   static const String userShape = 'https://d178ormcbshsy5.cloudfront.net/user_shape.png';
+  static const String editIcon = 'https://d178ormcbshsy5.cloudfront.net/edit_icon.png';
 }
