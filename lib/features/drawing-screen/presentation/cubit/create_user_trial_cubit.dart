@@ -19,8 +19,7 @@ class CreateUserTrialCubit extends Cubit<CreateUserTrialState> {
     emit(CreateUserTrialInitial());
     emit(CreateUserTrialLoading());
     Either<GenericException, ResponseModel<UserTrial>> response =
-        await userTrialUseCase(UserTrialRequest(image: drawingTrialRequest.image, submissionId: drawingTrialRequest.submissionId));
-    emit(response.fold((exception) => CreateUserTrialError(message: exception.message),
-        (userTrial) => CreateUserTrialSuccess(userTrial: userTrial)));
+    await userTrialUseCase(UserTrialRequest(image: drawingTrialRequest.image.buffer.asUint8List(), submissionId: drawingTrialRequest.submissionId));
+    emit(response.fold((exception) => CreateUserTrialError(message: exception.message), (userTrial) => CreateUserTrialSuccess(userTrial: userTrial)));
   }
 }
