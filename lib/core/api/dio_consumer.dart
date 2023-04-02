@@ -55,6 +55,29 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
+  Future postFormData(String path, {Map<String, dynamic>? body, bool formDataIsEnabled = false, Map<String, dynamic>? queryParameters}) async {
+    try {
+      late FormData formData;
+      if (formDataIsEnabled) {
+        formData = FormData.fromMap(body!);
+      } else {
+        formData = FormData();
+        body!.forEach((key, value) {
+          if (value is Uint8List) {
+            formData.files.add(MapEntry(key, MultipartFile.fromBytes(value, filename: 'image.jpg')));
+          } else {
+            formData.fields.add(MapEntry(key, value.toString()));
+          }
+        });
+      }
+      final response = await client.post(path, queryParameters: queryParameters, data: formData);
+      return _handleResponseAsJson(response);
+    } on DioError catch (error) {
+      _handleDioError(error);
+    }
+  }
+
+  @override
   Future put(String path, {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) async {
     try {
       final response = await client.put(path, queryParameters: queryParameters, data: body);
