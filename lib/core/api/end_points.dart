@@ -1,7 +1,7 @@
 class EndPoints {
   // base
   static const String baseStagingUrl = 'http://192.168.1.7:8010/';
-  static const String baseProductionUrl = 'https://f27f-45-243-179-190.eu.ngrok.io/facetcher-service/api';
+  static const String baseProductionUrl = 'http://18.189.192.65:8010/facetcher-service/api';
 
   // auth
   static const String signin = '$baseProductionUrl/auth/log-in';
@@ -13,7 +13,7 @@ class EndPoints {
   static const String signup = '$baseProductionUrl/user';
 
   // user submission
-  static const String createUserSubmission = '$baseProductionUrl/user-submission';
+  static const String userSubmission = '$baseProductionUrl/user-submission';
 
   // user trial
   static const String createUserTrial = '$baseProductionUrl/user-trial/process';
