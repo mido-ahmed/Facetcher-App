@@ -11,11 +11,12 @@ class DrawingScreen extends StatefulWidget {
 }
 
 class _DrawingScreenState extends State<DrawingScreen> {
-  int? submissionId = 0;
+  int submissionId = 2;
 
   @override
   Widget build(BuildContext context) {
-    submissionId = ModalRoute.of(context)?.settings.arguments as int?;
+    // TODO : uncomment submission id
+    // submissionId = ModalRoute.of(context)?.settings.arguments as int?;
     return Material(
       child: Scaffold(
         extendBody: true,
@@ -32,7 +33,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
-                    child: DrawerWidget(submissionId: submissionId!),
+                    child: DrawerWidget(submissionId: submissionId),
                   ),
                 ],
               ),
