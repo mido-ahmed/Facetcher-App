@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 class DrawingTrialRequest {
-  late ByteData image;
+  late Uint8List image;
   late int submissionId;
 
   DrawingTrialRequest(this.image, this.submissionId);

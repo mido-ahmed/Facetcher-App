@@ -112,7 +112,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     ]);
   }
 
-  Future<ByteData> _renderImage(BuildContext context) async {
-    return await notifier.renderImage();
+  Future<Uint8List> _renderImage(BuildContext context) async {
+    final renderedImage = await notifier.renderImage();
+    return renderedImage.buffer.asUint8List();
   }
 }
