@@ -10,7 +10,7 @@ import '../../../core/utils/app_strings.dart';
 import '../../entities/user-submission/user_submission_request.dart';
 
 abstract class UserSubmissionRemoteDataSource {
-  Future<ResponseModel<UserSubmission>> createUserSubmission(UserSubmissionRequest userSubmissionRequest);
+  Future<ResponseModel<UserSubmission>> createOrUpdateUserSubmission(UserSubmissionRequest userSubmissionRequest);
 }
 
 class UserSubmissionRemoteDataSourceImpl implements UserSubmissionRemoteDataSource {
@@ -19,8 +19,10 @@ class UserSubmissionRemoteDataSourceImpl implements UserSubmissionRemoteDataSour
   UserSubmissionRemoteDataSourceImpl({required this.apiConsumer});
 
   @override
-  Future<ResponseModel<UserSubmission>> createUserSubmission(UserSubmissionRequest userSubmissionRequest) async {
-    final response = await apiConsumer.post(EndPoints.createUserSubmission, body: userSubmissionRequest.toJson());
+  Future<ResponseModel<UserSubmission>> createOrUpdateUserSubmission(UserSubmissionRequest userSubmissionRequest) async {
+    var response;
+    if (userSubmissionRequest.submissionId != 0) response = await apiConsumer.post(EndPoints.userSubmission, body: userSubmissionRequest.toPutJson());
+    else response = await apiConsumer.post(EndPoints.userSubmission, body: userSubmissionRequest.toPostJson());
     if (response[AppStrings.success].toString() == AppStrings.boolFalse) {
       throw GenericException(message: response[AppStrings.message]);
     } else {
