@@ -1,5 +1,7 @@
+import 'dart:typed_data';
+
 class DrawingTrialRequest {
-  late String image;
+  late ByteData image;
   late int submissionId;
 
   DrawingTrialRequest(this.image, this.submissionId);
