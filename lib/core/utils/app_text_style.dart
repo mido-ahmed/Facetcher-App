@@ -138,7 +138,7 @@ class AppTextStyle with Diagnosticable {
   static TextStyle? editButtonText = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
-    color: AppColors.navigatorItem,
+    color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
