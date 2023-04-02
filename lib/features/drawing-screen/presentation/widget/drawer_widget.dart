@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -40,8 +39,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        height: context.height * 0.65,
-        width: context.width * 0.90,
+        height: context.height * 0.62,
+        width: context.width * 0.92,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(20),
@@ -59,19 +58,19 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               drawEraser: true,
               drawPen: true,
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                DrawerToolbar(notifier: notifier, context: context),
-              ],
-            ),
           ],
         ),
       ),
+      Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          DrawerToolbar(notifier: notifier, context: context),
+        ],
+      ),
       Padding(
-        padding: const EdgeInsets.only(top: 30.0),
+        padding: const EdgeInsets.only(top: 20.0),
         child: BlocConsumer<CreateUserTrialCubit, CreateUserTrialState>(
           builder: ((context, state) {
             if (state is CreateUserTrialLoading) {
@@ -93,8 +92,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               return ButtonWidget(
                 backgroundColor: AppColors.navigatorItem,
                 onPress: () {
-                  _renderImage(context).then((value) => {
-                    BlocProvider.of<CreateUserTrialCubit>(context).createUserTrial(DrawingTrialRequest( value,widget.submissionId))
+                  _renderImage(context).then((image) => {
+                    BlocProvider.of<CreateUserTrialCubit>(context).createUserTrial(DrawingTrialRequest(image, widget.submissionId))
                   });
                 },
                 child:  Text("Process", style: AppTextStyle.buttonText,),
@@ -113,9 +112,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     ]);
   }
 
-  // TODO: image doesn't rendered completely
-  Future<String> _renderImage(BuildContext context) async {
-    final image = await notifier.renderImage();
-    return base64Encode(Uint8List.view(image.buffer));
+  Future<ByteData> _renderImage(BuildContext context) async {
+    return await notifier.renderImage();
   }
 }
