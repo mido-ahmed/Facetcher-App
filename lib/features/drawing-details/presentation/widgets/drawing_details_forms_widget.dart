@@ -1,4 +1,4 @@
-import 'package:facetcher/features/drawing-details/presentation/cubit/create_user_submission_cubit.dart';
+import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,23 +51,15 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                   style: AppTextStyle.loginFieldText,
                   cursorColor: AppColors.textSecondary,
                   secureText: false,
-                  onSave: (value) {
-                    drawingDetailsRequest.title = value;
-                  },
-                  contentPadding: const EdgeInsets.only(
-                    top: 12,
-                    left: 30,
-                  ),
+                  onSave: (value) {drawingDetailsRequest.title = value;},
+                  contentPadding: const EdgeInsets.only(top: 12, left: 30,),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 18.0),
                   child: DropdownButtonFormField(
                     iconSize: 30,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    icon: Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: AppColors.textSecondary,
-                    ),
+                    icon: Icon(Icons.keyboard_arrow_down_rounded, color: AppColors.textSecondary,),
                     decoration: InputDecoration(
                       contentPadding:
                           const EdgeInsets.only(left: 30, right: 10),
@@ -87,9 +79,7 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                     borderRadius: BorderRadius.circular(25),
                     dropdownColor: AppColors.background,
                     style: AppTextStyle.dropDownItem,
-                    hint: Text('Gender',
-                      style: AppTextStyle.dropDownItemTitle,
-                    ),
+                    hint: Text('Gender', style: AppTextStyle.dropDownItemTitle,),
                     items: ['Male', 'Female'].map((item) {
                       return DropdownMenuItem(
                         enabled: true,
@@ -129,123 +119,79 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                   style: AppTextStyle.loginFieldText,
                   cursorColor: AppColors.textSecondary,
                   secureText: false,
-                  onSave: (value) {
-                    drawingDetailsRequest.description = value;
-                  },
-                  contentPadding: const EdgeInsets.only(
-                    top: 40,
-                    left: 30,
-                  ),
+                  onSave: (value) {drawingDetailsRequest.description = value;},
+                  contentPadding: const EdgeInsets.only(top: 40, left: 30,),
                 ),
               ],
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ButtonWidget(
-                    backgroundColor: AppColors.navigatorItem,
-                    onPress: () => Navigator.pop(context),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.arrow_back_sharp,
-                            color: AppColors.textPrimary,
-                            size: 17,
-                          ),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          Text("Back",
-                            style: AppTextStyle.buttonText,
-                          ),
-                        ],
+              child: BlocConsumer<CreateOrUpdateUserSubmissionCubit, CreateOrUpdateUserSubmissionState>(
+                builder: ((context, state) {
+                  if (state is CreateOrUpdateUserSubmissionLoading) {
+                    return AbsorbPointer(
+                      absorbing: true,
+                      child: ButtonWidget(
+                        onPress: () {},
+                        backgroundColor: AppColors.navigatorItem,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 30,),
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 30.0,),
-                  BlocConsumer<CreateUserSubmissionCubit, CreateUserSubmissionState>(
-                    builder: ((context, state) {
-                      if (state is CreateUserSubmissionLoading) {
-                        return AbsorbPointer(
-                          absorbing: true,
-                          child: ButtonWidget(
-                            onPress: () {},
-                            backgroundColor: AppColors.navigatorItem,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: LoadingAnimationWidget.staggeredDotsWave(
-                                color: Colors.white,
-                                size: 30,
-                              ),
-                            ),
-                          ),
-                        );
-                      } else {
-                        return ButtonWidget(
-                          backgroundColor: AppColors.navigatorItem,
-                          onPress: () {
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState?.save();
-                              if (drawingDetailsRequest.title.isEmpty) {
-                                Constants.showSnackBar(context: context, message: "Title can't be blank");
-                                return;
-                              }
-                              if (drawingDetailsRequest.gender == "NULL") {
-                                Constants.showSnackBar(context: context, message: "Gender must be assigned");
-                                return;
-                              }
-                              if (drawingDetailsRequest.description.isEmpty) {
-                                Constants.showSnackBar(context: context, message: "Description can't be blank");
-                                return;
-                              }
-                              BlocProvider.of<CreateUserSubmissionCubit>(context).createUserSubmission(drawingDetailsRequest);
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("Next",
-                                  style: AppTextStyle.buttonText,
-                                ),
-                                const SizedBox(
-                                  width: 4,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_sharp,
-                                  color: AppColors.textPrimary,
-                                  size: 17,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                    }),
-                    listener: ((context, state) {
-                      if (state is CreateUserSubmissionError) {
-                        Constants.showSnackBar(context: context, message: state.message);
-                      } else if (state is CreateUserSubmissionSuccess) {
-                        Navigator.pushNamed(context, Routes.appDrawingScreen, arguments: state.userSubmission.body.id,);
-                      }
-                      if (state is CreateUserSubmissionLoading) {
-                        setState(() {
-                          _isFormEnabled = false;
-                        });
-                      } else {
-                        setState(() {
-                          _isFormEnabled = true;
-                        });
-                      }
-                    }),
-                  ),
-                ],
+                    );
+                  } else {
+                    return ButtonWidget(
+                      backgroundColor: AppColors.navigatorItem,
+                      onPress: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState?.save();
+                          if (drawingDetailsRequest.title.isEmpty) {
+                            Constants.showSnackBar(context: context, message: "Title can't be blank");
+                            return;
+                          }
+                          if (drawingDetailsRequest.gender == "NULL") {
+                            Constants.showSnackBar(context: context, message: "Gender must be assigned");
+                            return;
+                          }
+                          if (drawingDetailsRequest.description.isEmpty) {
+                            Constants.showSnackBar(context: context, message: "Description can't be blank");
+                            return;
+                          }
+                          BlocProvider.of<CreateOrUpdateUserSubmissionCubit>(context).createOrUpdateUserSubmission(drawingDetailsRequest);
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("Next", style: AppTextStyle.buttonText,),
+                            const SizedBox(width: 4,),
+                            Icon(Icons.arrow_forward_sharp, color: AppColors.textPrimary, size: 17,),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                }),
+                listener: ((context, state) {
+                  if (state is CreateOrUpdateUserSubmissionError) {
+                    Constants.showSnackBar(context: context, message: state.message);
+                  } else if (state is CreateOrUpdateUserSubmissionSuccess) {
+                    drawingDetailsRequest.submissionId = state.userSubmission.body.id;
+                    Navigator.pushNamed(context, Routes.appDrawingScreen, arguments: state.userSubmission.body.id,);
+                  }
+                  if (state is CreateOrUpdateUserSubmissionLoading) {
+                    setState(() {
+                      _isFormEnabled = false;
+                    });
+                  } else {
+                    setState(() {
+                      _isFormEnabled = true;
+                    });
+                  }
+                }),
               ),
             ),
           ],
