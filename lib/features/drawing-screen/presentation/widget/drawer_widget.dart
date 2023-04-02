@@ -39,7 +39,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        height: context.height * 0.62,
+        height: context.height * 0.60,
         width: context.width * 0.92,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
@@ -70,7 +70,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         ],
       ),
       Padding(
-        padding: const EdgeInsets.only(top: 20.0),
+        padding: const EdgeInsets.only(top: 15.0),
         child: BlocConsumer<CreateUserTrialCubit, CreateUserTrialState>(
           builder: ((context, state) {
             if (state is CreateUserTrialLoading) {
