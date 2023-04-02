@@ -1,4 +1,4 @@
-import 'package:facetcher/features/drawing-details/presentation/cubit/create_user_submission_cubit.dart';
+import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
 import 'package:facetcher/features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +22,7 @@ class FacetcherApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => di.sl<SigninCubit>()),
           BlocProvider(create: (context) => di.sl<AppGetStartedCubit>()),
-          BlocProvider(create: (context) => di.sl<CreateUserSubmissionCubit>()),
+          BlocProvider(create: (context) => di.sl<CreateOrUpdateUserSubmissionCubit>()),
           BlocProvider(create: (context) => di.sl<CreateUserTrialCubit>()),
           BlocProvider(create: (context) => di.sl<LocalizationCubit>()),
         ],

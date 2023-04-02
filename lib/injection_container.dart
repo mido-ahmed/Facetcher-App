@@ -4,8 +4,8 @@ import 'package:facetcher/features/app-get-started/data/usecases/app_get_started
 import 'package:facetcher/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
 import 'package:facetcher/features/app-signin/domain/usecases/signin_usecase.dart';
 import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.dart';
-import 'package:facetcher/features/drawing-details/domain/usecases/create_user_submission_usecase.dart';
-import 'package:facetcher/features/drawing-details/presentation/cubit/create_user_submission_cubit.dart';
+import 'package:facetcher/features/drawing-details/domain/usecases/create_or_update_user_submission_usecase.dart';
+import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -50,7 +50,7 @@ Future<void> init() async {
   // signin
   sl.registerFactory<SigninCubit>(() => SigninCubit(signinUseCase: sl()));
   // user submission
-  sl.registerLazySingleton<CreateUserSubmissionCubit>(() => CreateUserSubmissionCubit(userSubmissionUseCase: sl()));
+  sl.registerLazySingleton<CreateOrUpdateUserSubmissionCubit>(() => CreateOrUpdateUserSubmissionCubit(userSubmissionUseCase: sl()));
   // user trial
   sl.registerLazySingleton<CreateUserTrialCubit>(() => CreateUserTrialCubit(userTrialUseCase: sl()));
 
@@ -64,7 +64,7 @@ Future<void> init() async {
   // signin
   sl.registerLazySingleton<SigninUseCase>(() => SigninUseCase(authenticationRepository: sl()));
   // user submission
-  sl.registerLazySingleton<CreateUserSubmissionUseCase>(() => CreateUserSubmissionUseCase(userSubmissionRepository: sl()));
+  sl.registerLazySingleton<CreateOrUpdateUserSubmissionUseCase>(() => CreateOrUpdateUserSubmissionUseCase(userSubmissionRepository: sl()));
   // user submission
   sl.registerLazySingleton<CreateUserTrialUseCase>(() => CreateUserTrialUseCase(userTrialRepository: sl()));
 
