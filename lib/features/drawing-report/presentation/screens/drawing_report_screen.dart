@@ -4,6 +4,7 @@ import 'package:facetcher/features/drawing-report/presentation/widgets/face_deta
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/list_title_widget.dart';
+import '../../../../data/models/user-trial/user_trial.dart';
 import '../../../drawing-result/presentation/widgets/output_Image.dart';
 
 class DrawingReport extends StatefulWidget {
@@ -16,6 +17,8 @@ class DrawingReport extends StatefulWidget {
 class _DrawingReportState extends State<DrawingReport> {
   @override
   Widget build(BuildContext context) {
+    UserTrial userTrial = ModalRoute.of(context)?.settings.arguments as UserTrial;
+    print(userTrial);
     return Material(
       child: Scaffold(
         body: SafeArea(
@@ -36,7 +39,9 @@ class _DrawingReportState extends State<DrawingReport> {
                   ],
                 ),
                 ListTitleWidget(
+                  titleAlign: TextAlign.center,
                   title: "Submit",
+                  subtitleAlign: TextAlign.center,
                   subtitle:
                       "Please, Make sure from all your data that you entered "
                           "as in this step all the data are going to be "
