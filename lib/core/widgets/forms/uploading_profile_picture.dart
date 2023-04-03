@@ -1,9 +1,8 @@
 import 'dart:io';
-
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/core/widgets/forms/profile_widget.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../utils/app_colors.dart';
@@ -19,7 +18,8 @@ class UploadingProfilePicture extends StatefulWidget {
 
 class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
   File? imageFile;
-  final ImagePicker _picker = ImagePicker();
+  FilePickerResult? result;
+  PlatformFile? pickedFile;
 
   @override
   Widget build(BuildContext context) {
@@ -96,23 +96,31 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
     );
   }
 
-  takenPhoto(ImageSource source) async {
-    final pickedFile = await _picker.pickImage(source: source);
-    if (pickedFile == null) return;
+  takenPhoto() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+    );
+    if (result == null) return;
+    pickedFile = result.files.first;
 
-    File? img = File(pickedFile.path);
+    File? img = File(pickedFile!.path.toString());
     img = await _cropImage(imageFile: img);
-    setState(() {
-      imageFile = img;
-      Navigator.of(context).pop();
-    });
+    setState(
+      () {
+        imageFile = img;
+        Navigator.of(context).pop();
+      },
+    );
+
   }
 
-  uploadingProfilePicture(Function(ImageSource source) onTap) {
+
+  uploadingProfilePicture(Function() onTap) {
     return AnimatedContainer(
       height: 150,
       duration: const Duration(milliseconds: 600),
-      curve: Curves.easeInOut,
+      curve: Curves.easeInQuad,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
@@ -133,14 +141,14 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(top: 30, bottom: 20, left: 10, right: 10),
+                const EdgeInsets.only(top: 40, bottom: 20, left: 10, right: 10),
             child: Text(
               'Choose Your Profile Picture',
               style: AppTextStyle.userProfileTitle,
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton.icon(
                 style: ButtonStyle(
@@ -151,29 +159,8 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                     ),
                   ),
                 ),
-                onPressed: () {
-                  takenPhoto(ImageSource.camera);
-                },
-                icon: Icon(
-                  Icons.camera_alt,
-                  color: AppColors.white,
-                ),
-                label: Text(
-                  'Camera',
-                  style: AppTextStyle.userProfileInfo,
-                ),
-              ),
-              ElevatedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppColors.button),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                  ),
-                ),
                 onPressed: () async {
-                  takenPhoto(ImageSource.gallery);
+                  takenPhoto();
                 },
                 icon: Icon(
                   Icons.image,
@@ -190,7 +177,6 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
       ),
     );
   }
-
   Future<File?> _cropImage({required File imageFile}) async {
     CroppedFile? croppedImage = await ImageCropper().cropImage(
       sourcePath: imageFile.path,
