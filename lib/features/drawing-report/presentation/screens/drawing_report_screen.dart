@@ -38,7 +38,7 @@ class _DrawingReportState extends State<DrawingReport> {
                         color: AppColors.navigatorFont),
                   ],
                 ),
-                ListTitleWidget(
+                const ListTitleWidget(
                   titleAlign: TextAlign.center,
                   title: "Submit",
                   subtitleAlign: TextAlign.center,
@@ -46,8 +46,7 @@ class _DrawingReportState extends State<DrawingReport> {
                       "Please, Make sure from all your data that you entered "
                           "as in this step all the data are going to be "
                           "submitted and all case details will be saved in "
-                          "your history.", titleAlign: TextAlign.center,
-                  subtitleAlign:TextAlign.left,
+                          "your history.",
                 ),
                 FaceDetails(),
                 Padding(
