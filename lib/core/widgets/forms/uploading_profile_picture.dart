@@ -1,7 +1,8 @@
 import 'dart:io';
+import 'package:facetcher/core/utils/media_query_values.dart';
+import 'package:facetcher/core/widgets/forms/profile_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/widgets/forms/profile_widget.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -20,7 +21,18 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
   File? imageFile;
   FilePickerResult? result;
   PlatformFile? pickedFile;
+  late bool _isExpanded;
 
+  @override
+  void initState() {
+    super.initState();
+    _isExpanded = false;
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        _isExpanded = true;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -118,10 +130,11 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
 
   uploadingProfilePicture(Function() onTap) {
     return AnimatedContainer(
-      height: 150,
       duration: const Duration(milliseconds: 600),
-      curve: Curves.easeInQuad,
-      width: MediaQuery.of(context).size.width,
+      curve: Curves.easeInOut,
+      height: _isExpanded
+          ? context.height * 0.20
+          : context.height * 0.15,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
             topRight: Radius.circular(70),
