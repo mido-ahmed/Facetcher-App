@@ -1,16 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/assets_manager.dart';
 import 'package:flutter_starter/core/widgets/icons/animated_icon_button.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/buttons/button_form_widget.dart';
-import '../../../../core/widgets/forms/profile_widget.dart';
 import '../../../../core/widgets/forms/uploading_profile_picture.dart';
 import '../../../../core/widgets/forms/user_profile_details_widget.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
@@ -84,8 +78,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     Routes.appDrawingResult,
                                   );
                                 },
-                                child: Image.asset('assets/images/1'
-                                    '.5x/Vector.png'),
+                                child:
+                                Image.asset('assets/icons/Vector.png'),
+
                               ),
                             ),
                           ],
@@ -119,8 +114,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.only(top: 25),
                     child: ButtonFormWidget(
-                      onPress: () {
-                      },
+                      onPress: () {},
                       child: const Text('Log out'),
                     ),
                   ),
