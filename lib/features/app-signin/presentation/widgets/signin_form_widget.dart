@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/config/routes/app_routes.dart';
+import 'package:facetcher/config/routes/app_routes.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../config/locale/app_localizations.dart';
@@ -127,13 +127,15 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                                 if (_signinRequest.email.isEmpty) {
                                   Constants.showErrorDialog(
                                       context: context,
-                                      message: AppLocalizations.of(context)!.translate('blank_email')!);
+                                      message: AppLocalizations.of(context)!
+                                          .translate('blank_email')!);
                                   return;
                                 }
                                 if (_signinRequest.password.isEmpty) {
                                   Constants.showErrorDialog(
                                       context: context,
-                                      message: AppLocalizations.of(context)!.translate('blank_password')!);
+                                      message: AppLocalizations.of(context)!
+                                          .translate('blank_password')!);
                                   return;
                                 }
                                 BlocProvider.of<SigninCubit>(context).signin(_signinRequest);
@@ -146,11 +148,9 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                       }),
                       listener: ((context, state) {
                         if (state is SigninError) {
-                          Constants.showErrorDialog(context: context, message: state.message);
+                          Constants.showErrorDialog(
+                              context: context, message: state.message);
                         } else if (state is SigninSuccess) {
-                          Constants.showSnackBar(
-                              context: context,
-                              message: state.signinClaimsResponse.message);
                           Navigator.pushReplacementNamed(context, Routes.appHome);
                         }
                         if (state is SigninLoading) {

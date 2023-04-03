@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/features/drawing-report/presentation/widgets/face_details.dart';
+import 'package:facetcher/features/drawing-report/presentation/widgets/face_details.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
@@ -38,7 +38,11 @@ class _DrawingReportState extends State<DrawingReport> {
                 ListTitleWidget(
                   title: "Submit",
                   subtitle:
-                      "Please, Make sure from all your data that you entered as in this step all the data are going to be submitted and all case details will be saved in your history.",
+                      "Please, Make sure from all your data that you entered "
+                          "as in this step all the data are going to be "
+                          "submitted and all case details will be saved in "
+                          "your history.", titleAlign: TextAlign.center,
+                  subtitleAlign:TextAlign.left,
                 ),
                 FaceDetails(),
                 Padding(

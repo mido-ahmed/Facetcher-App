@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/app_text_style.dart';
-import 'package:flutter_starter/core/widgets/list_title_widget.dart';
+import 'package:facetcher/core/utils/app_text_style.dart';
 
 class FaceDetails extends StatefulWidget {
   const FaceDetails({Key? key}) : super(key: key);

@@ -1,10 +1,13 @@
+import 'package:facetcher/core/utils/assets_manager.dart';
+import 'package:facetcher/data/models/user-trial/user_trial.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/app_text_style.dart';
-import 'package:flutter_starter/core/widgets/buttons/button_widget.dart';
-import 'package:flutter_starter/core/widgets/list_title_widget.dart';
-import 'package:flutter_starter/features/drawing-result/presentation/widgets/edit_button.dart';
-import 'package:flutter_starter/features/drawing-result/presentation/widgets/output_Image.dart';
+import 'package:facetcher/core/utils/app_text_style.dart';
+import 'package:facetcher/core/widgets/buttons/button_widget.dart';
+import 'package:facetcher/core/widgets/list_title_widget.dart';
+import 'package:facetcher/features/drawing-result/presentation/widgets/edit_button.dart';
+import 'package:facetcher/features/drawing-result/presentation/widgets/output_Image.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 
 class DrawingResult extends StatefulWidget {
@@ -17,85 +20,82 @@ class DrawingResult extends StatefulWidget {
 class _DrawingResultState extends State<DrawingResult> {
   @override
   Widget build(BuildContext context) {
+    UserTrial userTrial = ModalRoute.of(context)?.settings.arguments as UserTrial;
     return Material(
       child: Scaffold(
-        body: SafeArea(
+        extendBody: true,
+        resizeToAvoidBottomInset: true,
+        body: SingleChildScrollView(
+          physics: const ScrollPhysics(),
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.only(left: 35.0, right: 35.0, top: 80.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.menu,
-                          size: 30,
-                        ),
-                        color: AppColors.navigatorFont),
-                  ],
-                ),
                 const ListTitleWidget(
-                  title: "The Required",
-                  subtitle:
-                      "It’s the required person according your gender choice and your drawing. If it’s not the person you need please let us know.",
+                  titleAlign: TextAlign.center,
+                  title: "Drawing Result",
+                  subtitleAlign: TextAlign.center,
+                  subtitle: "It’s the required person according your gender choice and your drawing. If it’s not the person you need please let us know.",
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                OutputImage(
-                  image:
-                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-                  height: MediaQuery.of(context).size.height / 1.8,
-                  width: MediaQuery.of(context).size.width / 0.1,
-                ),
-                const SizedBox(
-                  height: 30,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 25.0),
+                  child: OutputImage(
+                    image: userTrial.outputImage.imageUrl,
+                    height: MediaQuery.of(context).size.height / 1.8,
+                    width: MediaQuery.of(context).size.width / 0.1,
+                  ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     EditButton(
-                        backgroundColor: AppColors.primary,
-                        onPress: () {},
+                      backgroundColor: AppColors.primary,
+                      onPress: () => Navigator.pop(context),
+                        child: Padding(
+                        padding: const EdgeInsets.only(left: 30.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              "Edit",
+                            Text("Edit",
                               style: AppTextStyle.editButtonText,
                             ),
                             const SizedBox(
-                              width: 5,
+                              width: 6,
                             ),
-                            Image.asset('assets/icons/Vector.png'),
+                            Image.network(ImageNetwork.editIcon),
                           ],
-                        )),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 30.0,
+                    ),
                     ButtonWidget(
                       backgroundColor: AppColors.navigatorItem,
-                      onPress: () {
-                        Navigator.of(context).pushNamed('/user-drawing-report');
-                      },
-                      icon: const Icon(Icons.arrow_forward_sharp),
-                      text: "Next",
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Next",
-                            style: AppTextStyle.primaryButtonText,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Image.asset('assets/icons/shape.png'),
-                        ],
+                      onPress: () => Navigator.pushNamed(context, Routes.appDrawingReport, arguments: userTrial,),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("Next",
+                              style: AppTextStyle.buttonText,
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_sharp,
+                              color: AppColors.textPrimary,
+                              size: 17,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

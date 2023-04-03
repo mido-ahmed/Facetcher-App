@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_starter/injection_container.dart' as di;
+import 'package:facetcher/injection_container.dart' as di;
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_starter/core/api/status_code.dart';
+import 'package:facetcher/core/api/status_code.dart';
 
 import '../error/exceptions.dart';
 import 'api_consumer.dart';
@@ -55,9 +55,42 @@ class DioConsumer implements ApiConsumer {
   }
 
   @override
+  Future postFormData(String path, {Map<String, dynamic>? body, bool formDataIsEnabled = false, Map<String, dynamic>? queryParameters}) async {
+    try {
+      late FormData formData;
+      if (formDataIsEnabled) {
+        formData = FormData.fromMap(body!);
+      } else {
+        formData = FormData();
+        body!.forEach((key, value) {
+          if (value is Uint8List) {
+            formData.files.add(MapEntry(key, MultipartFile.fromBytes(value, filename: 'image.jpg')));
+          } else {
+            formData.fields.add(MapEntry(key, value.toString()));
+          }
+        });
+      }
+      final response = await client.post(path, queryParameters: queryParameters, data: formData);
+      return _handleResponseAsJson(response);
+    } on DioError catch (error) {
+      _handleDioError(error);
+    }
+  }
+
+  @override
   Future put(String path, {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) async {
     try {
       final response = await client.put(path, queryParameters: queryParameters, data: body);
+      return _handleResponseAsJson(response);
+    } on DioError catch (error) {
+      _handleDioError(error);
+    }
+  }
+
+  @override
+  Future delete(String path, {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await client.delete(path, queryParameters: queryParameters);
       return _handleResponseAsJson(response);
     } on DioError catch (error) {
       _handleDioError(error);

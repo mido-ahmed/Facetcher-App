@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_starter/data/repositories/user/user_repository.dart';
+import 'package:facetcher/data/repositories/user/user_repository.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/models/response_model.dart';
 import '../../../core/network/network_info.dart';
+import '../../../core/usecases/usecase.dart';
 import '../../datasources/user/user_local_datasource.dart';
 import '../../datasources/user/user_remote_datasource.dart';
 import '../../entities/user/signup.dart';
@@ -30,6 +31,16 @@ class UserRepositoryImpl implements UserRepository {
       }
     } else {
       return const Left(CacheException());
+    }
+  }
+
+  @override
+  Future<Either<GenericException, NoParams>> setAppGetStarted() async {
+    try {
+      await userLocalDataSource.cacheIsApGetStarted();
+      return Right(NoParams());
+    } on GenericException catch (exception) {
+      return Left(CacheException(exception));
     }
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/app_colors.dart';
-import 'package:flutter_starter/core/utils/app_text_style.dart';
-import 'package:flutter_starter/core/utils/assets_manager.dart';
-import 'package:flutter_starter/core/utils/media_query_values.dart';
+import 'package:facetcher/core/utils/app_colors.dart';
+import 'package:facetcher/core/utils/app_text_style.dart';
+import 'package:facetcher/core/utils/assets_manager.dart';
+import 'package:facetcher/core/utils/media_query_values.dart';
 
 import '../widgets/signin_form_widget.dart';
 
@@ -10,7 +10,7 @@ class SigninScreen extends StatefulWidget {
   const SigninScreen({Key? key}) : super(key: key);
 
   @override
-  _SigninScreenState createState() => _SigninScreenState();
+  State<SigninScreen> createState() => _SigninScreenState();
 }
 
 class _SigninScreenState extends State<SigninScreen> {
@@ -20,7 +20,7 @@ class _SigninScreenState extends State<SigninScreen> {
   void initState() {
     super.initState();
     _isExpanded = false;
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         _isExpanded = true;
       });
@@ -36,16 +36,12 @@ class _SigninScreenState extends State<SigninScreen> {
             width: context.width,
             height: context.height,
             padding: const EdgeInsets.only(
-              top: 60.0,
+              top: 50.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 210,
-                  child: Hero(
-                      tag: 'splash-logo', child: Image.asset(ImgAssets.logo)),
-                ),
+                Image.network(ImageNetwork.logo, width: 155,),
                 Expanded(
                   flex: 1,
                   child: Center(
@@ -62,7 +58,9 @@ class _SigninScreenState extends State<SigninScreen> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 600),
                   curve: Curves.easeInOut,
-                  height: _isExpanded ? context.height * 0.46 : context.height * 0.35,
+                  height: _isExpanded
+                      ? context.height * 0.46
+                      : context.height * 0.35,
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(70),

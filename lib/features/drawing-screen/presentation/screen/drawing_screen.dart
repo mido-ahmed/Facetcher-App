@@ -1,10 +1,11 @@
+import 'package:facetcher/core/widgets/navigator/navigation_bar_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/widgets/navigator/navigation_bar_wrapper.dart';
-import 'package:flutter_starter/features/drawing-screen/presentation/widget/drawer_widget.dart';
+import 'package:facetcher/features/drawing-screen/presentation/widget/drawer_widget.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
+import '../../../../core/widgets/icons/animated_icon_button.dart';
 
 class DrawingScreen extends StatefulWidget {
   const DrawingScreen({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class DrawingScreen extends StatefulWidget {
 
 class _DrawingScreenState extends State<DrawingScreen> {
   bool _toggleNavigationBar = false;
+  int? submissionId = 0;
 
   void _handleToggleNavigationBar() {
     setState(() {
@@ -24,6 +26,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    submissionId = ModalRoute.of(context)?.settings.arguments as int?;
     return NavigationBarWrapper(
       toggleNavigationBar: _toggleNavigationBar,
       path: ModalRoute.of(context)?.settings.name,
@@ -33,35 +36,32 @@ class _DrawingScreenState extends State<DrawingScreen> {
           resizeToAvoidBottomInset: true,
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                AppBarWidget(
-                  leftChild: IconButton(
-                    icon: Icon(Icons.arrow_back, color: AppColors.white),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  rightChild: IconButton(
+            child: Center(
+              child: Column(
+                children: [
+                  AppBarWidget(
+                    leftChild: IconButton(
+                      icon: Icon(Icons.arrow_back, color: AppColors.white),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                    rightChild: AnimatedIconButton(
+                      icon: AnimatedIcons.menu_close,
+                      color: AppColors.fontPrimary,
                       onPressed: () => _handleToggleNavigationBar(),
-                      icon: const Icon(
-                        Icons.menu,
-                        size: 30,
-                      ),
-                      color: AppColors.white),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Text(
-                    "Start drawing",
+                      durationMilliseconds: 500,
+                      size: 32.0,
+                      end: 1.0,
+                    ),
+                  ),
+                  Text("Start Drawing",
                     style: AppTextStyle.drawingScreenTitle,
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 15.0),
-                  child: DrawerWidget(),
-                ),
-                // TODO : update with the last button widget
-                // ButtonWidget(text: "Next", icon: Icons.arrow_forward),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: DrawerWidget(submissionId: submissionId!),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

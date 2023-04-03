@@ -1,7 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.henry.flutter_starter">
+
+    <!-- Add permissions for storage access -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Add permissions for gallery access -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
    <application
-        android:label="flutter_starter"
+        android:label="facetcher"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter/core/utils/app_text_style.dart';
-import 'package:flutter_starter/core/widgets/navigator/navigation_bar_wrapper.dart';
-import 'package:flutter_starter/features/home-screen/presentation/widget/History.dart';
-import 'package:flutter_starter/features/home-screen/presentation/widget/animated_button.dart';
-import 'package:flutter_starter/features/home-screen/presentation/widget/circle_profile.dart';
+import 'package:facetcher/core/utils/app_text_style.dart';
+import 'package:facetcher/core/widgets/navigator/navigation_bar_wrapper.dart';
+import 'package:facetcher/features/app-home-screen/presentation/widget/animated_button.dart';
+import 'package:facetcher/features/app-home-screen/presentation/widget/circle_profile.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -40,9 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 leftChild: Row(
                   children: [
                     CircularButton(
-                      image: "assets/images/1.5x/shape.png",
-                      function: () {},
+                      function: () {Navigator.pushNamed(context, Routes.userProfile);},
                       circleRadius: 25.0,
+                      child: Image.network(ImageNetwork.userShape, width: 40,),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 14),
@@ -50,12 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Hey,User",
+                          Text("Hey,User",
                             style: AppTextStyle.appBarUserProfile,
                           ),
-                          Text(
-                            "Let’s sketch today",
+                          Text("Let’s sketch today",
                             style: AppTextStyle.drawingScreenTitleDetails,
                           ),
                         ],
@@ -73,45 +72,67 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Text(
-                  "From sketch",
-                  style: AppTextStyle.homeScreenTextOne,
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 40.0),
+                      child: Text("From sketch",
+                        style: AppTextStyle.splashTextOne,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100.0),
+                      child: Text("To Life",
+                        style: AppTextStyle.splashTextTwo,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 55.0, top: 7.0),
-                child: Text(
-                  "To Life",
-                  style: AppTextStyle.homeScreenTextTwo,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 23),
-                child: Container(
-                  child: Text(
-                    "What we try to do is to reach the criminal together and get the best result in the shortest time.",
+                padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
+                child: SizedBox(
+                  child: Text("What we try to do is to reach the criminal together and get the best result in the shortest time.",
                     style: AppTextStyle.homeScreenDetails,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 23, top: 40),
-                child: HistoryDraws(),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Your History",
+                      style: AppTextStyle.homeScreenHistory,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: GestureDetector(
+                        // TODO: Naviagte to history
+                        onTap: () {},
+                        child: Text("More",
+                          style: AppTextStyle.historyButton,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 8,
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return Row(
                         children: [
                           Container(
                             width: 100,
-                            height: 168,
+                            height: 150,
                             decoration: BoxDecoration(
                                 color: AppColors.textSecondary,
                                 border: Border.all(
@@ -120,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     style: BorderStyle.solid),
                                 borderRadius: BorderRadius.circular(20)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 35,
                           )
                         ],
@@ -129,7 +150,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              AnimatedCircleContainer()
+              const Padding(
+                padding: EdgeInsets.only(bottom: 15.0),
+                child: AnimatedCircleContainer(),
+              )
             ],
           ),
         ),

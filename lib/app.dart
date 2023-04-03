@@ -1,8 +1,11 @@
+import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
+import 'package:facetcher/features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/core/utils/app_colors.dart';
-import 'package:flutter_starter/features/app-signin/presentation/cubit/signin_cubit.dart';
+import 'package:facetcher/core/utils/app_colors.dart';
+import 'package:facetcher/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
+import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'config/locale/app_localizations_setup.dart';
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
@@ -18,6 +21,9 @@ class FacetcherApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => di.sl<SigninCubit>()),
+          BlocProvider(create: (context) => di.sl<AppGetStartedCubit>()),
+          BlocProvider(create: (context) => di.sl<CreateOrUpdateUserSubmissionCubit>()),
+          BlocProvider(create: (context) => di.sl<CreateUserTrialCubit>()),
           BlocProvider(create: (context) => di.sl<LocalizationCubit>()),
         ],
         child: BlocBuilder<LocalizationCubit, LocalizationState>(
