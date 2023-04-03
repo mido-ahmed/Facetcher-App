@@ -26,7 +26,7 @@ dependencies:
   im_animations: ^0.1.2
   scribble: ^0.9.1
   font_awesome_flutter: ^10.4.0
-  image_picker: ^0.8.7+1
+  file_picker: ^5.2.6
   image_cropper: ^3.0.2
   permission_handler: ^10.2.0
 
@@ -35,8 +35,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter:
+dependency_overrides:
+  ffi: ^2.0.1
 
+flutter:
   uses-material-design: true
 
   assets:
@@ -50,8 +52,6 @@ flutter:
     - assets/images/plus.png
     - assets/images/logo.png
     - assets/images/logo_flat.png
-    - assets/images/1.5x/Vector.png
-
 
   fonts:
     - family : Century Gothic
