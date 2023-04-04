@@ -14,8 +14,8 @@ class UserRole extends Equatable {
 
   UserRole.fromJson(Map<String, dynamic> json){
     id = json['id'];
-    name = json['name'];
-    description = json['description'];
+    name = json['name'] ?? "";
+    description = json['description'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

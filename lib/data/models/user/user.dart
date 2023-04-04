@@ -39,14 +39,14 @@ class User extends Equatable {
     lastName = json['lastName'];
     email = json['email'];
     password = json['password'];
-    phoneNumber = json['phoneNumber'];
-    birthdate = json['birthdate'];
-    country = json['country'];
-    age = json['age'];
-    gender = json['gender'];
-    maritalStatus = json['maritalStatus'];
-    profilePictureUrl = json['profilePictureUrl'];
-    userRoles = List.from(json['userRoles']).map((e)=>UserRole.fromJson(e)).toList();
+    phoneNumber = json['phoneNumber'] ?? "";
+    birthdate = json['birthdate'] ?? "";
+    country = json['country'] ?? "";
+    age = json['age'] ?? 0;
+    gender = json['gender'] ?? "";
+    maritalStatus = json['maritalStatus'] ?? "";
+    profilePictureUrl = json['profilePictureUrl'] ?? "";
+    userRoles = json['userRoles'] != null ? List.from(json['userRoles']).map((e)=>UserRole.fromJson(e)).toList() : List.empty();
   }
 
   Map<String, dynamic> toJson() {
