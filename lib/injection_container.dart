@@ -6,6 +6,7 @@ import 'package:facetcher/features/app-signin/domain/usecases/signin_usecase.dar
 import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'package:facetcher/features/drawing-details/domain/usecases/create_or_update_user_submission_usecase.dart';
 import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
+import 'package:facetcher/features/user-profile/domain/usecases/current_user_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +38,7 @@ import 'features/app-splash/domain/usecases/get_saved_lang_usecase.dart';
 import 'features/app-splash/presentation/cubit/localization_cubit.dart';
 import 'features/drawing-screen/domain/usecases/create_user_trial_usecase.dart';
 import 'features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
+import 'features/user-profile/presentation/cubit/current_user_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -49,6 +51,8 @@ Future<void> init() async {
   sl.registerFactory<AppGetStartedCubit>(() => AppGetStartedCubit(appGetStartedUseCase: sl()));
   // signin
   sl.registerFactory<SigninCubit>(() => SigninCubit(signinUseCase: sl()));
+  // user
+  sl.registerLazySingleton<CurrentUserCubit>(() => CurrentUserCubit(profileUserCase: sl()));
   // user submission
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionCubit>(() => CreateOrUpdateUserSubmissionCubit(userSubmissionUseCase: sl()));
   // user trial
@@ -63,6 +67,8 @@ Future<void> init() async {
   sl.registerLazySingleton<AppGetStartedUseCase>(() => AppGetStartedUseCase(userRepository: sl()));
   // signin
   sl.registerLazySingleton<SigninUseCase>(() => SigninUseCase(authenticationRepository: sl()));
+  // user
+  sl.registerLazySingleton<CurrentUserUseCase>(() => CurrentUserUseCase(authenticationRepository: sl()));
   // user submission
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionUseCase>(() => CreateOrUpdateUserSubmissionUseCase(userSubmissionRepository: sl()));
   // user submission
