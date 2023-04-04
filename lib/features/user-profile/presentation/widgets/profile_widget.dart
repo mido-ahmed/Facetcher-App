@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/app_colors.dart';
-import '../../utils/app_text_style.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_style.dart';
 
 class ProfileWidget extends StatefulWidget {
   final String? userProfileName;

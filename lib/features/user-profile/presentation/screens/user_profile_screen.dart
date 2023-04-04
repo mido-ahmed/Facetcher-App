@@ -5,9 +5,9 @@ import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/buttons/button_form_widget.dart';
-import '../../../../core/widgets/forms/uploading_profile_picture.dart';
-import '../../../../core/widgets/forms/user_profile_details_widget.dart';
+import '../widgets/uploading_profile_picture.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
+import '../widgets/user_profile_details_widget.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({Key? key}) : super(key: key);

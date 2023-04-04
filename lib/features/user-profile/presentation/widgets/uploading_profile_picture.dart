@@ -1,13 +1,13 @@
 import 'dart:io';
 import 'package:facetcher/core/utils/media_query_values.dart';
-import 'package:facetcher/core/widgets/forms/profile_widget.dart';
+import 'package:facetcher/features/user-profile/presentation/widgets/profile_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../utils/app_colors.dart';
-import '../../utils/app_text_style.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_style.dart';
 
 class UploadingProfilePicture extends StatefulWidget {
   const UploadingProfilePicture({Key? key}) : super(key: key);

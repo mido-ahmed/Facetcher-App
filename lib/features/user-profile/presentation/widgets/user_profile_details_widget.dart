@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/app_text_style.dart';
+import '../../../../core/utils/app_text_style.dart';
 
 class UserProfileDetailsWidget extends StatelessWidget {
   final String title;

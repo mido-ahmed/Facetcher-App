@@ -6,7 +6,7 @@ import 'package:facetcher/core/widgets/forms/text_field_widget.dart';
 
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/buttons/button_form_widget.dart';
-import '../../../../core/widgets/forms/profile_widget.dart';
+import '../../../user-profile/presentation/widgets/profile_widget.dart';
 
 class ChangingPassword extends StatefulWidget {
   const ChangingPassword({Key? key}) : super(key: key);
