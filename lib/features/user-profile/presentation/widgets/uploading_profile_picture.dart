@@ -4,7 +4,6 @@ import 'package:facetcher/features/user-profile/presentation/widgets/profile_wid
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
@@ -13,15 +12,14 @@ class UploadingProfilePicture extends StatefulWidget {
   const UploadingProfilePicture({Key? key}) : super(key: key);
 
   @override
-  State<UploadingProfilePicture> createState() =>
-      _UploadingProfilePictureState();
+  State<UploadingProfilePicture> createState() => _UploadingProfilePictureState();
 }
 
 class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
-  File? imageFile;
   FilePickerResult? result;
   PlatformFile? pickedFile;
   late bool _isExpanded;
+  File? imageFile;
 
   @override
   void initState() {
@@ -82,12 +80,6 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                   ),
                 ),
                 onTap: () async {
-                  Map<Permission, PermissionStatus> statuses = await [
-                    Permission.storage,
-                    Permission.camera,
-                  ].request();
-                  if (statuses[Permission.storage]!.isGranted &&
-                      statuses[Permission.camera]!.isGranted) {
                     showModalBottomSheet(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(90.0),
@@ -96,10 +88,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                       context: context,
                       builder: (context) => uploadingProfilePicture(takenPhoto),
                     );
-                  } else {
-                    print('no permission provided');
                   }
-                },
               ),
             ),
           ],
@@ -126,7 +115,6 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
     );
 
   }
-
 
   uploadingProfilePicture(Function() onTap) {
     return AnimatedContainer(
@@ -179,10 +167,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
                   Icons.image,
                   color: AppColors.white,
                 ),
-                label: Text(
-                  'Gallery',
-                  style: AppTextStyle.userProfileInfo,
-                ),
+                label: Text('Gallery', style: AppTextStyle.userProfileInfo,),
               )
             ],
           )
@@ -190,6 +175,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
       ),
     );
   }
+
   Future<File?> _cropImage({required File imageFile}) async {
     CroppedFile? croppedImage = await ImageCropper().cropImage(
       sourcePath: imageFile.path,
