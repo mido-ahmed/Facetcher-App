@@ -9,7 +9,7 @@ import '../../datasources/authentication/authentication_local_datasource.dart';
 import '../../entities/authentication/signin.dart';
 import '../../datasources/authentication/authentication_remote_datasource.dart';
 import '../../entities/authentication/signin_claims.dart';
-import '../../entities/user/user.dart';
+import '../../models/user/user.dart';
 import 'authentication_repository.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {

@@ -5,7 +5,7 @@ import '../../../../core/models/response_model.dart';
 import '../../../core/usecases/usecase.dart';
 import '../../entities/authentication/signin.dart';
 import '../../entities/authentication/signin_claims.dart';
-import '../../entities/user/user.dart';
+import '../../models/user/user.dart';
 
 abstract class AuthenticationRepository {
   Future<Either<GenericException, ResponseModel<User>>> getCurrentUser();
