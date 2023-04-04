@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/widgets/icons/animated_icon_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/locale/app_localizations.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/utils/constants.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
-import '../../../../core/widgets/buttons/button_form_widget.dart';
+import '../cubit/current_user_cubit.dart';
+import '../cubit/current_user_state.dart';
 import '../widgets/uploading_profile_picture.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../widgets/user_profile_details_widget.dart';
@@ -26,6 +31,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _getCurrentUser();
+  }
+
+  _getCurrentUser() => BlocProvider.of<CurrentUserCubit>(context).findCurrentUser();
+
+  @override
   Widget build(BuildContext context) {
     return NavigationBarWrapper(
       toggleNavigationBar: _toggleNavigationBar,
@@ -39,7 +52,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               AppBarWidget(
                 leftChild: IconButton(
                   icon: Icon(Icons.arrow_back, color: AppColors.white),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Navigator.pushReplacementNamed(context, Routes.appHome),
                 ),
                 rightChild: AnimatedIconButton(
                   icon: AnimatedIcons.menu_close,
@@ -50,75 +63,78 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   end: 1.0,
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const UploadingProfilePicture(),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 45),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              BlocConsumer<CurrentUserCubit, CurrentUserState>(
+                builder: ((context, state) {
+                   if (state is CurrentUserSuccess) {
+                    return Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(top: 40),
-                              child: UserProfileDetailsWidget(
-                                title: 'Password',
-                                details: '**********',
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const UploadingProfilePicture(),
+                              // const UploadingProfilePicture(state.user),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 25),
+                                    child: UserProfileDetailsWidget(
+                                      title: 'Password',
+                                      details: '  **********',
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 25),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, Routes.userChangingPassword,);
+                                      },
+                                      child:
+                                      Image.network(ImageNetwork.editIcon),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 40),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    Routes.appDrawingResult,
-                                  );
-                                },
-                                child:
-                                Image.asset('assets/icons/Vector.png'),
-
+                              Padding(
+                                padding: const EdgeInsets.only(top: 25),
+                                child: UserProfileDetailsWidget(
+                                  title: 'Phone Number',
+                                  details: '  +20 ${state.user.phoneNumber.substring(1)}',
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 30),
-                          child: UserProfileDetailsWidget(
-                            title: 'Phone Number',
-                            details: '+20 121 121 121 2',
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 30),
-                          child: UserProfileDetailsWidget(
-                            title: 'Account Role',
-                            details: 'User Account',
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(
-                            top: 40,
-                          ),
-                          child: UserProfileDetailsWidget(
-                            title: 'Age',
-                            details: '50',
+                              Column(
+                                children: state.user.roles.map((userRole) => Padding(
+                                  padding: const EdgeInsets.only(top: 25),
+                                  child: UserProfileDetailsWidget(
+                                    title: 'Account Role',
+                                    details: '  ${userRole.role.name}',
+                                  ),
+                                )).toList(),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 25,),
+                                child: UserProfileDetailsWidget(
+                                  title: 'Age',
+                                  details: '  ${state.user.age}',
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25),
-                    child: ButtonFormWidget(
-                      onPress: () {},
-                      child: const Text('Log out'),
-                    ),
-                  ),
-                ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
+                listener: ((context, state) {
+                  if (state is CurrentUserError) {
+                    Constants.showSnackBar(context: context, message: AppLocalizations.of(context)!.translate('something_wrong')!);
+                    Navigator.pushReplacementNamed(context, Routes.appSignin);
+                  }
+                }),
               ),
             ],
           ),
