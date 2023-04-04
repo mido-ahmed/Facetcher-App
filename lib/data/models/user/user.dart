@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:facetcher/data/models/user/user_role.dart';
 
-class User extends Equatable {
+class User {
 
   User({
     required this.id,
@@ -16,7 +15,7 @@ class User extends Equatable {
     required this.gender,
     required this.maritalStatus,
     required this.profilePictureUrl,
-    required this.userRoles,
+    required this.roles,
   });
 
   late final int id;
@@ -31,7 +30,7 @@ class User extends Equatable {
   late final String gender;
   late final String maritalStatus;
   late final String profilePictureUrl;
-  late final List<UserRole> userRoles;
+  late final List<UserRole> roles;
 
   User.fromJson(Map<String, dynamic> json){
     id = json['id'];
@@ -46,7 +45,7 @@ class User extends Equatable {
     gender = json['gender'] ?? "";
     maritalStatus = json['maritalStatus'] ?? "";
     profilePictureUrl = json['profilePictureUrl'] ?? "";
-    userRoles = json['userRoles'] != null ? List.from(json['userRoles']).map((e)=>UserRole.fromJson(e)).toList() : List.empty();
+    roles = List.from(json['userRoles']).map((e)=>UserRole.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -63,10 +62,7 @@ class User extends Equatable {
     data['gender'] = gender;
     data['maritalStatus'] = maritalStatus;
     data['profilePictureUrl'] = profilePictureUrl;
-    data['userRoles'] = userRoles.map((e)=>e.toJson()).toList();
+    data['userRoles'] = roles.map((e)=>e.toJson()).toList();
     return data;
   }
-
-  @override
-  List<Object?> get props => [id];
 }
