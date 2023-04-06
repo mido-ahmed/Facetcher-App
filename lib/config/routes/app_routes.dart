@@ -1,6 +1,6 @@
+import 'package:facetcher/features/drawing-result/presentation/screens/drawing_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/features/drawing-report/presentation/screens/drawing_report_screen.dart';
-import 'package:facetcher/features/drawing-result/presentation/screens/drawing-result.dart';
 import 'package:facetcher/features/app-home-screen/presentation/screen/home_screen.dart';
 import 'package:facetcher/features/user-changing_password/presentation/screens/user_changing_password.dart';
 import 'package:facetcher/features/user-history/presentation/screens/user_history_screen.dart';
@@ -84,7 +84,7 @@ class AppRoutes {
       case Routes.appDrawingResult:
         return MaterialPageRoute(
             builder: (context) {
-              return const DrawingResult();
+              return const DrawingResultScreen();
             },
             settings: routeSettings);
 

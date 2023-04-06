@@ -12,14 +12,14 @@ import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 
-class DrawingResult extends StatefulWidget {
-  const DrawingResult({Key? key}) : super(key: key);
+class DrawingResultScreen extends StatefulWidget {
+  const DrawingResultScreen({Key? key}) : super(key: key);
 
   @override
-  State<DrawingResult> createState() => _DrawingResultState();
+  State<DrawingResultScreen> createState() => _DrawingResultScreenState();
 }
 
-class _DrawingResultState extends State<DrawingResult> {
+class _DrawingResultScreenState extends State<DrawingResultScreen> {
   bool _toggleNavigationBar = false;
 
   void _handleToggleNavigationBar() {
