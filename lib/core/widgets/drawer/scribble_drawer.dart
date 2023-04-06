@@ -1,15 +1,15 @@
 import 'dart:ui';
 
+import 'package:facetcher/core/widgets/drawer/scribble_drawer_notifier.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/widgets/drawer/scribble_painter.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:scribble/src/scribble.notifier.dart';
 import 'package:scribble/src/state/scribble.state.dart';
 import 'package:scribble/src/core/pan_gesture_catcher.dart';
 
 class ScribbleDrawer extends StatefulWidget {
-  final ScribbleNotifierBase notifier;
+  final ScribbleDrawerNotifierBase notifier;
   final bool drawPen;
   final bool drawEraser;
 
