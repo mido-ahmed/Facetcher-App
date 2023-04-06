@@ -95,12 +95,9 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                     },
                     value: selectedItem,
                     onSaved: (value) {
-                      if (value == "Male") {
-                        selectedItem = value;
-                      } else {
-                        selectedItem = value;
+                      if (selectedItem != null) {
+                        drawingDetailsRequest.gender = selectedItem;
                       }
-                      drawingDetailsRequest.gender = selectedItem;
                     },
                   ),
                 ),
@@ -146,15 +143,15 @@ class _DrawingDetailsFormState extends State<DrawingDetailsForm> {
                       onPress: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState?.save();
-                          if (drawingDetailsRequest.title.isEmpty) {
+                          if (drawingDetailsRequest.title.trim().isEmpty) {
                             Constants.showSnackBar(context: context, message: "Title can't be blank");
                             return;
                           }
-                          if (drawingDetailsRequest.gender == "NULL") {
+                          if (drawingDetailsRequest.gender.trim().isEmpty) {
                             Constants.showSnackBar(context: context, message: "Gender must be assigned");
                             return;
                           }
-                          if (drawingDetailsRequest.description.isEmpty) {
+                          if (drawingDetailsRequest.description.trim().isEmpty) {
                             Constants.showSnackBar(context: context, message: "Description can't be blank");
                             return;
                           }
