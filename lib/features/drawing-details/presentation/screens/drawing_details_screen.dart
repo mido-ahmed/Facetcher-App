@@ -5,7 +5,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
-import '../widgets/drawing_details_forms_widget.dart';
+import '../widgets/drawing_details_form_widget.dart';
 
 class DrawingDetailsScreen extends StatefulWidget {
   const DrawingDetailsScreen({Key? key}) : super(key: key);
