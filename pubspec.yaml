@@ -46,5 +46,5 @@ flutter:
   fonts:
     - family : Century Gothic
       fonts :
-        - asset: assets/fonts/Century Gothic.otf
-        - asset: assets/fonts/Century Gothic Bold.otf
+        - asset: assets/fonts/Century_Gothic.otf
+        - asset: assets/fonts/Century_Gothic_Bold.otf
