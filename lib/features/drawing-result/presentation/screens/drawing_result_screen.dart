@@ -1,4 +1,5 @@
 import 'package:facetcher/core/utils/assets_manager.dart';
+import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:facetcher/data/models/user-trial/user_trial.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_text_style.dart';
@@ -62,8 +63,8 @@ class _DrawingResultScreenState extends State<DrawingResultScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
                     child: OutputImage(
                       image: userTrial.outputImage.imageUrl,
-                      height: MediaQuery.of(context).size.height * 0.6,
-                      width: MediaQuery.of(context).size.width / 0.1,
+                      height: context.height * 0.6,
+                      width: context.width / 0.1,
                     ),
                   ),
                   Row(
