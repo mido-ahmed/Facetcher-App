@@ -159,7 +159,20 @@ class AppTextStyle with Diagnosticable {
   static TextStyle? textDrawingReport = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
-    color: AppColors.navigatorFont,
+    color: AppColors.fontPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? textReportFieldTitle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? textReportField = TextStyle(
+    fontSize: 16,
+    color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
