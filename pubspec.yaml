@@ -29,30 +29,19 @@ dependencies:
   permission_handler: ^10.2.0
   file_picker: ^5.2.6
   image_cropper: ^3.0.2
+  image: ^3.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
 
-dependency_overrides:
-  ffi: ^2.0.1
-
 flutter:
-
   uses-material-design: true
 
   assets:
     - lang/ar.json
     - lang/en.json
-    - assets/images/user.png
-    - assets/icons/Vector.png
-    - assets/icons/shape.png
-    - assets/images/person.png
-    - assets/images/shape.png
-    - assets/images/plus.png
-    - assets/images/logo.png
-    - assets/images/logo_flat.png
 
   fonts:
     - family : Century Gothic
