@@ -139,7 +139,7 @@ String? _validateSignupMonthBirthday(String value) {
 }
 
 String? _validateDrawDetailsTitle(String value) {
-  if (value.isEmpty) {
+  if (value.trim().isEmpty) {
     return "required";
   } else {
     return "";
@@ -147,7 +147,7 @@ String? _validateDrawDetailsTitle(String value) {
 }
 
 String? _validateDrawDetailsGender(String value) {
-  if (value.isEmpty) {
+  if (value.trim().isEmpty) {
     return "required";
   } else {
     return "";
@@ -155,7 +155,7 @@ String? _validateDrawDetailsGender(String value) {
 }
 
 String? _validateDrawDetailsDescription(String value) {
-  if (value.isEmpty) {
+  if (value.trim().isEmpty) {
     return "required";
   } else {
     return "";
