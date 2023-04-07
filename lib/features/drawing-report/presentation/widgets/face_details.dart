@@ -18,6 +18,7 @@ class _FaceDetailsState extends State<FaceDetails> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -34,16 +35,13 @@ class _FaceDetailsState extends State<FaceDetails> {
               ],
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Description: ", style: AppTextStyle.textReportFieldTitle,),
-              Padding(
-                padding: const EdgeInsets.only(left: 2.0),
-                child: Text(widget.userTrial.description, style: AppTextStyle.textReportField,
-                ),
-              ),
-            ],
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(text: "Description: ", style: AppTextStyle.textReportFieldTitle),
+                TextSpan(text: widget.userTrial.description, style: AppTextStyle.textReportField,),
+              ],
+            ),
           ),
         ],
       ),
