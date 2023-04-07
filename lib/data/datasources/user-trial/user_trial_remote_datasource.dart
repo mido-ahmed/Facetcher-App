@@ -34,7 +34,7 @@ class UserTrialRemoteDataSourceImpl implements UserTrialRemoteDataSource {
 
   @override
   Future<ResponseModel<NoParams>> submitUserTrial(int userTrialId) async {
-    final response = await apiConsumer.put(EndPoints.createUserTrial + userTrialId.toString());
+    final response = await apiConsumer.put(EndPoints.submitUserTrial + userTrialId.toString());
     if (response[AppStrings.success].toString() == AppStrings.boolFalse) {
       throw GenericException(message: response[AppStrings.message]);
     } else {
