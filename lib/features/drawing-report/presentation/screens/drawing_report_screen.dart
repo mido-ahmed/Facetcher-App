@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:facetcher/features/drawing-report/presentation/widgets/face_details.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
+import '../../../../core/widgets/image/network_image_loader.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../../../../data/models/user-trial/user_trial.dart';
-import '../../../drawing-result/presentation/widgets/output_Image.dart';
 
 class DrawingReport extends StatefulWidget {
   const DrawingReport({Key? key}) : super(key: key);
@@ -66,15 +67,17 @@ class _DrawingReportState extends State<DrawingReport> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            OutputImage(
-                              image: userTrial.inputImage.imageUrl,
+                            NetworkImageLoader(
                               width: 150,
                               height: 185,
+                              url: userTrial.inputImage.imageUrl,
+                              loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 40,),
                             ),
-                            OutputImage(
-                              image: userTrial.outputImage.imageUrl,
+                            NetworkImageLoader(
                               width: 150,
                               height: 185,
+                              url: userTrial.outputImage.imageUrl,
+                              loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 40,),
                             ),
                           ],
                         ),

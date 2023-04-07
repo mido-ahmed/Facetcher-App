@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_text_style.dart';
 import 'package:facetcher/core/widgets/buttons/button_widget.dart';
 import 'package:facetcher/features/drawing-result/presentation/widgets/edit_button.dart';
-import 'package:facetcher/features/drawing-result/presentation/widgets/output_Image.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
+import '../../../../core/widgets/image/network_image_loader.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 
 class DrawingResultScreen extends StatefulWidget {
@@ -61,10 +62,11 @@ class _DrawingResultScreenState extends State<DrawingResultScreen> {
                   Text("Drawing Result", style: AppTextStyle.drawingScreenTitle,),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
-                    child: OutputImage(
-                      image: userTrial.outputImage.imageUrl,
+                    child: NetworkImageLoader(
+                      url: userTrial.outputImage.imageUrl,
                       height: context.height * 0.6,
                       width: context.width / 0.1,
+                      loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 40,),
                     ),
                   ),
                   Row(
