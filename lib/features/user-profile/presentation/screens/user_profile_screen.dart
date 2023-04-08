@@ -16,8 +16,8 @@ import '../cubit/current_user_state.dart';
 import '../cubit/signout_cubit.dart';
 import '../cubit/signout_state.dart';
 import '../widgets/rich_text_titled_widget.dart';
-import '../widgets/uploading_profile_picture.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
+import '../widgets/user_profile_picture.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
@@ -80,8 +80,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const UploadingProfilePicture(),
-                                  // const UploadingProfilePicture(state.user),
+                                  UserProfilePicture(user: state.user,),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 20),
                                     child: RichTextTitledWidget(
