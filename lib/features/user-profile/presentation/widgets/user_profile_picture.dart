@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:facetcher/core/utils/media_query_values.dart';
+import 'package:facetcher/data/models/user/user.dart';
 import 'package:facetcher/features/user-profile/presentation/widgets/profile_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,16 @@ import 'package:image_cropper/image_cropper.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 
-class UploadingProfilePicture extends StatefulWidget {
-  const UploadingProfilePicture({Key? key}) : super(key: key);
+class UserProfilePicture extends StatefulWidget {
+  final User user;
+
+  const UserProfilePicture({Key? key, required this.user}) : super(key: key);
 
   @override
-  State<UploadingProfilePicture> createState() => _UploadingProfilePictureState();
+  State<UserProfilePicture> createState() => _UserProfilePictureState();
 }
 
-class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
+class _UserProfilePictureState extends State<UserProfilePicture> {
   FilePickerResult? result;
   PlatformFile? pickedFile;
   late bool _isExpanded;
@@ -31,6 +34,7 @@ class _UploadingProfilePictureState extends State<UploadingProfilePicture> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
