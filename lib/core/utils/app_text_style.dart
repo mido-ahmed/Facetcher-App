@@ -241,4 +241,17 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.white,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+
+  static TextStyle? loaderTitleText = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? loaderSubtitleText = TextStyle(
+    fontSize: 12,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
 }
