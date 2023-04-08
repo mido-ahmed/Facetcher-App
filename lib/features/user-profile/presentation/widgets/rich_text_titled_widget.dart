@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_text_style.dart';
 
-class UserProfileDetailsWidget extends StatelessWidget {
+class RichTextTitledWidget extends StatelessWidget {
   final String title;
   final String details;
 
-  const UserProfileDetailsWidget({Key? key, required this.title, required this.details}) : super(key: key);
+  const RichTextTitledWidget({Key? key, required this.title, required this.details}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class UserProfileDetailsWidget extends StatelessWidget {
             style: AppTextStyle.userProfileInfo,
           ),
           TextSpan(
-            text:   '\n\n$details',
+            text: '   $details',
             style: AppTextStyle.userProfileDetails,
           ),
         ],
