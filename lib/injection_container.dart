@@ -36,6 +36,8 @@ import 'data/repositories/localization/localization_repository.dart';
 import 'features/app-splash/domain/usecases/change_lang_usecase.dart';
 import 'features/app-splash/domain/usecases/get_saved_lang_usecase.dart';
 import 'features/app-splash/presentation/cubit/localization_cubit.dart';
+import 'features/drawing-report/domain/usecases/submit_user_trial_usecase.dart';
+import 'features/drawing-report/presentation/cubit/submit_user_trial_cubit.dart';
 import 'features/drawing-screen/domain/usecases/create_user_trial_usecase.dart';
 import 'features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
 import 'features/user-profile/presentation/cubit/current_user_cubit.dart';
@@ -57,6 +59,7 @@ Future<void> init() async {
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionCubit>(() => CreateOrUpdateUserSubmissionCubit(userSubmissionUseCase: sl()));
   // user trial
   sl.registerLazySingleton<CreateUserTrialCubit>(() => CreateUserTrialCubit(userTrialUseCase: sl()));
+  sl.registerLazySingleton<SubmitUserTrialCubit>(() => SubmitUserTrialCubit(submitUserTrialUseCase: sl()));
 
 
   // !---- Use cases ----!
@@ -71,8 +74,9 @@ Future<void> init() async {
   sl.registerLazySingleton<CurrentUserUseCase>(() => CurrentUserUseCase(authenticationRepository: sl()));
   // user submission
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionUseCase>(() => CreateOrUpdateUserSubmissionUseCase(userSubmissionRepository: sl()));
-  // user submission
+  // user trial
   sl.registerLazySingleton<CreateUserTrialUseCase>(() => CreateUserTrialUseCase(userTrialRepository: sl()));
+  sl.registerLazySingleton<SubmitUserTrialUseCase>(() => SubmitUserTrialUseCase(userTrialRepository: sl()));
 
 
   // !---- Repository ----!
