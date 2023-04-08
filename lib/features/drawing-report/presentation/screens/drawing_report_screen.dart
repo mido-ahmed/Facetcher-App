@@ -16,14 +16,14 @@ import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../../../../data/models/user-trial/user_trial.dart';
 import '../cubit/submit_user_trial_state.dart';
 
-class DrawingReport extends StatefulWidget {
-  const DrawingReport({Key? key}) : super(key: key);
+class DrawingReportScreen extends StatefulWidget {
+  const DrawingReportScreen({Key? key}) : super(key: key);
 
   @override
-  State<DrawingReport> createState() => _DrawingReportState();
+  State<DrawingReportScreen> createState() => _DrawingReportScreenState();
 }
 
-class _DrawingReportState extends State<DrawingReport> {
+class _DrawingReportScreenState extends State<DrawingReportScreen> {
   bool _toggleNavigationBar = false;
 
   void _handleToggleNavigationBar() {

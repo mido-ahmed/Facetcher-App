@@ -81,6 +81,20 @@ class AppRoutes {
             },
             settings: routeSettings);
 
+      case Routes.appDrawingDetails:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingDetailsScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingScreen();
+            },
+            settings: routeSettings);
+
       case Routes.appDrawingResult:
         return MaterialPageRoute(
             builder: (context) {
@@ -91,21 +105,7 @@ class AppRoutes {
       case Routes.appDrawingReport:
         return MaterialPageRoute(
             builder: (context) {
-              return const DrawingReport();
-            },
-            settings: routeSettings);
-
-        case Routes.appDrawingScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appDrawingDetails:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingDetailsScreen();
+              return const DrawingReportScreen();
             },
             settings: routeSettings);
 
