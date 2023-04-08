@@ -40,7 +40,9 @@ import 'features/drawing-report/domain/usecases/submit_user_trial_usecase.dart';
 import 'features/drawing-report/presentation/cubit/submit_user_trial_cubit.dart';
 import 'features/drawing-screen/domain/usecases/create_user_trial_usecase.dart';
 import 'features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
+import 'features/user-profile/domain/usecases/signout_usecase.dart';
 import 'features/user-profile/presentation/cubit/current_user_cubit.dart';
+import 'features/user-profile/presentation/cubit/signout_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -51,8 +53,9 @@ Future<void> init() async {
   sl.registerFactory<LocalizationCubit>(() => LocalizationCubit(getSavedLangUseCase: sl(), changeLangUseCase: sl()));
   // get started
   sl.registerFactory<AppGetStartedCubit>(() => AppGetStartedCubit(appGetStartedUseCase: sl()));
-  // signin
+  // auth
   sl.registerFactory<SigninCubit>(() => SigninCubit(signinUseCase: sl()));
+  sl.registerFactory<SignoutCubit>(() => SignoutCubit(signoutUseCase: sl()));
   // user
   sl.registerLazySingleton<CurrentUserCubit>(() => CurrentUserCubit(profileUserCase: sl()));
   // user submission
@@ -68,8 +71,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetSavedLangUseCase>(() => GetSavedLangUseCase(langRepository: sl()));
   // get started
   sl.registerLazySingleton<AppGetStartedUseCase>(() => AppGetStartedUseCase(userRepository: sl()));
-  // signin
+  // auth
   sl.registerLazySingleton<SigninUseCase>(() => SigninUseCase(authenticationRepository: sl()));
+  sl.registerLazySingleton<SignoutUseCase>(() => SignoutUseCase(authenticationRepository: sl()));
   // user
   sl.registerLazySingleton<CurrentUserUseCase>(() => CurrentUserUseCase(authenticationRepository: sl()));
   // user submission
