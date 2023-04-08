@@ -1,15 +1,20 @@
+import 'package:facetcher/features/drawing-report/presentation/cubit/submit_user_trial_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/features/drawing-report/presentation/widgets/face_details.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
+import '../../../../core/utils/constants.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/image/network_image_loader.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../../../../data/models/user-trial/user_trial.dart';
+import '../cubit/submit_user_trial_state.dart';
 
 class DrawingReport extends StatefulWidget {
   const DrawingReport({Key? key}) : super(key: key);
@@ -86,20 +91,47 @@ class _DrawingReportState extends State<DrawingReport> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 25.0, bottom: 15.0),
-                    child: ButtonWidget(
-                      backgroundColor: AppColors.navigatorItem,
-                      onPress: () => {},
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Submit", style: AppTextStyle.buttonText,),
-                            const SizedBox(width: 4,),
-                            Icon(Icons.send, color: AppColors.textPrimary, size: 16,),
-                          ],
-                        ),
-                      ),
+                    child: BlocConsumer<SubmitUserTrialCubit, SubmitUserTrialState>(
+                      builder: ((context, state) {
+                        if (state is SubmitUserTrialLoading) {
+                          return AbsorbPointer(
+                            absorbing: true,
+                            child: ButtonWidget(
+                              onPress: () {},
+                              backgroundColor: AppColors.navigatorItem,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 30,),
+                              ),
+                            ),
+                          );
+                        } else {
+                          return
+                            ButtonWidget(
+                              backgroundColor: AppColors.navigatorItem,
+                              onPress: () => {BlocProvider.of<SubmitUserTrialCubit>(context).submitUserTrial(userTrial.id)},
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Submit", style: AppTextStyle.buttonText,),
+                                    const SizedBox(width: 4,),
+                                    Icon(Icons.send, color: AppColors.textPrimary, size: 16,),
+                                  ],
+                                ),
+                              ),
+                            );
+                        }
+                      }),
+                      listener: ((context, state) {
+                        if (state is SubmitUserTrialError) {
+                          Constants.showSnackBar(context: context, message: state.message);
+                        } else if (state is SubmitUserTrialSuccess) {
+                          Constants.showSnackBar(context: context, message: state.submittedUserTrial.message);
+                          Navigator.pushReplacementNamed(context, Routes.appHome);
+                        }
+                      }),
                     ),
                   ),
                 ],
