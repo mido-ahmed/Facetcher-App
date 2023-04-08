@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:facetcher/features/drawing-screen/presentation/widget/popup_loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_colors.dart';
 import 'package:facetcher/core/utils/media_query_values.dart';
@@ -31,8 +32,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   void initState() {
-    notifier = ScribbleDrawerNotifier();
     super.initState();
+    notifier = ScribbleDrawerNotifier();
   }
 
   @override
@@ -81,10 +82,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   backgroundColor: AppColors.navigatorItem,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
-                    child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: Colors.white,
-                      size: 30,
-                    ),
+                    child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 30,),
                   ),
                 ),
               );
@@ -92,6 +90,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               return ButtonWidget(
                 backgroundColor: AppColors.navigatorItem,
                 onPress: () {
+                  const PopupLoader().showPopupLoader(context);
                   _renderImage(context).then((image) => {
                     BlocProvider.of<CreateUserTrialCubit>(context).createUserTrial(DrawingTrialRequest(image, widget.submissionId))
                   });
@@ -102,8 +101,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           }),
           listener: ((context, state) {
             if (state is CreateUserTrialError) {
+              const PopupLoader().closePopupLoader(context);
               Constants.showSnackBar(context: context, message: state.message);
             } else if (state is CreateUserTrialSuccess) {
+              const PopupLoader().closePopupLoader(context);
               Navigator.pushNamed(context, Routes.appDrawingResult, arguments: state.userTrial.body,);
             }
           }),
