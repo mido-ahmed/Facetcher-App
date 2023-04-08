@@ -7,15 +7,17 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../../config/locale/app_localizations.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../core/utils/string_util.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../cubit/current_user_cubit.dart';
 import '../cubit/current_user_state.dart';
+import '../cubit/signout_cubit.dart';
+import '../cubit/signout_state.dart';
+import '../widgets/rich_text_titled_widget.dart';
 import '../widgets/uploading_profile_picture.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
-import '../widgets/user_profile_details_widget.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
@@ -74,59 +76,143 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         return Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              padding: const EdgeInsets.only(left: 50.0, right: 50.0, bottom: 20.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const UploadingProfilePicture(),
                                   // const UploadingProfilePicture(state.user),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.only(top: 25),
-                                        child: UserProfileDetailsWidget(
-                                          title: 'Password',
-                                          details: '  ***************',
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 25),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.pushNamed(context, Routes.userChangingPassword,);
-                                          },
-                                          child:
-                                          Image.network(ImageNetwork.editIcon),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 25),
-                                    child: UserProfileDetailsWidget(
-                                      title: 'Phone Number',
-                                      details: '  +20 ${state.user.phoneNumber.substring(1)}',
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: RichTextTitledWidget(
+                                      title: 'Account Role',
+                                      details: StringUtil.capitalizeFirstLetter(state.user.roles.elementAt(0).role.name),
                                     ),
                                   ),
-                                  Column(
-                                    children: state.user.roles.map((userRole) => Padding(
-                                      padding: const EdgeInsets.only(top: 25),
-                                      child: UserProfileDetailsWidget(
-                                        title: 'Account Role',
-                                        details: '  ${StringUtil.capitalizeFirstLetter(userRole.role.name)}',
-                                      ),
-                                    )).toList(),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20,),
+                                    child: RichTextTitledWidget(
+                                      title: 'Gender',
+                                      details: StringUtil.capitalizeFirstLetter(state.user.gender),
+                                    ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 25,),
-                                    child: UserProfileDetailsWidget(
-                                      title: 'Age',
-                                      details: '  ${state.user.age}',
+                                    padding: const EdgeInsets.only(top: 20,),
+                                    child: RichTextTitledWidget(
+                                      title: 'Marital Status',
+                                      details: StringUtil.capitalizeFirstLetter(state.user.maritalStatus),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20,),
+                                    child: RichTextTitledWidget(
+                                      title: 'Country',
+                                      details: StringUtil.capitalizeFirstLetter(state.user.country),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20,),
+                                    child: RichTextTitledWidget(
+                                      title: 'Birthdate',
+                                      details: StringUtil.convertDateTimeToDate(state.user.birthdate),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: RichTextTitledWidget(
+                                      title: 'Phone Number',
+                                      details: StringUtil.formatMobileNumber(state.user.phoneNumber),
                                     ),
                                   ),
                                 ],
                               ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
+                              child: SizedBox(
+                                height: 40,
+                                width: 200,
+                                child: ElevatedButton(
+                                  onPressed: () { Navigator.pushNamed(context, Routes.userChangingPassword); },
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(AppColors.animatedButtonText),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25.0),
+                                        side: const BorderSide(color: Colors.white, width: 0.5,),
+                                      ),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Change Password", style: AppTextStyle.buttonText,),
+                                      const SizedBox(width: 6,),
+                                      Icon(Icons.lock_outline, color: AppColors.textPrimary, size: 16,),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            BlocConsumer<SignoutCubit, SignoutState>(
+                              builder: ((context, state) {
+                                if (state is SignoutLoading) {
+                                  return SizedBox(
+                                    height: 40,
+                                    width: 230,
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateProperty.all(
+                                              AppColors.button),
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(25.0),
+                                              ))),
+                                      child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 30),
+                                    ),
+                                  );
+                                } else {
+                                  return SizedBox(
+                                    height: 40,
+                                    width: 230,
+                                    child: ElevatedButton(
+                                      onPressed: () {BlocProvider.of<SignoutCubit>(context).signout();},
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  AppColors.button),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                          ))),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(AppLocalizations.of(context)!.translate('logout')!, style: AppTextStyle.buttonText,),
+                                          const SizedBox(width: 6,),
+                                          Icon(Icons.login_outlined, color: AppColors.textPrimary, size: 16,),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
+                              }),
+                              listener: ((context, state) {
+                                if (state is SignoutSuccess) {
+                                  Constants.showSnackBar(context: context, message: state.signoutResponse.message);
+                                  Navigator.pushReplacementNamed(context, Routes.appSignin);
+                                }
+                                if (state is SignoutError) {
+                                  Constants.showSnackBar(context: context, message: state.message);
+                                  Navigator.pushReplacementNamed(context, Routes.appSignin);
+                                }
+                              }),
                             ),
                           ],
                         );
