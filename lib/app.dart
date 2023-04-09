@@ -15,6 +15,7 @@ import 'core/utils/app_strings.dart';
 import 'features/app-splash/presentation/cubit/localization_cubit.dart';
 import 'features/drawing-report/presentation/cubit/submit_user_trial_cubit.dart';
 import 'features/user-profile/presentation/cubit/current_user_cubit.dart';
+import 'features/user-profile/presentation/cubit/upload_user_profile_picture_cubit.dart';
 import 'injection_container.dart' as di;
 
 class FacetcherApp extends StatelessWidget {
@@ -31,6 +32,7 @@ class FacetcherApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<AppGetStartedCubit>()),
           BlocProvider(create: (context) => di.sl<CreateUserTrialCubit>()),
           BlocProvider(create: (context) => di.sl<SubmitUserTrialCubit>()),
+          BlocProvider(create: (context) => di.sl<UploadUserProfilePictureCubit>()),
           BlocProvider(create: (context) => di.sl<RemoveUserProfilePictureCubit>()),
           BlocProvider(create: (context) => di.sl<CreateOrUpdateUserSubmissionCubit>()),
         ],
