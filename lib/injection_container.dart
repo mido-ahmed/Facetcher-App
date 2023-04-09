@@ -43,8 +43,10 @@ import 'features/drawing-report/presentation/cubit/submit_user_trial_cubit.dart'
 import 'features/drawing-screen/domain/usecases/create_user_trial_usecase.dart';
 import 'features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
 import 'features/user-profile/domain/usecases/signout_usecase.dart';
+import 'features/user-profile/domain/usecases/upload_user_profile_picture_usecase.dart';
 import 'features/user-profile/presentation/cubit/current_user_cubit.dart';
 import 'features/user-profile/presentation/cubit/signout_cubit.dart';
+import 'features/user-profile/presentation/cubit/upload_user_profile_picture_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -60,6 +62,7 @@ Future<void> init() async {
   sl.registerFactory<SignoutCubit>(() => SignoutCubit(signoutUseCase: sl()));
   // user
   sl.registerLazySingleton<CurrentUserCubit>(() => CurrentUserCubit(profileUserCase: sl()));
+  sl.registerLazySingleton<UploadUserProfilePictureCubit>(() => UploadUserProfilePictureCubit(uploadUserProfilePictureUseCase: sl()));
   sl.registerLazySingleton<RemoveUserProfilePictureCubit>(() => RemoveUserProfilePictureCubit(removeUserProfilePictureUseCase: sl()));
   // user submission
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionCubit>(() => CreateOrUpdateUserSubmissionCubit(userSubmissionUseCase: sl()));
@@ -79,6 +82,7 @@ Future<void> init() async {
   sl.registerLazySingleton<SignoutUseCase>(() => SignoutUseCase(authenticationRepository: sl()));
   // user
   sl.registerLazySingleton<CurrentUserUseCase>(() => CurrentUserUseCase(authenticationRepository: sl()));
+  sl.registerLazySingleton<UploadUserProfilePictureUseCase>(() => UploadUserProfilePictureUseCase(userRepository: sl()));
   sl.registerLazySingleton<RemoveUserProfilePictureUseCase>(() => RemoveUserProfilePictureUseCase(userRepository: sl()));
   // user submission
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionUseCase>(() => CreateOrUpdateUserSubmissionUseCase(userSubmissionRepository: sl()));
