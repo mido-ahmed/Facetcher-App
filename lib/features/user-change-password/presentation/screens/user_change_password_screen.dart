@@ -1,4 +1,3 @@
-import 'package:facetcher/features/user-change-password/domain/entities/change_user_password_request.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_colors.dart';
 import 'package:facetcher/core/validation/validation_types.dart';
@@ -9,6 +8,7 @@ import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
+import '../../domain/entities/user_change_password_request.dart';
 
 class UserChangePasswordScreen extends StatefulWidget {
   const UserChangePasswordScreen({Key? key}) : super(key: key);
