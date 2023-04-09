@@ -77,7 +77,7 @@ class AppRoutes {
       case Routes.userChangePassword:
         return MaterialPageRoute(
             builder: (context) {
-              return const ChangePasswordScreen();
+              return const UserChangePasswordScreen();
             },
             settings: routeSettings);
 

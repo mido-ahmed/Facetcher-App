@@ -7,14 +7,14 @@ import 'package:facetcher/core/widgets/forms/text_field_widget.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/buttons/button_form_widget.dart';
 
-class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({Key? key}) : super(key: key);
+class UserChangePasswordScreen extends StatefulWidget {
+  const UserChangePasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
+  State<UserChangePasswordScreen> createState() => _UserChangePasswordScreen();
 }
 
-class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+class _UserChangePasswordScreen extends State<UserChangePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
