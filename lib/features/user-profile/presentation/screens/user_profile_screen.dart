@@ -145,7 +145,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text("Change Password", style: AppTextStyle.buttonText,),
+                                      Text("Change Password", style: AppTextStyle.changePasswordButtonText,),
                                       const SizedBox(width: 6,),
                                       Icon(Icons.lock_outline, color: AppColors.textPrimary, size: 16,),
                                     ],
@@ -193,7 +193,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text(AppLocalizations.of(context)!.translate('logout')!, style: AppTextStyle.buttonText,),
+                                          Text(AppLocalizations.of(context)!.translate('logout')!, style: AppTextStyle.logoutButtonText,),
                                           const SizedBox(width: 6,),
                                           Icon(Icons.login_outlined, color: AppColors.textPrimary, size: 16,),
                                         ],
