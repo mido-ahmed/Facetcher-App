@@ -1,14 +1,21 @@
+import 'package:facetcher/data/entities/user/user_change_password_request.dart';
+import 'package:facetcher/features/user-change-password/presentation/cubit/user_change_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_colors.dart';
 import 'package:facetcher/core/validation/validation_types.dart';
 import 'package:facetcher/core/widgets/app_bar_widget.dart';
 import 'package:facetcher/core/widgets/forms/text_field_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_text_style.dart';
+import '../../../../core/utils/constants.dart';
+import '../../../../core/widgets/buttons/button_form_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../../domain/entities/user_change_password_request.dart';
+import '../cubit/user_change_password_state.dart';
 
 class UserChangePasswordScreen extends StatefulWidget {
   const UserChangePasswordScreen({Key? key}) : super(key: key);
@@ -19,7 +26,7 @@ class UserChangePasswordScreen extends StatefulWidget {
 
 class _UserChangePasswordScreen extends State<UserChangePasswordScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late final UserChangePasswordRequest _userChangePasswordRequest = UserChangePasswordRequest();
+  late final ChangePasswordRequest _changePasswordRequest = ChangePasswordRequest();
   bool _toggleNavigationBar = false;
   bool _isFormEnabled = true;
 
@@ -85,7 +92,7 @@ class _UserChangePasswordScreen extends State<UserChangePasswordScreen> {
                             style: AppTextStyle.loginFieldText,
                             cursorColor: AppColors.textSecondary,
                             secureText: true,
-                            onSave: (value) { _userChangePasswordRequest.password = value;},
+                            onSave: (value) { _changePasswordRequest.password = value;},
                             contentPadding: const EdgeInsets.only(top: 12.0, left: 30.0,),
                           ),
                         ),
@@ -120,12 +127,12 @@ class _UserChangePasswordScreen extends State<UserChangePasswordScreen> {
                             style: AppTextStyle.loginFieldText,
                             cursorColor: AppColors.textSecondary,
                             secureText: true,
-                            onSave: (value) { _userChangePasswordRequest.newPassword = value;},
+                            onSave: (value) { _changePasswordRequest.newPassword = value;},
                             contentPadding: const EdgeInsets.only(top: 12.0, left: 30.0,),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 20, bottom: 30.0),
                           child: TextFieldWidget(
                             enabled: _isFormEnabled,
                             hintText: 'Confirm password',
@@ -141,9 +148,72 @@ class _UserChangePasswordScreen extends State<UserChangePasswordScreen> {
                             style: AppTextStyle.loginFieldText,
                             cursorColor: AppColors.textSecondary,
                             secureText: true,
-                            onSave: (value) { _userChangePasswordRequest.newPasswordConfirm = value;},
+                            onSave: (value) { _changePasswordRequest.newPasswordConfirm = value;},
                             contentPadding: const EdgeInsets.only(top: 12.0, left: 30.0,),
                           ),
+                        ),
+                        BlocConsumer<UserChangePasswordCubit, UserChangePasswordState>(
+                          builder: ((context, state) {
+                            if (state is UserChangePasswordLoading) {
+                              return AbsorbPointer(
+                                absorbing: true,
+                                child: ButtonFormWidget(
+                                  onPress: () {},
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: LoadingAnimationWidget.staggeredDotsWave(
+                                      color: Colors.white,
+                                      size: 30,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return ButtonFormWidget(
+                                onPress: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState?.save();
+                                    if (_changePasswordRequest.password.isEmpty) {
+                                      Constants.showErrorDialog(context: context, message: "Current password can't be blank!");
+                                    }
+                                    if (_changePasswordRequest.newPassword.isEmpty) {
+                                      Constants.showErrorDialog(context: context, message: "New password can't be blank!");
+                                      return;
+                                    }
+                                    if (_changePasswordRequest.newPasswordConfirm.isEmpty) {
+                                      Constants.showErrorDialog(context: context, message: "Confirm password can't be blank!");
+                                      return;
+                                    }
+                                    if (_changePasswordRequest.newPassword != _changePasswordRequest.newPasswordConfirm) {
+                                      Constants.showErrorDialog(context: context, message: "New password's don't match!");
+                                      return;
+                                    }
+                                    BlocProvider.of<UserChangePasswordCubit>(context).changeUserPassword(
+                                        UserChangePasswordRequest(password: _changePasswordRequest.password, newPassword: _changePasswordRequest.newPassword)
+                                    );
+                                  }
+                                },
+                                child: Text('Confirm', style: AppTextStyle.loginButton),
+                              );
+                            }
+                          }),
+                          listener: ((context, state) {
+                            if (state is UserChangePasswordError) {
+                              Constants.showSnackBar(context: context, message: state.message);
+                            } else if (state is UserChangePasswordSuccess) {
+                              Constants.showSnackBar(context: context, message: state.response.message);
+                              Navigator.pushReplacementNamed(context, Routes.userProfile);
+                            }
+                            if (state is UserChangePasswordLoading) {
+                              setState(() {
+                                _isFormEnabled = false;
+                              });
+                            } else {
+                              setState(() {
+                                _isFormEnabled = true;
+                              });
+                            }
+                          }),
                         ),
                       ],
                     ),
