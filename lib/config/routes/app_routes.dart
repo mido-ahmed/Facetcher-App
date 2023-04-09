@@ -1,8 +1,8 @@
 import 'package:facetcher/features/drawing-result/presentation/screens/drawing_result_screen.dart';
+import 'package:facetcher/features/user-change-password/presentation/screens/user_change_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/features/drawing-report/presentation/screens/drawing_report_screen.dart';
 import 'package:facetcher/features/app-home-screen/presentation/screen/home_screen.dart';
-import 'package:facetcher/features/user-changing_password/presentation/screens/user_changing_password.dart';
 import 'package:facetcher/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
@@ -21,7 +21,7 @@ class Routes {
 
   static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
-  static const String userChangingPassword = '/user-changing-password';
+  static const String userChangePassword = '/user-change-password';
 
   static const String appDrawingScreen = '/app-drawing-screen';
   static const String appDrawingResult = '/app-drawing-result';
@@ -74,10 +74,10 @@ class AppRoutes {
             },
             settings: routeSettings);
 
-      case Routes.userChangingPassword:
+      case Routes.userChangePassword:
         return MaterialPageRoute(
             builder: (context) {
-              return const ChangingPassword();
+              return const ChangePasswordScreen();
             },
             settings: routeSettings);
 
