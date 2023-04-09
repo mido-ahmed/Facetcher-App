@@ -1,5 +1,6 @@
 import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
 import 'package:facetcher/features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
+import 'package:facetcher/features/user-profile/presentation/cubit/remove_user_profile_picture_cubit.dart';
 import 'package:facetcher/features/user-profile/presentation/cubit/signout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,6 +31,7 @@ class FacetcherApp extends StatelessWidget {
           BlocProvider(create: (context) => di.sl<AppGetStartedCubit>()),
           BlocProvider(create: (context) => di.sl<CreateUserTrialCubit>()),
           BlocProvider(create: (context) => di.sl<SubmitUserTrialCubit>()),
+          BlocProvider(create: (context) => di.sl<RemoveUserProfilePictureCubit>()),
           BlocProvider(create: (context) => di.sl<CreateOrUpdateUserSubmissionCubit>()),
         ],
         child: BlocBuilder<LocalizationCubit, LocalizationState>(
