@@ -1,13 +1,20 @@
 import 'dart:io';
 import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:facetcher/data/models/user/user.dart';
+import 'package:facetcher/features/user-profile/presentation/cubit/remove_user_profile_picture_cubit.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/utils/constants.dart';
+import '../../../../core/widgets/image/network_image_loader.dart';
+import '../cubit/remove_user_profile_picture_state.dart';
 
 class UserProfilePicture extends StatefulWidget {
   final User user;
@@ -41,51 +48,46 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
         children: [
           SizedBox(
             width: 170,
-            height: 155,
+            height: 165,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
-                  backgroundColor: AppColors.button,
+                  backgroundColor: widget.user.profilePictureUrl.isEmpty ? AppColors.button : Colors.transparent,
                   radius: 50.0,
                   child: widget.user.profilePictureUrl.isEmpty
                       ? Image.network(ImageNetwork.userShape2, width: 40,)
-                      : ClipRRect(
-                          borderRadius: BorderRadius.circular(150.0),
-                          child: Image.file(
-                            File(imageFile!.path),
-                            height: 300.0,
-                            width: 300.0,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                      : NetworkImageLoader(
+                          width: 100,
+                          height: 100,
+                          url: widget.user.profilePictureUrl,
+                          loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 40,),
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '${widget.user.firstName} ${widget.user.lastName}',
-                            style: AppTextStyle.userProfileTitle,
-                          ),
-                          TextSpan(
-                            text: '\n${ widget.user.email}',
-                            style: AppTextStyle.userProfileDetails,
-                          ),
-                        ],
-                      ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '${widget.user.firstName} ${widget.user.lastName}',
+                          style: AppTextStyle.userProfileTitle,
+                        ),
+                        TextSpan(
+                          text: '\n${ widget.user.email}',
+                          style: AppTextStyle.userProfileDetails,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
           ),
           Positioned(
-            top: 65,
-            right: 30,
+            top: 70,
+            right: 25,
             child: GestureDetector(
               child: Container(
                 width: 30,
@@ -130,7 +132,8 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
               offset: Offset(0, -4),
               blurRadius: 5,
               blurStyle: BlurStyle.normal,
-              spreadRadius: 2),
+              spreadRadius: 2
+          ),
         ],
         color: AppColors.background,
       ),
@@ -157,18 +160,53 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
                 icon: Icon(Icons.image, color: AppColors.white),
                 label: Text('Upload', style: AppTextStyle.userProfileInfo,),
               ),
-              const SizedBox(width: 20.0,),
-              ElevatedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppColors.removeButton),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
-                  ),
+              if ( widget.user.profilePictureUrl.isNotEmpty)
+                Row(
+                  children: [
+                    const SizedBox(width: 20.0,),
+                    BlocConsumer<RemoveUserProfilePictureCubit, RemoveUserProfilePictureState>(
+                      builder: ((context, state) {
+                        if (state is RemoveUserProfilePictureLoading) {
+                          return ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(AppColors.removeButton),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                              ),
+                            ),
+                            onPressed: () async { BlocProvider.of<RemoveUserProfilePictureCubit>(context).removeUserProfilePicture(); },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 4.0),
+                              child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 28),
+                            ),
+                          );
+                        } else {
+                          return ElevatedButton.icon(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(AppColors.removeButton),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                              ),
+                            ),
+                            onPressed: () { BlocProvider.of<RemoveUserProfilePictureCubit>(context).removeUserProfilePicture(); },
+                            label: Text('Remove', style: AppTextStyle.userProfileInfo,),
+                            icon: Icon(Icons.delete_forever, color: AppColors.white),
+                          );
+                        }
+                      }),
+                      listener: ((context, state) {
+                        if (state is RemoveUserProfilePictureSuccess) {
+                          Constants.showSnackBar(context: context, message: state.response.message);
+                          Navigator.pushReplacementNamed(context, Routes.userProfile);
+                        }
+                        if (state is RemoveUserProfilePictureError) {
+                          Constants.showSnackBar(context: context, message: state.message);
+                          Navigator.pushReplacementNamed(context, Routes.userProfile);
+                        }
+                      }),
+                    ),
+                  ],
                 ),
-                onPressed: () {},
-                label: Text('Remove', style: AppTextStyle.userProfileInfo,),
-                icon: Icon(Icons.delete_forever, color: AppColors.white),
-              ),
             ],
           )
         ],
