@@ -17,7 +17,7 @@ import '../cubit/signout_cubit.dart';
 import '../cubit/signout_state.dart';
 import '../widgets/rich_text_titled_widget.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
-import '../widgets/user_profile_picture.dart';
+import '../widgets/user_profile_picture_widget.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
