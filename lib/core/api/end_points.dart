@@ -9,6 +9,9 @@ class EndPoints {
   static const String currentUser = '$baseProductionUrl/auth/current';
   static const String refreshToken = '$baseProductionUrl/auth/refresh-token';
 
+  // user
+  static const String userProfilePicture = '$baseProductionUrl/user/profile-picture';
+
   // user submission
   static const String userSubmission = '$baseProductionUrl/user-submission';
 
