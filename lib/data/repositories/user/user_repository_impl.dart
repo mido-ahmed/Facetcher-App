@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dartz/dartz.dart';
 import 'package:facetcher/data/repositories/user/user_repository.dart';
 
@@ -25,6 +27,20 @@ class UserRepositoryImpl implements UserRepository {
       return Right(NoParams());
     } on GenericException catch (exception) {
       return Left(CacheException(exception));
+    }
+  }
+
+  @override
+  Future<Either<GenericException, ResponseModel<NoParams>>> uploadUserProfilePicture(Uint8List image) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final uploadResponse = await userRemoteDataSource.uploadUserProfilePicture(image);
+        return Right(uploadResponse);
+      } on GenericException catch (exception) {
+        return Left(exception);
+      }
+    } else {
+      return const Left(CacheException());
     }
   }
 
