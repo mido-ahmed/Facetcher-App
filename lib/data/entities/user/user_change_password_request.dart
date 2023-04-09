@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class UserChangePasswordRequest extends Equatable {
   final String password;
-  final bool newPassword;
+  final String newPassword;
 
   const UserChangePasswordRequest({required this.password, required this.newPassword});
 
