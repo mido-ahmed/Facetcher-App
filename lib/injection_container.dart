@@ -6,6 +6,7 @@ import 'package:facetcher/features/app-signin/domain/usecases/signin_usecase.dar
 import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'package:facetcher/features/drawing-details/domain/usecases/create_or_update_user_submission_usecase.dart';
 import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
+import 'package:facetcher/features/user-change-password/presentation/cubit/user_change_password_cubit.dart';
 import 'package:facetcher/features/user-profile/domain/usecases/current_user_usecase.dart';
 import 'package:facetcher/features/user-profile/domain/usecases/remove_user_profile_picture_usecase.dart';
 import 'package:facetcher/features/user-profile/presentation/cubit/remove_user_profile_picture_cubit.dart';
@@ -42,6 +43,7 @@ import 'features/drawing-report/domain/usecases/submit_user_trial_usecase.dart';
 import 'features/drawing-report/presentation/cubit/submit_user_trial_cubit.dart';
 import 'features/drawing-screen/domain/usecases/create_user_trial_usecase.dart';
 import 'features/drawing-screen/presentation/cubit/create_user_trial_cubit.dart';
+import 'features/user-change-password/domain/usecases/user_change_password_usecase.dart';
 import 'features/user-profile/domain/usecases/signout_usecase.dart';
 import 'features/user-profile/domain/usecases/upload_user_profile_picture_usecase.dart';
 import 'features/user-profile/presentation/cubit/current_user_cubit.dart';
@@ -62,6 +64,7 @@ Future<void> init() async {
   sl.registerFactory<SignoutCubit>(() => SignoutCubit(signoutUseCase: sl()));
   // user
   sl.registerLazySingleton<CurrentUserCubit>(() => CurrentUserCubit(profileUserCase: sl()));
+  sl.registerLazySingleton<UserChangePasswordCubit>(() => UserChangePasswordCubit(userChangePasswordUseCase: sl()));
   sl.registerLazySingleton<UploadUserProfilePictureCubit>(() => UploadUserProfilePictureCubit(uploadUserProfilePictureUseCase: sl()));
   sl.registerLazySingleton<RemoveUserProfilePictureCubit>(() => RemoveUserProfilePictureCubit(removeUserProfilePictureUseCase: sl()));
   // user submission
@@ -82,6 +85,7 @@ Future<void> init() async {
   sl.registerLazySingleton<SignoutUseCase>(() => SignoutUseCase(authenticationRepository: sl()));
   // user
   sl.registerLazySingleton<CurrentUserUseCase>(() => CurrentUserUseCase(authenticationRepository: sl()));
+  sl.registerLazySingleton<UserChangePasswordUseCase>(() => UserChangePasswordUseCase(userRepository: sl()));
   sl.registerLazySingleton<UploadUserProfilePictureUseCase>(() => UploadUserProfilePictureUseCase(userRepository: sl()));
   sl.registerLazySingleton<RemoveUserProfilePictureUseCase>(() => RemoveUserProfilePictureUseCase(userRepository: sl()));
   // user submission
