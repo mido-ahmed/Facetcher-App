@@ -132,7 +132,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 height: 40,
                                 width: 200,
                                 child: ElevatedButton(
-                                  onPressed: () { Navigator.pushNamed(context, Routes.userChangingPassword); },
+                                  onPressed: () { Navigator.pushNamed(context, Routes.userChangePassword); },
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(AppColors.animatedButtonText),
                                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
