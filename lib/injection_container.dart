@@ -7,6 +7,8 @@ import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.da
 import 'package:facetcher/features/drawing-details/domain/usecases/create_or_update_user_submission_usecase.dart';
 import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
 import 'package:facetcher/features/user-profile/domain/usecases/current_user_usecase.dart';
+import 'package:facetcher/features/user-profile/domain/usecases/remove_user_profile_picture_usecase.dart';
+import 'package:facetcher/features/user-profile/presentation/cubit/remove_user_profile_picture_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,6 +60,7 @@ Future<void> init() async {
   sl.registerFactory<SignoutCubit>(() => SignoutCubit(signoutUseCase: sl()));
   // user
   sl.registerLazySingleton<CurrentUserCubit>(() => CurrentUserCubit(profileUserCase: sl()));
+  sl.registerLazySingleton<RemoveUserProfilePictureCubit>(() => RemoveUserProfilePictureCubit(removeUserProfilePictureUseCase: sl()));
   // user submission
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionCubit>(() => CreateOrUpdateUserSubmissionCubit(userSubmissionUseCase: sl()));
   // user trial
@@ -76,6 +79,7 @@ Future<void> init() async {
   sl.registerLazySingleton<SignoutUseCase>(() => SignoutUseCase(authenticationRepository: sl()));
   // user
   sl.registerLazySingleton<CurrentUserUseCase>(() => CurrentUserUseCase(authenticationRepository: sl()));
+  sl.registerLazySingleton<RemoveUserProfilePictureUseCase>(() => RemoveUserProfilePictureUseCase(userRepository: sl()));
   // user submission
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionUseCase>(() => CreateOrUpdateUserSubmissionUseCase(userSubmissionRepository: sl()));
   // user trial
