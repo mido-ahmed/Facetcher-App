@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:facetcher/data/models/user/user.dart';
 import 'package:facetcher/features/user-profile/presentation/cubit/remove_user_profile_picture_cubit.dart';
@@ -15,6 +16,8 @@ import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../core/widgets/image/network_image_loader.dart';
 import '../cubit/remove_user_profile_picture_state.dart';
+import '../cubit/upload_user_profile_picture_cubit.dart';
+import '../cubit/upload_user_profile_picture_state.dart';
 
 class UserProfilePicture extends StatefulWidget {
   final User user;
@@ -26,10 +29,7 @@ class UserProfilePicture extends StatefulWidget {
 }
 
 class _UserProfilePictureState extends State<UserProfilePicture> {
-  late FilePickerResult? result;
-  late PlatformFile? pickedFile;
   late bool _isExpanded = false;
-  File? imageFile;
 
   @override
   void initState() {
@@ -106,7 +106,7 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
                   ),
                   backgroundColor: AppColors.background,
                   context: context,
-                  builder: (context) => updateProfilePicture(),
+                  builder: (context) => _updateProfilePicture(),
                 );
               },
             ),
@@ -116,7 +116,7 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
     );
   }
 
-  updateProfilePicture() {
+  Widget _updateProfilePicture() {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 600),
       curve: Curves.easeInOut,
@@ -147,18 +147,50 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppColors.button),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
-                  ),
-                ),
-                onPressed: () async {
-                  takenPhoto();
-                },
-                icon: Icon(Icons.image, color: AppColors.white),
-                label: Text('Upload', style: AppTextStyle.userProfileInfo,),
+              BlocConsumer<UploadUserProfilePictureCubit, UploadUserProfilePictureState>(
+                builder: ((context, state) {
+                  if (state is UploadUserProfilePictureLoading) {
+                    return ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(AppColors.button),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                        ),
+                      ),
+                      onPressed: () => {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 4.0),
+                        child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 28),
+                      ),
+                    );
+                  } else {
+                    return ElevatedButton.icon(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(AppColors.button),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
+                        ),
+                      ),
+                      onPressed: () {
+                        _pickPhoto().then((image) => {
+                          BlocProvider.of<UploadUserProfilePictureCubit>(context).uploadUserProfilePicture(image!)
+                        });
+                      },
+                      icon: Icon(Icons.image, color: AppColors.white),
+                      label: Text('Upload', style: AppTextStyle.userProfileInfo,),
+                    );
+                  }
+                }),
+                listener: ((context, state) {
+                  if (state is UploadUserProfilePictureSuccess) {
+                    Constants.showSnackBar(context: context, message: state.response.message);
+                    Navigator.pushReplacementNamed(context, Routes.userProfile);
+                  }
+                  if (state is UploadUserProfilePictureError) {
+                    Constants.showSnackBar(context: context, message: state.message);
+                    Navigator.pushReplacementNamed(context, Routes.userProfile);
+                  }
+                }),
               ),
               if ( widget.user.profilePictureUrl.isNotEmpty)
                 Row(
@@ -174,7 +206,7 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
                                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0),),
                               ),
                             ),
-                            onPressed: () async { BlocProvider.of<RemoveUserProfilePictureCubit>(context).removeUserProfilePicture(); },
+                            onPressed: () => {},
                             child: Padding(
                               padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 4.0),
                               child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 28),
@@ -214,22 +246,10 @@ class _UserProfilePictureState extends State<UserProfilePicture> {
     );
   }
 
-  takenPhoto() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    );
-    if (result == null) return;
-    pickedFile = result.files.first;
-
-    File? img = File(pickedFile!.path.toString());
-    img = await _cropImage(imageFile: img);
-    setState(
-          () {
-        imageFile = img;
-        Navigator.of(context).pop();
-      },
-    );
+  Future<Uint8List?> _pickPhoto() async {
+    final image = await FilePicker.platform.pickFiles(type: FileType.image, allowMultiple: false,);
+    File? croppedImage = await _cropImage(imageFile: File(image!.files.first.path.toString()));
+    return await croppedImage?.readAsBytes();
   }
 
   Future<File?> _cropImage({required File imageFile}) async {
