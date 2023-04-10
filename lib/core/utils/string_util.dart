@@ -7,12 +7,14 @@ class StringUtil {
   }
 
   static String convertDateTimeToDate(String dateTimeString) {
+    if (dateTimeString.isEmpty) return dateTimeString;
     final dateTime = DateTime.parse(dateTimeString);
     final formatter = DateFormat('dd-MM-yyyy');
     return formatter.format(dateTime);
   }
 
   static String formatMobileNumber(String mobileNumber) {
+    if (mobileNumber.isEmpty) return mobileNumber;
     final cleaned = mobileNumber.replaceAll(RegExp(r'\D'), '');
     final groups = <String>[];
     for (var i = 0; i < cleaned.length; i += 3) {
