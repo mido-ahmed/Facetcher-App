@@ -7,6 +7,8 @@ import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.da
 import 'package:facetcher/features/drawing-details/domain/usecases/create_or_update_user_submission_usecase.dart';
 import 'package:facetcher/features/drawing-details/presentation/cubit/create_or_update_user_submission_cubit.dart';
 import 'package:facetcher/features/user-change-password/presentation/cubit/user_change_password_cubit.dart';
+import 'package:facetcher/features/user-history/domain/usecases/current_user_submissions_usecase.dart';
+import 'package:facetcher/features/user-history/presentation/cubit/current_user_submissions_cubit.dart';
 import 'package:facetcher/features/user-profile/domain/usecases/current_user_usecase.dart';
 import 'package:facetcher/features/user-profile/domain/usecases/remove_user_profile_picture_usecase.dart';
 import 'package:facetcher/features/user-profile/presentation/cubit/remove_user_profile_picture_cubit.dart';
@@ -68,6 +70,7 @@ Future<void> init() async {
   sl.registerLazySingleton<UploadUserProfilePictureCubit>(() => UploadUserProfilePictureCubit(uploadUserProfilePictureUseCase: sl()));
   sl.registerLazySingleton<RemoveUserProfilePictureCubit>(() => RemoveUserProfilePictureCubit(removeUserProfilePictureUseCase: sl()));
   // user submission
+  sl.registerLazySingleton<CurrentUserSubmissionsCubit>(() => CurrentUserSubmissionsCubit(currentUserSubmissionsUseCase: sl()));
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionCubit>(() => CreateOrUpdateUserSubmissionCubit(userSubmissionUseCase: sl()));
   // user trial
   sl.registerLazySingleton<CreateUserTrialCubit>(() => CreateUserTrialCubit(userTrialUseCase: sl()));
@@ -89,6 +92,7 @@ Future<void> init() async {
   sl.registerLazySingleton<UploadUserProfilePictureUseCase>(() => UploadUserProfilePictureUseCase(userRepository: sl()));
   sl.registerLazySingleton<RemoveUserProfilePictureUseCase>(() => RemoveUserProfilePictureUseCase(userRepository: sl()));
   // user submission
+  sl.registerLazySingleton<CurrentUserSubmissionsUseCase>(() => CurrentUserSubmissionsUseCase(userSubmissionRepository: sl()));
   sl.registerLazySingleton<CreateOrUpdateUserSubmissionUseCase>(() => CreateOrUpdateUserSubmissionUseCase(userSubmissionRepository: sl()));
   // user trial
   sl.registerLazySingleton<CreateUserTrialUseCase>(() => CreateUserTrialUseCase(userTrialRepository: sl()));
