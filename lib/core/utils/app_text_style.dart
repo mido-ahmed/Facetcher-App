@@ -219,7 +219,7 @@ class AppTextStyle with Diagnosticable {
   );
 
   static TextStyle? userProfileTitle = TextStyle(
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
