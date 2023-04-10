@@ -15,6 +15,7 @@ class EndPoints {
 
   // user submission
   static const String userSubmission = '$baseProductionUrl/user-submission';
+  static const String currentUserSubmission = '$baseProductionUrl/user-submission/current-user/find-all';
 
   // user trial
   static const String createUserTrial = '$baseProductionUrl/user-trial/process';
