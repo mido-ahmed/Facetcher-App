@@ -19,12 +19,27 @@ class UserSubmissionRepositoryImpl implements UserSubmissionRepository {
       required this.userSubmissionLocalDataSource,
       required this.userSubmissionRemoteDataSource});
 
+
+  @override
+  Future<Either<GenericException, ResponseModel<List<UserSubmission>>>> getCurrentUserSubmissions() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await userSubmissionRemoteDataSource.getCurrentUserSubmissions();
+        return Right(response);
+      } on GenericException catch (exception) {
+        return Left(exception);
+      }
+    } else {
+      return const Left(CacheException());
+    }
+  }
+
   @override
   Future<Either<GenericException, ResponseModel<UserSubmission>>> createOrUpdateUserSubmission(UserSubmissionRequest userSubmissionRequest) async {
     if (await networkInfo.isConnected) {
       try {
-        final responseUserSubmission = await userSubmissionRemoteDataSource.createOrUpdateUserSubmission(userSubmissionRequest);
-        return Right(responseUserSubmission);
+        final response = await userSubmissionRemoteDataSource.createOrUpdateUserSubmission(userSubmissionRequest);
+        return Right(response);
       } on GenericException catch (exception) {
         return Left(exception);
       }

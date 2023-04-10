@@ -6,5 +6,6 @@ import '../../../../core/models/response_model.dart';
 import '../../entities/user-submission/user_submission_request.dart';
 
 abstract class UserSubmissionRepository {
+  Future<Either<GenericException, ResponseModel<List<UserSubmission>>>> getCurrentUserSubmissions();
   Future<Either<GenericException, ResponseModel<UserSubmission>>> createOrUpdateUserSubmission(UserSubmissionRequest userSubmissionRequest);
 }
