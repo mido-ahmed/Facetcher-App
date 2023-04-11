@@ -5,16 +5,16 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/image/network_image_loader.dart';
 import '../../../../data/models/user-submission/user_submission.dart';
 
-class UserSubmissionsListWidget extends StatefulWidget {
+class UserSubmissionsHorizontalScrollingWidget extends StatefulWidget {
   final List<UserSubmission> submissions;
 
-  const UserSubmissionsListWidget({Key? key, required this.submissions}) : super(key: key);
+  const UserSubmissionsHorizontalScrollingWidget({Key? key, required this.submissions}) : super(key: key);
 
   @override
-  State<UserSubmissionsListWidget> createState() => _UserSubmissionsListWidgetState();
+  State<UserSubmissionsHorizontalScrollingWidget> createState() => _UserSubmissionsHorizontalScrollingState();
 }
 
-class _UserSubmissionsListWidgetState extends State<UserSubmissionsListWidget> {
+class _UserSubmissionsHorizontalScrollingState extends State<UserSubmissionsHorizontalScrollingWidget> {
   final ScrollController _scrollController = ScrollController();
   int _currentMaxIndex = 9;
   bool _isLoading = false;

@@ -17,7 +17,7 @@ import '../../../user-history/presentation/cubit/current_user_submissions_cubit.
 import '../../../user-history/presentation/cubit/current_user_submissions_state.dart';
 import '../../../user-profile/presentation/cubit/current_user_cubit.dart';
 import '../../../user-profile/presentation/cubit/current_user_state.dart';
-import '../widget/user_submissions_list_widget.dart';
+import '../widget/user_submissions_horizontal_scroll_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -194,9 +194,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     }
                     else if (submissions.length < 10) {
-                      return UserSubmissionsListWidget(submissions: submissions);
+                      return UserSubmissionsHorizontalScrollingWidget(submissions: submissions);
                     } else {
-                      return UserSubmissionsListWidget(submissions: submissions.sublist(0, 9));
+                      return UserSubmissionsHorizontalScrollingWidget(submissions: submissions.sublist(0, 9));
                     }
                   } else {
                     return SizedBox(
