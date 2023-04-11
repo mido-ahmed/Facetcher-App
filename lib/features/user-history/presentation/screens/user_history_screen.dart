@@ -1,7 +1,6 @@
 import 'package:facetcher/config/routes/app_routes.dart';
 import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:facetcher/features/user-history/presentation/cubit/current_user_submissions_cubit.dart';
-import 'package:facetcher/features/user-history/presentation/widget/user_submissions_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -13,6 +12,7 @@ import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../cubit/current_user_submissions_state.dart';
+import '../widget/user_submissions_vertical_scroll_widget.dart';
 
 class UserHistoryScreen extends StatefulWidget {
   const UserHistoryScreen({Key? key}) : super(key: key);
@@ -68,7 +68,7 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
               BlocConsumer<CurrentUserSubmissionsCubit, CurrentUserSubmissionsState>(
                 builder: ((context, state) {
                   if (state is CurrentUserSubmissionsSuccess) {
-                    return UserSubmissionsListWidget(submissions: state.response.body.where((submission) => submission.submitted == true).toList());
+                    return UserSubmissionsVerticalScrollingWidget(submissions: state.response.body.where((submission) => submission.submitted == true).toList());
                   } else {
                     return Padding(
                       padding: EdgeInsets.only(top: context.height * 0.30),
