@@ -13,8 +13,11 @@ import '../../../../core/utils/constants.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/image/network_image_loader.dart';
+import '../../../user-history/presentation/cubit/current_user_submissions_cubit.dart';
+import '../../../user-history/presentation/cubit/current_user_submissions_state.dart';
 import '../../../user-profile/presentation/cubit/current_user_cubit.dart';
 import '../../../user-profile/presentation/cubit/current_user_state.dart';
+import '../widget/user_submissions_list_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,9 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _getCurrentUser();
+    _getCurrentUserSubmissions();
   }
 
   _getCurrentUser() => BlocProvider.of<CurrentUserCubit>(context).findCurrentUser();
+  _getCurrentUserSubmissions() => BlocProvider.of<CurrentUserSubmissionsCubit>(context).getCurrentUserSubmissions();
 
   @override
   Widget build(BuildContext context) {
@@ -172,33 +177,48 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 8,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      return Row(
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 150,
-                            decoration: BoxDecoration(
-                                color: AppColors.textSecondary,
-                                border: Border.all(color: AppColors.historyBorder, width: 1.0, style: BorderStyle.solid),
-                                borderRadius: BorderRadius.circular(20)),
-                          ),
-                          const SizedBox(width: 18,)
-                        ],
+              BlocConsumer<CurrentUserSubmissionsCubit, CurrentUserSubmissionsState>(
+                builder: ((context, state) {
+                  if (state is CurrentUserSubmissionsSuccess) {
+                    var submissions = state.response.body.where((submission) => submission.submitted == true).toList();
+                    if (submissions.isEmpty) {
+                      return SizedBox(
+                        height: 168.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("You have no submissions yet.", style: AppTextStyle.homeText,),
+                            Text("Go ahead and start drawing now!", style: AppTextStyle.homeScreenDetails,),
+                          ],
+                        ),
                       );
-                    },
-                  ),
-                ),
+                    }
+                    else if (submissions.length < 10) {
+                      return UserSubmissionsListWidget(submissions: submissions);
+                    } else {
+                      return UserSubmissionsListWidget(submissions: submissions.sublist(0, 9));
+                    }
+                  } else {
+                    return SizedBox(
+                      height: 168.0,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          LoadingAnimationWidget.threeArchedCircle(color: AppColors.textPrimary, size: 45),
+                        ],
+                      ),
+                    );
+                  }
+                }),
+                listener: ((context, state) {
+                  if (state is CurrentUserSubmissionsError) {
+                    Constants.showSnackBar(context: context, message: state.message);
+                    Navigator.pushReplacementNamed(context, Routes.appHome);
+                  }
+                }),
               ),
               const Padding(
-                padding: EdgeInsets.only(bottom: 15.0),
+                padding: EdgeInsets.only(bottom: 10.0),
                 child: AnimatedCircleContainer(),
               )
             ],
