@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/image/network_image_loader.dart';
 import '../../../../data/models/user-submission/user_submission.dart';
@@ -61,11 +62,14 @@ class _UserSubmissionsHorizontalScrollingState extends State<UserSubmissionsHori
                   (BuildContext context, int index) {
                     final submissionIndex = index % widget.submissions.length;
                     final UserSubmission submission = widget.submissions[submissionIndex];
-                    return NetworkImageLoader(
-                      width: 150,
-                      height: 185,
-                      url: submission.outputImage.imageUrl,
-                      loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 40,),
+                    return GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, Routes.userHistoryDetails, arguments: submission),
+                      child: NetworkImageLoader(
+                        width: 150,
+                        height: 185,
+                        url: submission.outputImage.imageUrl,
+                        loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 40,),
+                      ),
                     );
                   },
                   childCount: _currentMaxIndex < widget.submissions.length
