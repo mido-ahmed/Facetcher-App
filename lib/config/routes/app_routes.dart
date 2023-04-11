@@ -11,6 +11,7 @@ import '../../features/app-signin/presentation/screens/signin_screen.dart';
 import '../../features/app-splash/presentation/screens/splash_screen.dart';
 import '../../features/drawing-details/presentation/screens/drawing_details_screen.dart';
 import '../../features/drawing-screen/presentation/screen/drawing_screen.dart';
+import '../../features/user-history-details/presentation/screens/user_history_details_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
 
 class Routes {
@@ -19,9 +20,10 @@ class Routes {
   static const String appSignin = '/app-signin';
   static const String appGetStarted = '/app-get-started';
 
-  static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
   static const String userChangePassword = '/user-change-password';
+  static const String userHistory = '/user-history';
+  static const String userHistoryDetails = '/user-history-details';
 
   static const String appDrawingScreen = '/app-drawing-screen';
   static const String appDrawingResult = '/app-drawing-result';
@@ -64,6 +66,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const UserHistoryScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.userHistoryDetails:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const UserHistoryDetailsScreen();
             },
             settings: routeSettings);
 
