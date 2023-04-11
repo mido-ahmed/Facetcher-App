@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_text_style.dart';
 import 'package:facetcher/core/widgets/navigator/navigation_bar_wrapper.dart';
 import 'package:facetcher/features/app-home-screen/presentation/widget/animated_button.dart';
-import 'package:facetcher/features/app-home-screen/presentation/widget/circle_profile.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -55,23 +54,24 @@ class _HomeScreenState extends State<HomeScreen> {
               AppBarWidget(
                 leftChild: BlocConsumer<CurrentUserCubit, CurrentUserState>(
                   builder: ((context, state) {
-                    if (state is CurrentUserSuccess && state.user.profilePictureUrl.isNotEmpty) {
+                    if (state is CurrentUserSuccess) {
                       return Row(
                         children: [
-                          GestureDetector(
+                          TextButton(
+                            style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent),),
+                            onPressed: () => { Navigator.pushNamed(context, Routes.userProfile) },
                             child: CircleAvatar(
                               backgroundColor: state.user.profilePictureUrl.isEmpty ? AppColors.button : Colors.transparent,
-                              radius: 25.0,
+                              radius: 23.0,
                               child: state.user.profilePictureUrl.isEmpty
-                                  ? Image.network(ImageNetwork.userShape2, width: 65,)
+                                  ? Image.network(ImageNetwork.userShape2, width: 22,)
                                   : NetworkImageLoader(
-                                      width: 48,
-                                      height: 48,
+                                      width: 50,
+                                      height: 50,
                                       url: state.user.profilePictureUrl,
                                       loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 25,),
                                     ),
                             ),
-                            onTap: () => { Navigator.pushNamed(context, Routes.userProfile) },
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
@@ -80,49 +80,33 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("Hey, ${state.user.firstName}", style: AppTextStyle.appBarUserProfile,),
-                                Text("Let’s sketch today", style: AppTextStyle.drawingScreenTitleDetails,),
-                              ],
-                            ),
-                            ),
-                          ],
-                        );
-                    }
-                    if (state is CurrentUserLoading) {
-                      return Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: AppColors.button,
-                            radius: 25.0,
-                            child: Image.network(ImageNetwork.userShape2, width: 22,)
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Hey, ", style: AppTextStyle.appBarUserProfile,),
+                                const SizedBox(height: 1,),
                                 Text("Let’s sketch today", style: AppTextStyle.drawingScreenTitleDetails,),
                               ],
                             ),
                           ),
                         ],
                       );
-                    }
-                    else {
+                    } else {
                       return Row(
                         children: [
-                          CircularButton(function: () {Navigator.pushNamed(context, Routes.userProfile);},
-                            circleRadius: 25.0,
-                            child: Image.network(ImageNetwork.userShape, width: 40,),
+                          TextButton(
+                            style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent),),
+                            onPressed: () => { Navigator.pushNamed(context, Routes.userProfile) },
+                            child: CircleAvatar(
+                              backgroundColor: AppColors.button,
+                              radius: 23.0,
+                              child: Image.network(ImageNetwork.userShape2, width: 22,)
+                            ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 14),
+                            padding: const EdgeInsets.only(left: 10.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Hey, User", style: AppTextStyle.appBarUserProfile,),
+                                Text("Hey, ", style: AppTextStyle.appBarUserProfile,),
+                                const SizedBox(height: 1,),
                                 Text("Let’s sketch today", style: AppTextStyle.drawingScreenTitleDetails,),
                               ],
                             ),
@@ -148,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 5.0),
                 child: Column(
                   children: [
                     Padding(
@@ -163,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
+                padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0, bottom: 15.0),
                 child: SizedBox(
                   child: Text("What we try to do is to reach the criminal together and get the best result in the shortest time.",
                     style: AppTextStyle.homeScreenDetails,
@@ -172,16 +156,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Your History", style: AppTextStyle.homeScreenHistory,),
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0),
-                      child: GestureDetector(
-                        // TODO: Navigate to history
-                        onTap: () {},
+                      child: TextButton(
+                        onPressed: () => Navigator.pushReplacementNamed(context, Routes.userHistory),
+                        style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent),),
                         child: Text("More", style: AppTextStyle.historyButton,),
                       ),
                     ),
@@ -190,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 8,
@@ -206,9 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 border: Border.all(color: AppColors.historyBorder, width: 1.0, style: BorderStyle.solid),
                                 borderRadius: BorderRadius.circular(20)),
                           ),
-                          const SizedBox(
-                            width: 35,
-                          )
+                          const SizedBox(width: 18,)
                         ],
                       );
                     },
