@@ -1,7 +1,7 @@
 class EndPoints {
   // base
   static const String baseStagingUrl = 'http://192.168.1.7:8010/';
-  static const String baseProductionUrl = 'http://18.189.192.65:8010/facetcher-service/api';
+  static const String baseProductionUrl = 'http://18.216.155.91:8010/facetcher-service/api';
 
   // auth
   static const String signin = '$baseProductionUrl/auth/log-in';
