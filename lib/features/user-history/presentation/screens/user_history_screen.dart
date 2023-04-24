@@ -9,6 +9,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
+import '../../../../core/widgets/buttons/button_form_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../cubit/current_user_submissions_state.dart';
@@ -68,7 +69,29 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
               BlocConsumer<CurrentUserSubmissionsCubit, CurrentUserSubmissionsState>(
                 builder: ((context, state) {
                   if (state is CurrentUserSubmissionsSuccess) {
-                    return UserSubmissionsVerticalScrollingWidget(submissions: state.response.body.where((submission) => submission.submitted == true).toList());
+                    var submissions = state.response.body.where((submission) => submission.submitted == true).toList();
+                    if (submissions.isEmpty) {
+                      return SizedBox(
+                        height: 230.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("You have no submissions yet.", style: AppTextStyle.homeText,),
+                            Text("Go ahead and start drawing now!", style: AppTextStyle.homeScreenDetails,),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40.0),
+                              child: ButtonFormWidget(
+                                  onPress: () => Navigator.pushReplacementNamed(context, Routes.appHome),
+                                  child: Text('Home', style: AppTextStyle.loginButton),
+                                ),
+                            ),
+                            ],
+                          ),
+                      );
+                    }
+                    else {
+                      return UserSubmissionsVerticalScrollingWidget(submissions: submissions);
+                    }
                   } else {
                     return Padding(
                       padding: EdgeInsets.only(top: context.height * 0.30),
