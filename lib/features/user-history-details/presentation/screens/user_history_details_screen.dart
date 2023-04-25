@@ -195,7 +195,7 @@ class _UserHistoryDetailsState extends State<UserHistoryDetailsScreen> {
             color: PdfColor.fromHex("#3D4149"),
             child: pw.Column(
               children: [
-                pw.SizedBox(height: 80.0),
+                pw.SizedBox(height: 50.0),
                 pw.Image(image),
               ],
             ),
