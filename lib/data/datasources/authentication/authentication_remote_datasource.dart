@@ -7,10 +7,9 @@ import '../../../core/models/response_model.dart';
 import '../../../core/usecases/usecase.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../entities/authentication/signin_claims.dart';
-import '../../entities/user/user.dart';
 import '../../models/authentication/signin_claims_model.dart';
-import '../../models/user/user_model.dart';
 import '../../entities/authentication/signin.dart';
+import '../../models/user/user.dart';
 
 abstract class AuthenticationRemoteDataSource {
   Future<ResponseModel<User>> findCurrentUser();
@@ -33,7 +32,7 @@ class AuthenticationRemoteDataSourceImpl implements AuthenticationRemoteDataSour
     } else {
       return ResponseModel(
           success: response[AppStrings.success], message: response[AppStrings.message],
-          body: UserModel.fromJson(response[AppStrings.body]));
+          body: User.fromJson(response[AppStrings.body]));
     }
   }
 

@@ -14,7 +14,7 @@ class EditButton extends StatefulWidget {
       : super(key: key);
 
   @override
-  _EditButtonState createState() => _EditButtonState();
+  State<EditButton> createState() => _EditButtonState();
 }
 
 class _EditButtonState extends State<EditButton> {
@@ -27,7 +27,7 @@ class _EditButtonState extends State<EditButton> {
         color: AppColors.white,
         borderRadius: BorderRadiusDirectional.circular(26),
       ),
-      child: Container(
+      child: SizedBox(
         width: 140,
         height: 40,
         child: ElevatedButton(
@@ -36,9 +36,7 @@ class _EditButtonState extends State<EditButton> {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25.0),
-                side: BorderSide(
-                  width: 1,
-                  color: Colors.white,
+                side: const BorderSide(width: 1, color: Colors.white,
                 ),
               ),
             ),

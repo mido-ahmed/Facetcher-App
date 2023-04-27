@@ -27,9 +27,11 @@ dependencies:
   scribble: ^0.9.1
   font_awesome_flutter: ^10.4.0
   permission_handler: ^10.2.0
-
-  animated_custom_dropdown: ^1.5.0
-  dropdown_button2: ^2.0.0
+  file_picker: ^5.2.6
+  image_cropper: ^3.0.2
+  image: ^3.0.2
+  pdf: ^3.6.0
+  path_provider: ^2.0.14
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -37,23 +39,14 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
 
   assets:
     - lang/ar.json
     - lang/en.json
-    - assets/images/user.png
-    - assets/icons/Vector.png
-    - assets/icons/shape.png
-    - assets/images/person.png
-    - assets/images/shape.png
-    - assets/images/plus.png
-    - assets/images/logo.png
-    - assets/images/logo_flat.png
 
   fonts:
     - family : Century Gothic
       fonts :
-        - asset: assets/fonts/Century Gothic.otf
-        - asset: assets/fonts/Century Gothic Bold.otf
+        - asset: assets/fonts/Century_Gothic.otf
+        - asset: assets/fonts/Century_Gothic_Bold.otf

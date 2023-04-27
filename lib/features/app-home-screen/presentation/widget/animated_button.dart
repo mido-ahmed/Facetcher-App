@@ -34,8 +34,7 @@ class _AnimatedCircleContainerState extends State<AnimatedCircleContainer> with 
       end: const Offset(-12 / 50, 0.0),
     ).animate(CurvedAnimation(
         parent: _animationController,
-        curve:
-            Curves.easeInOut)); // Add a curve to make the transition smoother
+        curve: Curves.easeInOut));
   }
 
   @override
@@ -58,26 +57,23 @@ class _AnimatedCircleContainerState extends State<AnimatedCircleContainer> with 
   Widget _buildButton() {
     return SlideTransition(
       position: _animationPosition,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () {Navigator.pushNamed(context, Routes.appDrawingDetails);},
-            child: Container(
-              width: 175,
-              height: 32,
-              decoration: BoxDecoration(
-                color: AppColors.navigatorFont,
-                border: Border.all(),
-                borderRadius: BorderRadiusDirectional.circular(25),
-              ),
-              child: Center(
-                  child: Text("Start drawing",
-                style: AppTextStyle.animatedButtonText,
-                textAlign: TextAlign.center,
-              )),
+      child: TextButton(
+        onPressed: () { Navigator.pushNamed(context, Routes.appDrawingDetails); },
+        child: Container(
+          width: 175,
+          height: 34,
+          decoration: BoxDecoration(
+            color: AppColors.navigatorFont,
+            border: Border.all(),
+            borderRadius: BorderRadiusDirectional.circular(25),
+          ),
+          child: Center(
+            child: Text("Start drawing",
+              style: AppTextStyle.animatedButtonText,
+              textAlign: TextAlign.center,
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }

@@ -10,6 +10,7 @@ import '../../../core/utils/app_strings.dart';
 import '../../entities/user-submission/user_submission_request.dart';
 
 abstract class UserSubmissionRemoteDataSource {
+  Future<ResponseModel<List<UserSubmission>>> getCurrentUserSubmissions();
   Future<ResponseModel<UserSubmission>> createOrUpdateUserSubmission(UserSubmissionRequest userSubmissionRequest);
 }
 
@@ -17,6 +18,19 @@ class UserSubmissionRemoteDataSourceImpl implements UserSubmissionRemoteDataSour
   final ApiConsumer apiConsumer;
 
   UserSubmissionRemoteDataSourceImpl({required this.apiConsumer});
+
+  @override
+  Future<ResponseModel<List<UserSubmission>>> getCurrentUserSubmissions() async {
+    final response = await apiConsumer.get(EndPoints.currentUserSubmission);
+    if (response[AppStrings.success].toString() == AppStrings.boolFalse) {
+      throw GenericException(message: response[AppStrings.message]);
+    } else {
+      List<dynamic> submissions = response[AppStrings.body];
+      return ResponseModel(
+          success: response[AppStrings.success], message: response[AppStrings.message],
+          body: submissions.map((submission) => UserSubmission.fromJson(submission)).toList());
+    }
+  }
 
   @override
   Future<ResponseModel<UserSubmission>> createOrUpdateUserSubmission(UserSubmissionRequest userSubmissionRequest) async {

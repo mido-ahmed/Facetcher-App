@@ -5,9 +5,10 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:scribble/scribble.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/drawer/scribble_drawer_notifier.dart';
 
 class DrawerToolbar extends StatelessWidget {
-  final ScribbleNotifier notifier;
+  final ScribbleDrawerNotifier notifier;
   final BuildContext context;
 
   const DrawerToolbar({
@@ -65,10 +66,10 @@ class DrawerToolbar extends StatelessWidget {
   }
 
   Widget _buildStrokeButton(
-    BuildContext context, {
-    required double strokeWidth,
-    required ScribbleState state,
-  }) {
+      BuildContext context, {
+        required double strokeWidth,
+        required ScribbleState state,
+      }) {
     final selected = state.selectedWidth == strokeWidth;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -110,10 +111,10 @@ class DrawerToolbar extends StatelessWidget {
   }
 
   Widget _buildColorButton(
-    BuildContext context, {
-    required Color color,
-    required bool isSelected,
-  }) {
+      BuildContext context, {
+        required Color color,
+        required bool isSelected,
+      }) {
     return FloatingActionButton.small(
         elevation: 0,
         backgroundColor: Colors.transparent,

@@ -5,9 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/error/exceptions.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../entities/authentication/signin_claims.dart';
-import '../../entities/user/user.dart';
-import '../../models/user/user_model.dart';
 import '../../entities/authentication/signin.dart';
+import '../../models/user/user.dart';
 
 abstract class AuthenticationLocalDataSource {
   Future<User> getCurrentUser();
@@ -44,7 +43,7 @@ class AuthenticationLocalDataSourceImpl implements AuthenticationLocalDataSource
   Future<User> getCurrentUser() async {
     final jsonString = sharedPreferences.getString(AppStrings.cachedCurrentUser);
     if (jsonString != null) {
-      final cachedCurrentUser = Future.value(UserModel.fromJson(json.decode(jsonString)));
+      final cachedCurrentUser = Future.value(User.fromJson(json.decode(jsonString)));
       return cachedCurrentUser;
     } else {
       throw const CacheException();

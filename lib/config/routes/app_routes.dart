@@ -1,8 +1,8 @@
+import 'package:facetcher/features/drawing-result/presentation/screens/drawing_result_screen.dart';
+import 'package:facetcher/features/user-change-password/presentation/screens/user_change_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/features/drawing-report/presentation/screens/drawing_report_screen.dart';
-import 'package:facetcher/features/drawing-result/presentation/screens/drawing-result.dart';
 import 'package:facetcher/features/app-home-screen/presentation/screen/home_screen.dart';
-import 'package:facetcher/features/user-changing_password/presentation/screens/user_changing_password.dart';
 import 'package:facetcher/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
@@ -11,6 +11,7 @@ import '../../features/app-signin/presentation/screens/signin_screen.dart';
 import '../../features/app-splash/presentation/screens/splash_screen.dart';
 import '../../features/drawing-details/presentation/screens/drawing_details_screen.dart';
 import '../../features/drawing-screen/presentation/screen/drawing_screen.dart';
+import '../../features/user-history-details/presentation/screens/user_history_details_screen.dart';
 import '../../features/user-profile/presentation/screens/user_profile_screen.dart';
 
 class Routes {
@@ -19,9 +20,10 @@ class Routes {
   static const String appSignin = '/app-signin';
   static const String appGetStarted = '/app-get-started';
 
-  static const String userHistory = '/user-history';
   static const String userProfile = '/user-profile';
-  static const String userChangingPassword = '/user-changing-password';
+  static const String userChangePassword = '/user-change-password';
+  static const String userHistory = '/user-history';
+  static const String userHistoryDetails = '/user-history-details';
 
   static const String appDrawingScreen = '/app-drawing-screen';
   static const String appDrawingResult = '/app-drawing-result';
@@ -67,6 +69,13 @@ class AppRoutes {
             },
             settings: routeSettings);
 
+      case Routes.userHistoryDetails:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const UserHistoryDetailsScreen();
+            },
+            settings: routeSettings);
+
       case Routes.userProfile:
         return MaterialPageRoute(
             builder: (context) {
@@ -74,31 +83,10 @@ class AppRoutes {
             },
             settings: routeSettings);
 
-      case Routes.userChangingPassword:
+      case Routes.userChangePassword:
         return MaterialPageRoute(
             builder: (context) {
-              return const ChangingPassword();
-            },
-            settings: routeSettings);
-
-      case Routes.appDrawingResult:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingResult();
-            },
-            settings: routeSettings);
-
-      case Routes.appDrawingReport:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingReport();
-            },
-            settings: routeSettings);
-
-        case Routes.appDrawingScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingScreen();
+              return const UserChangePasswordScreen();
             },
             settings: routeSettings);
 
@@ -106,6 +94,27 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingDetailsScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingResult:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingResultScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingReport:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingReportScreen();
             },
             settings: routeSettings);
 

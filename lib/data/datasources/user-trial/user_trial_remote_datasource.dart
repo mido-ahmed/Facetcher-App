@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:facetcher/core/api/end_points.dart';
+import 'package:facetcher/core/usecases/usecase.dart';
 
 import '../../../core/api/api_consumer.dart';
 import '../../../core/error/exceptions.dart';
@@ -11,6 +12,7 @@ import '../../models/user-trial/user_trial.dart';
 
 abstract class UserTrialRemoteDataSource {
   Future<ResponseModel<UserTrial>> createUserTrial(UserTrialRequest userTrialRequest);
+  Future<ResponseModel<NoParams>> submitUserTrial(int userTrialId);
 }
 
 class UserTrialRemoteDataSourceImpl implements UserTrialRemoteDataSource {
@@ -27,6 +29,18 @@ class UserTrialRemoteDataSourceImpl implements UserTrialRemoteDataSource {
       return ResponseModel(
           success: response[AppStrings.success], message: response[AppStrings.message],
           body: UserTrial.fromJson(response[AppStrings.body]));
+    }
+  }
+
+  @override
+  Future<ResponseModel<NoParams>> submitUserTrial(int userTrialId) async {
+    final response = await apiConsumer.put(EndPoints.submitUserTrial + userTrialId.toString());
+    if (response[AppStrings.success].toString() == AppStrings.boolFalse) {
+      throw GenericException(message: response[AppStrings.message]);
+    } else {
+      return ResponseModel(
+          success: response[AppStrings.success], message: response[AppStrings.message],
+          body: NoParams());
     }
   }
 }

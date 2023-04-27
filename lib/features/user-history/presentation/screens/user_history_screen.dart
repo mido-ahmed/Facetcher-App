@@ -1,8 +1,19 @@
+import 'package:facetcher/config/routes/app_routes.dart';
+import 'package:facetcher/core/utils/media_query_values.dart';
+import 'package:facetcher/features/user-history/presentation/cubit/current_user_submissions_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
+import '../../../../core/utils/constants.dart';
+import '../../../../core/widgets/app_bar_widget.dart';
+import '../../../../core/widgets/buttons/button_form_widget.dart';
+import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
+import '../cubit/current_user_submissions_state.dart';
+import '../widget/user_submissions_vertical_scroll_widget.dart';
 
 class UserHistoryScreen extends StatefulWidget {
   const UserHistoryScreen({Key? key}) : super(key: key);
@@ -21,42 +32,84 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _getCurrentUserSubmissions();
+  }
+
+  _getCurrentUserSubmissions() => BlocProvider.of<CurrentUserSubmissionsCubit>(context).getCurrentUserSubmissions();
+
+  @override
   Widget build(BuildContext context) {
     return NavigationBarWrapper(
       toggleNavigationBar: _toggleNavigationBar,
       path: ModalRoute.of(context)?.settings.name,
       child: Material(
         child: Scaffold(
-            appBar: AppBar(
-              centerTitle: false,
-              title: Padding(
-                padding: const EdgeInsets.only(top: 30.0, left: 30.0),
-                child: Text(
-                  "Hello Developer!",
-                  style: AppTextStyle.homeText,
+          extendBody: true,
+          resizeToAvoidBottomInset: true,
+          body: Column(
+            children: [
+              AppBarWidget(
+                leftChild: IconButton(
+                  icon: Icon(Icons.arrow_back, color: AppColors.white),
+                  onPressed: () => Navigator.pushReplacementNamed(context, Routes.appHome),
+                ),
+                rightChild: AnimatedIconButton(
+                  icon: AnimatedIcons.menu_close,
+                  color: AppColors.fontPrimary,
+                  onPressed: () => _handleToggleNavigationBar(),
+                  durationMilliseconds: 500,
+                  size: 32.0,
+                  end: 1.0,
                 ),
               ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 25.0, right: 35.0),
-                  child: IconButton(
-                      onPressed: () => _handleToggleNavigationBar(),
-                      icon: const Icon(
-                        Icons.menu,
-                        size: 30,
+              Text("Submissions History", style: AppTextStyle.drawingScreenTitle,),
+              const SizedBox(height: 20.0,),
+              BlocConsumer<CurrentUserSubmissionsCubit, CurrentUserSubmissionsState>(
+                builder: ((context, state) {
+                  if (state is CurrentUserSubmissionsSuccess) {
+                    var submissions = state.response.body.where((submission) => submission.submitted == true).toList();
+                    if (submissions.isEmpty) {
+                      return SizedBox(
+                        height: 230.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("You have no submissions yet.", style: AppTextStyle.homeText,),
+                            Text("Go ahead and start drawing now!", style: AppTextStyle.homeScreenDetails,),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40.0),
+                              child: ButtonFormWidget(
+                                  onPress: () => Navigator.pushReplacementNamed(context, Routes.appHome),
+                                  child: Text('Home', style: AppTextStyle.loginButton),
+                                ),
+                            ),
+                            ],
+                          ),
+                      );
+                    }
+                    else {
+                      return UserSubmissionsVerticalScrollingWidget(submissions: submissions);
+                    }
+                  } else {
+                    return Padding(
+                      padding: EdgeInsets.only(top: context.height * 0.30),
+                      child: Center(
+                        child: LoadingAnimationWidget.threeArchedCircle(color: AppColors.textPrimary, size: 60),
                       ),
-                      color: AppColors.white),
-                ),
-              ],
-            ),
-            extendBody: true,
-            resizeToAvoidBottomInset: true,
-            body: Center(
-              child: Text(
-                "History",
-                style: AppTextStyle.homeText,
+                    );
+                  }
+                }),
+                listener: ((context, state) {
+                  if (state is CurrentUserSubmissionsError) {
+                    Constants.showSnackBar(context: context, message: state.message);
+                    Navigator.pushReplacementNamed(context, Routes.appHome);
+                  }
+                }),
               ),
-            )),
+            ],
+          )),
       ),
     );
   }

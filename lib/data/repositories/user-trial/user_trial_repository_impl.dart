@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:facetcher/core/usecases/usecase.dart';
 import 'package:facetcher/data/repositories/user-trial/user_trial_repository.dart';
 
 import '../../../core/error/exceptions.dart';
@@ -29,7 +30,21 @@ class UserTrialRepositoryImpl implements UserTrialRepository {
         return Left(exception);
       }
     } else {
-      return const Left(CacheException());
+      return const Left(NoInternetConnectionException());
+    }
+  }
+
+  @override
+  Future<Either<GenericException, ResponseModel<NoParams>>> submitUserTrial(int userTrialId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final submittedUserTrial = await userTrialRemoteDataSource.submitUserTrial(userTrialId);
+        return Right(submittedUserTrial);
+      } on GenericException catch (exception) {
+        return Left(exception);
+      }
+    } else {
+      return const Left(NoInternetConnectionException());
     }
   }
 }

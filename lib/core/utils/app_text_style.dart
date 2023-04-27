@@ -149,6 +149,20 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
+  static TextStyle? changePasswordButtonText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? logoutButtonText = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
   static TextStyle? primaryButtonText = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
@@ -159,7 +173,20 @@ class AppTextStyle with Diagnosticable {
   static TextStyle? textDrawingReport = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
-    color: AppColors.navigatorFont,
+    color: AppColors.fontPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? textReportFieldTitle = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? textReportField = TextStyle(
+    fontSize: 16,
+    color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
@@ -180,28 +207,28 @@ class AppTextStyle with Diagnosticable {
   static TextStyle? profileTitles = TextStyle(
     fontSize: 35,
     fontWeight: FontWeight.w700,
-    color: AppColors.white,
+    color: AppColors.textPrimary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? profileSubTitles = TextStyle(
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: FontWeight.w400,
-    color: AppColors.grey,
+    color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? userProfileTitle = TextStyle(
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: FontWeight.w700,
-    color: AppColors.white,
+    color: AppColors.textPrimary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? userProfileDetails = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w700,
-    color: AppColors.grey,
+    color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
   static TextStyle? drawingDetailsField = TextStyle(
@@ -222,4 +249,23 @@ class AppTextStyle with Diagnosticable {
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
+  static TextStyle? userProfileInfo = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? loaderTitleText = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? loaderSubtitleText = TextStyle(
+    fontSize: 12,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
 }
