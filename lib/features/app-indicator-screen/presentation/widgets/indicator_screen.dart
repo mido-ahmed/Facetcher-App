@@ -38,33 +38,6 @@ class _IndicatorScreenState extends State<IndicatorScreen> {
             ),
           ),
           Image.network("${widget.imageUrl}"),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: ButtonWidget(
-              backgroundColor: AppColors.navigatorItem,
-              onPress: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Next",
-                      style: AppTextStyle.buttonText,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_sharp,
-                      color: AppColors.textPrimary,
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
       );
     } else {
@@ -82,33 +55,6 @@ class _IndicatorScreenState extends State<IndicatorScreen> {
               style: AppTextStyle.indicatorScreenDescription,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: ButtonWidget(
-              backgroundColor: AppColors.navigatorItem,
-              onPress: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Next",
-                      style: AppTextStyle.buttonText,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_sharp,
-                      color: AppColors.textPrimary,
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
       );
     }
@@ -118,7 +64,7 @@ class _IndicatorScreenState extends State<IndicatorScreen> {
   Widget build(BuildContext context) {
     return Center(
         child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 55, horizontal: 30),
+            padding: const EdgeInsets.symmetric(vertical: 45, horizontal: 30),
             child: screenFormation(widget.isTop)));
   }
 }
