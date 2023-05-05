@@ -8,10 +8,9 @@ class IndicatorScreen extends StatefulWidget {
   String? imageUrl;
   String? title;
   String? description;
-  VoidCallback? onpress;
 
   IndicatorScreen({
-    required this.onpress,
+    super.key,
     required this.isTop,
     required this.imageUrl,
     required this.title,
@@ -43,9 +42,7 @@ class _IndicatorScreenState extends State<IndicatorScreen> {
             padding: const EdgeInsets.symmetric(vertical: 30),
             child: ButtonWidget(
               backgroundColor: AppColors.navigatorItem,
-              onPress: () => {
-                widget.onpress
-              },
+              onPress: () {},
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Row(
@@ -89,9 +86,7 @@ class _IndicatorScreenState extends State<IndicatorScreen> {
             padding: const EdgeInsets.symmetric(vertical: 30),
             child: ButtonWidget(
               backgroundColor: AppColors.navigatorItem,
-              onPress: () => {
-                widget.onpress
-              },
+              onPress: () {},
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Row(
