@@ -26,14 +26,14 @@ class _IndicatorTrailsScreenState extends State<IndicatorTrailsScreen> {
               isTop: false,
               imageUrl: "https://d178ormcbshsy5.cloudfront.net/intro_03.png",
               description:
-              "Your trails are saved  and all your data is encrypted.",
+                  "Your trails are saved  and all your data is encrypted.",
               title: "Trails and Data",
             ),
             ButtonWidget(
               backgroundColor: AppColors.navigatorItem,
               onPress: () {
                 Navigator.pushReplacementNamed(
-                    context, Routes.appIndicatorArtistScreen);
+                    context, Routes.appIndicatorPermissionsScreen);
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
