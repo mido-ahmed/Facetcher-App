@@ -36,14 +36,18 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initial:
         return MaterialPageRoute(
-            builder: (context,) {
+            builder: (
+              context,
+            ) {
               return const SplashScreen();
             },
             settings: routeSettings);
 
       case Routes.appGetStarted:
         return MaterialPageRoute(
-            builder: (context,) {
+            builder: (
+              context,
+            ) {
               return const GetStartedScreen();
             },
             settings: routeSettings);
@@ -59,6 +63,33 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const HomeScreen();
+            },
+            settings: routeSettings);
+      case Routes.appDrawingDetails:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingDetailsScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingResult:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingResultScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appDrawingReport:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const DrawingReportScreen();
             },
             settings: routeSettings);
 
@@ -87,34 +118,6 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const UserChangePasswordScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appDrawingDetails:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingDetailsScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appDrawingScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appDrawingResult:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingResultScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appDrawingReport:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const DrawingReportScreen();
             },
             settings: routeSettings);
 
