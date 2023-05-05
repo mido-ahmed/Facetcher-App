@@ -18,6 +18,9 @@ class _indicatorStartScreenState extends State<indicatorStartScreen> {
         extendBody: true,
         resizeToAvoidBottomInset: true,
         body: IndicatorScreen(
+          onpress: () {
+            Navigator.of(context).pushNamed('/app-artist-screen');
+          },
           isTop: false,
           imageUrl: "https://d178ormcbshsy5.cloudfront.net/intro_01.png",
           description:
