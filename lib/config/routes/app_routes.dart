@@ -7,6 +7,7 @@ import 'package:facetcher/features/user-history/presentation/screens/user_histor
 
 import '../../core/utils/app_strings.dart';
 import '../../features/app-get-started/presentation/screens/get_started_screen.dart';
+import '../../features/app-indicator-screen/presentation/screens/indicator_artist.dart';
 import '../../features/app-indicator-screen/presentation/screens/indicator_start_screen.dart';
 import '../../features/app-signin/presentation/screens/signin_screen.dart';
 import '../../features/app-splash/presentation/screens/splash_screen.dart';
@@ -31,6 +32,7 @@ class Routes {
   static const String appDrawingReport = '/app-drawing-report';
   static const String appDrawingDetails = '/app-drawing-details';
   static const String appIndicatorStartScreen = '/app-start-screen';
+  static const String appIndicatorArtistScreen = '/app-artist-screen';
 }
 
 class AppRoutes {
@@ -99,6 +101,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const indicatorStartScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appIndicatorArtistScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const IndicatorArtistScreen();
             },
             settings: routeSettings);
 
