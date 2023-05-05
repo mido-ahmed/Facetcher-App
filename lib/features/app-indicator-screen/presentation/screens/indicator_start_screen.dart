@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../widgets/indicator_screen.dart';
 
 class indicatorStartScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _indicatorStartScreenState extends State<indicatorStartScreen> {
         resizeToAvoidBottomInset: true,
         body: IndicatorScreen(
           onpress: () {
-            Navigator.of(context).pushNamed('/app-artist-screen');
+            Navigator.pushReplacementNamed(context, Routes.appIndicatorArtistScreen);
           },
           isTop: false,
           imageUrl: "https://d178ormcbshsy5.cloudfront.net/intro_01.png",
