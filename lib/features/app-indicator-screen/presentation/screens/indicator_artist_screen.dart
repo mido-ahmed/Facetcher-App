@@ -35,7 +35,7 @@ class _IndicatorArtistScreenState extends State<IndicatorArtistScreen> {
                 backgroundColor: AppColors.navigatorItem,
                 onPress: () {
                   Navigator.pushReplacementNamed(
-                      context, Routes.appIndicatorStartScreen);
+                      context, Routes.appIndicatorTrailsScreen);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10.0),
