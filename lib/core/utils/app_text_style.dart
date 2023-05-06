@@ -268,4 +268,18 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+
+  static TextStyle? indicatorScreenText = TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+    color: AppColors.navigatorItem,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? indicatorScreenDescription = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
 }
