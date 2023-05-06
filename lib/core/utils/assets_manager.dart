@@ -12,6 +12,11 @@ class ImageNetwork {
   static const String userShape = 'https://d178ormcbshsy5.cloudfront.net/user_shape.png';
   static const String userShape2 = 'https://d178ormcbshsy5.cloudfront.net/user_shape_2x.png';
 
+  static const String intro1 = 'https://d178ormcbshsy5.cloudfront.net/intro_01.png';
+  static const String intro2 = 'https://d178ormcbshsy5.cloudfront.net/intro_02.png';
+  static const String intro3 = 'https://d178ormcbshsy5.cloudfront.net/intro_03.png';
+  static const String intro4 = 'https://d178ormcbshsy5.cloudfront.net/intro_04.png';
+
   static const String penIcon = 'https://d178ormcbshsy5.cloudfront.net/pen_draw_icon_2.png';
   static const String penFilledIcon = 'https://d178ormcbshsy5.cloudfront.net/pen_draw_filled_icon.png';
   static const String editIcon = 'https://d178ormcbshsy5.cloudfront.net/edit_icon.png';
