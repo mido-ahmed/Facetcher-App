@@ -46,9 +46,9 @@ class PopupLoaderState extends State<PopupLoader> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(ImageNetwork.logoFlat, width: 150,),
+              Image.network(ImageNetwork.logoFlat, width: context.width > context.height? 80 : 150,),
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, bottom: 15.0),
+                padding: const EdgeInsets.only(top: 20.0, bottom: 15.0),
                 child: Text("Please Wait,\nWe’re getting the best results",
                   textAlign: TextAlign.center,
                   style: AppTextStyle.loaderTitleText,

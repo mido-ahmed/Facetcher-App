@@ -40,8 +40,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        height: context.height * 0.60,
-        width: context.width * 0.92,
+        width: 512,
+        height: 512,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(20),
@@ -67,11 +67,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          DrawerToolbar(notifier: notifier, context: context),
+          Padding(
+            padding: EdgeInsets.only(top: context.height * 0.02),
+            child: DrawerToolbar(notifier: notifier, context: context),
+          ),
         ],
       ),
       Padding(
-        padding: const EdgeInsets.only(top: 15.0),
+        padding: EdgeInsets.only(top: context.height * 0.03),
         child: BlocConsumer<CreateUserTrialCubit, CreateUserTrialState>(
           builder: ((context, state) {
             if (state is CreateUserTrialLoading) {
