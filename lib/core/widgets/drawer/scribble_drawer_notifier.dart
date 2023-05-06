@@ -42,7 +42,7 @@ abstract class ScribbleDrawerNotifierBase extends StateNotifier<ScribbleState> {
     final boundary = renderObject.paintBounds;
     final image = await renderObject.toImage(pixelRatio: pixelRatio);
     final src = Offset.zero & boundary.size;
-    final dst = Offset.zero & boundary.size * pixelRatio;
+    final dst = Offset.zero & boundary.size * pixelRatio * 1.4;
     canvas.drawImageRect(image, src, dst, Paint());
 
     // Convert the canvas to an Image and return its ByteData representation
