@@ -1,3 +1,7 @@
+import 'package:facetcher/features/app-get-started/presentation/screens/intro_data_screen.dart';
+import 'package:facetcher/features/app-get-started/presentation/screens/intro_draw_screen.dart';
+import 'package:facetcher/features/app-get-started/presentation/screens/intro_permissions_screen.dart';
+import 'package:facetcher/features/app-get-started/presentation/screens/intro_start_screen.dart';
 import 'package:facetcher/features/drawing-result/presentation/screens/drawing_result_screen.dart';
 import 'package:facetcher/features/user-change-password/presentation/screens/user_change_password_screen.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +10,6 @@ import 'package:facetcher/features/app-home-screen/presentation/screen/home_scre
 import 'package:facetcher/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
-import '../../features/app-get-started/presentation/screens/get_started_screen.dart';
-import '../../features/app-indicator-screen/presentation/screens/indicator_artist_screen.dart';
-import '../../features/app-indicator-screen/presentation/screens/indicator_permissions_screen.dart';
-import '../../features/app-indicator-screen/presentation/screens/indicator_start_screen.dart';
-import '../../features/app-indicator-screen/presentation/screens/indicator_trails_screen.dart';
 import '../../features/app-signin/presentation/screens/signin_screen.dart';
 import '../../features/app-splash/presentation/screens/splash_screen.dart';
 import '../../features/drawing-details/presentation/screens/drawing_details_screen.dart';
@@ -22,7 +21,6 @@ class Routes {
   static const String initial = '/';
   static const String appHome = '/app-home';
   static const String appSignin = '/app-signin';
-  static const String appGetStarted = '/app-get-started';
 
   static const String userProfile = '/user-profile';
   static const String userChangePassword = '/user-change-password';
@@ -34,10 +32,10 @@ class Routes {
   static const String appDrawingReport = '/app-drawing-report';
   static const String appDrawingDetails = '/app-drawing-details';
 
-  static const String appIndicatorStartScreen = '/app-start-screen';
-  static const String appIndicatorArtistScreen = '/app-artist-screen';
-  static const String appIndicatorTrailsScreen = '/app-trails-screen';
-  static const String appIndicatorPermissionsScreen = '/app-permission-screen';
+  static const String appIntroStartScreen = '/app-intro-start';
+  static const String appIntroDrawScreen = '/app-intro-draw';
+  static const String appIntroDataScreen = '/app-intro-data';
+  static const String appIntroPermissionsScreen = '/app-intro-permission';
 }
 
 class AppRoutes {
@@ -45,19 +43,36 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initial:
         return MaterialPageRoute(
-            builder: (
-              context,
-            ) {
-              return const indicatorStartScreen();
+            builder: (context,) {
+              return const SplashScreen();
             },
             settings: routeSettings);
 
-      case Routes.appGetStarted:
+      case Routes.appIntroStartScreen:
         return MaterialPageRoute(
-            builder: (
-              context,
-            ) {
-              return const GetStartedScreen();
+            builder: (context) {
+              return const IntroStartScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appIntroDrawScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const IntroDrawScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appIntroDataScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const IntroDataScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appIntroPermissionsScreen:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const IntroPermissionScreen();
             },
             settings: routeSettings);
 
@@ -99,34 +114,6 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const DrawingReportScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appIndicatorStartScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const indicatorStartScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appIndicatorArtistScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const IndicatorArtistScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appIndicatorTrailsScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const IndicatorTrailsScreen();
-            },
-            settings: routeSettings);
-
-      case Routes.appIndicatorPermissionsScreen:
-        return MaterialPageRoute(
-            builder: (context) {
-              return const IndicatorPermissionScreen();
             },
             settings: routeSettings);
 

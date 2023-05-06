@@ -1,15 +1,13 @@
-import 'package:facetcher/core/utils/app_colors.dart';
 import 'package:facetcher/core/utils/app_text_style.dart';
-import 'package:facetcher/core/widgets/buttons/button_widget.dart';
 import 'package:flutter/material.dart';
 
-class IndicatorScreen extends StatefulWidget {
+class IntroWidgetWrapper extends StatefulWidget {
   bool? isTop;
   String? imageUrl;
   String? title;
   String? description;
 
-  IndicatorScreen({
+  IntroWidgetWrapper({
     super.key,
     required this.isTop,
     required this.imageUrl,
@@ -18,22 +16,24 @@ class IndicatorScreen extends StatefulWidget {
   });
 
   @override
-  State<IndicatorScreen> createState() => _IndicatorScreenState();
+  State<IntroWidgetWrapper> createState() => _IntroWidgetWrapperState();
 }
 
-class _IndicatorScreenState extends State<IndicatorScreen> {
+class _IntroWidgetWrapperState extends State<IntroWidgetWrapper> {
   Widget screenFormation(var isTop) {
     if (isTop == true) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "${widget.title}",
+          Text("${widget.title}",
+            textAlign: TextAlign.center,
             style: AppTextStyle.indicatorScreenText,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 49),
-            child: Text(
-              "${widget.description}",
+            padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+            child: Text("${widget.description}",
+              textAlign: TextAlign.center,
               style: AppTextStyle.indicatorScreenDescription,
             ),
           ),
@@ -42,16 +42,18 @@ class _IndicatorScreenState extends State<IndicatorScreen> {
       );
     } else {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.network("${widget.imageUrl}"),
-          Text(
-            "${widget.title}",
+          Text("${widget.title}",
+            textAlign: TextAlign.center,
             style: AppTextStyle.indicatorScreenText,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 49),
-            child: Text(
-              "${widget.description}",
+            padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+            child: Text("${widget.description}",
+              textAlign: TextAlign.center,
               style: AppTextStyle.indicatorScreenDescription,
             ),
           ),
@@ -64,7 +66,7 @@ class _IndicatorScreenState extends State<IndicatorScreen> {
   Widget build(BuildContext context) {
     return Center(
         child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 45, horizontal: 30),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: screenFormation(widget.isTop)));
   }
 }
