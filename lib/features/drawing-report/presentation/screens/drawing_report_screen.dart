@@ -129,7 +129,7 @@ class _DrawingReportScreenState extends State<DrawingReportScreen> {
                           Constants.showSnackBar(context: context, message: state.message);
                         } else if (state is SubmitUserTrialSuccess) {
                           Constants.showSnackBar(context: context, message: state.submittedUserTrial.message);
-                          Navigator.pushReplacementNamed(context, Routes.appHome);
+                          Navigator.pushNamedAndRemoveUntil(context, Routes.appHome, (route) => false);
                         }
                       }),
                     ),

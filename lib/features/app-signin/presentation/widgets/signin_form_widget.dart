@@ -130,7 +130,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                         if (state is SigninError) {
                           Constants.showErrorDialog(context: context, message: state.message);
                         } else if (state is SigninSuccess) {
-                          Navigator.pushReplacementNamed(context, Routes.appHome);
+                          Navigator.pushNamedAndRemoveUntil(context, Routes.appHome, (route) => false);
                         }
                         if (state is SigninLoading) {
                           setState(() { _isFormEnabled = false; });
