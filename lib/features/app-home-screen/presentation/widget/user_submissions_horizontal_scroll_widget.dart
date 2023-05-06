@@ -1,3 +1,4 @@
+import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -48,7 +49,7 @@ class _UserSubmissionsHorizontalScrollingState extends State<UserSubmissionsHori
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
         child: NotificationListener<ScrollNotification>(
           onNotification: (scrollNotification) {
             if (scrollNotification.metrics.pixels == scrollNotification.metrics.maxScrollExtent && !_isLoading) { _loadMoreItems(); }
@@ -65,8 +66,8 @@ class _UserSubmissionsHorizontalScrollingState extends State<UserSubmissionsHori
                     return GestureDetector(
                       onTap: () => Navigator.pushNamed(context, Routes.userHistoryDetails, arguments: submission),
                       child: NetworkImageLoader(
-                        width: 150,
-                        height: 185,
+                        width: context.width,
+                        height: context.height,
                         url: submission.outputImage.imageUrl,
                         loader: LoadingAnimationWidget.threeArchedCircle(color: Colors.white, size: 40,),
                       ),

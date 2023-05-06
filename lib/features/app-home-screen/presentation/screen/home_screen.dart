@@ -1,3 +1,4 @@
+import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_text_style.dart';
 import 'package:facetcher/core/widgets/navigator/navigation_bar_wrapper.dart';
@@ -137,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5.0),
+                padding: EdgeInsets.only(top: context.height * 0.05),
                 child: Column(
                   children: [
                     Padding(
@@ -152,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0, bottom: 15.0),
+                padding: EdgeInsets.only(left: 30.0, right: 30.0, top: context.height * 0.03, bottom: 25.0),
                 child: SizedBox(
                   child: Text("What we try to do is to reach the criminal together and get the best result in the shortest time.",
                     style: AppTextStyle.homeScreenDetails,
