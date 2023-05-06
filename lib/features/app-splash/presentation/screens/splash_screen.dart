@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         if (_isUserGetStarted)
           {Navigator.pushReplacementNamed(context, Routes.appSignin)}
         else
-          {Navigator.pushReplacementNamed(context, Routes.appGetStarted)}
+          {Navigator.pushReplacementNamed(context, Routes.appIntroStartScreen)}
       };
 
   Future _isUserGetStartedCache() async {
