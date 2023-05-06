@@ -1,3 +1,4 @@
+import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,20 +35,19 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.only(top: 35.0, bottom: 10),
+          padding: EdgeInsets.only(top: context.height * 0.08, bottom: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 80.0),
-                child: Text(
-                  'Please log in using the account credentials that you received.',
+                child: Text('Please log in using the account credentials that you received.',
                   style: AppTextStyle.loginNoteText,
                   textAlign: TextAlign.center,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 30, right: 30),
+                padding: const EdgeInsets.only(top: 30.0, left: 30, right: 30),
                 child: TextFieldWidget(
                   enabled: _isFormEnabled,
                   hintText: 'Email',
@@ -63,17 +63,12 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                   style: AppTextStyle.loginFieldText,
                   cursorColor: AppColors.textSecondary,
                   secureText: false,
-                  onSave: (value) {
-                    _signinRequest.email = value;
-                  },
-                  contentPadding: const EdgeInsets.only(
-                    top: 12,
-                    left: 30,
-                  ),
+                  onSave: (value) { _signinRequest.email = value;},
+                  contentPadding: const EdgeInsets.only(top: 12, left: 30,),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
+                padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
                 child: TextFieldWidget(
                   enabled: _isFormEnabled,
                   hintText: 'Password',
@@ -89,20 +84,15 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                   style: AppTextStyle.loginFieldText,
                   cursorColor: AppColors.textSecondary,
                   secureText: true,
-                  onSave: (value) {
-                    _signinRequest.password = value;
-                  },
-                  contentPadding: const EdgeInsets.only(
-                    top: 12,
-                    left: 30,
-                  ),
+                  onSave: (value) { _signinRequest.password = value; },
+                  contentPadding: const EdgeInsets.only(top: 12, left: 30,),
                 ),
               ),
               Expanded(
                 flex: 2,
                 child: Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
+                    padding: const EdgeInsets.only(top: 20.0),
                     child: BlocConsumer<SigninCubit, SigninState>(
                       builder: ((context, state) {
                         if (state is SigninLoading) {
@@ -112,10 +102,7 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                               onPress: () {},
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 5),
-                                child: LoadingAnimationWidget.staggeredDotsWave(
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
+                                child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 30,),
                               ),
                             ),
                           );
@@ -125,42 +112,30 @@ class _SigninFormWidgetState extends State<SigninFormWidget> {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState?.save();
                                 if (_signinRequest.email.isEmpty) {
-                                  Constants.showErrorDialog(
-                                      context: context,
-                                      message: AppLocalizations.of(context)!
-                                          .translate('blank_email')!);
+                                  Constants.showErrorDialog(context: context, message: AppLocalizations.of(context)!.translate('blank_email')!);
                                   return;
                                 }
                                 if (_signinRequest.password.isEmpty) {
-                                  Constants.showErrorDialog(
-                                      context: context,
-                                      message: AppLocalizations.of(context)!
-                                          .translate('blank_password')!);
+                                  Constants.showErrorDialog(context: context, message: AppLocalizations.of(context)!.translate('blank_password')!);
                                   return;
                                 }
                                 BlocProvider.of<SigninCubit>(context).signin(_signinRequest);
                               }
                             },
-                            child:
-                                Text('Login', style: AppTextStyle.loginButton),
+                            child: Text('Login', style: AppTextStyle.loginButton),
                           );
                         }
                       }),
                       listener: ((context, state) {
                         if (state is SigninError) {
-                          Constants.showErrorDialog(
-                              context: context, message: state.message);
+                          Constants.showErrorDialog(context: context, message: state.message);
                         } else if (state is SigninSuccess) {
                           Navigator.pushReplacementNamed(context, Routes.appHome);
                         }
                         if (state is SigninLoading) {
-                          setState(() {
-                            _isFormEnabled = false;
-                          });
+                          setState(() { _isFormEnabled = false; });
                         } else {
-                          setState(() {
-                            _isFormEnabled = true;
-                          });
+                          setState(() { _isFormEnabled = true; });
                         }
                       }),
                     ),

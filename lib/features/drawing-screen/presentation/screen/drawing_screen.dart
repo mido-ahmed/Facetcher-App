@@ -1,3 +1,4 @@
+import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:facetcher/core/widgets/navigator/navigation_bar_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/features/drawing-screen/presentation/widget/drawer_widget.dart';
@@ -57,7 +58,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
                     style: AppTextStyle.drawingScreenTitle,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    padding: EdgeInsets.only(top: context.height * 0.04),
                     child: DrawerWidget(submissionId: submissionId!),
                   ),
                 ],

@@ -35,9 +35,7 @@ class _SigninScreenState extends State<SigninScreen> {
           child: Container(
             width: context.width,
             height: context.height,
-            padding: const EdgeInsets.only(
-              top: 50.0,
-            ),
+            padding: EdgeInsets.only(top: context.height * 0.10,),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -47,8 +45,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Text(
-                        'We strive to work together to achieve the best results in fastest ways, bringing swift optimal ones.',
+                      child: Text('We strive to work together to achieve the best results in fastest ways, bringing swift optimal ones.',
                         style: AppTextStyle.loginDescriptionText,
                         textAlign: TextAlign.center,
                       ),
