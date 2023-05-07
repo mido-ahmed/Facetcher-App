@@ -11,7 +11,7 @@ Facetcher is a mobile app to turn your hand drawing sketch into a realistic face
 Facetcher is an app designed to generating images of human face based on hand drawing sketches. The app has a user-friendly interface that makes it easy for users to create facial sketches and generate images of suspects.
 To use the app, users first provide basic case details such as the title, gender, and description. They can then begin drawing the facial sketch using the app's intuitive drawing tools. Once the sketch is complete, the app generates an image of the suspect based on the sketch.
 Users can edit the sketch until they are happy with the result. Once the user is satisfied with the generated image, they can submit the sketch along with case details and the generated image to the app.
-The app also provides a history screen that displays all the cases submitted by the user, allowing them to easily access past sketches and results. Users can export the generated image as a PDF file for convenient saving and sharing..
+The app also provides a history screen that displays all the cases submitted by the user, allowing them to easily access past sketches and results. Users can export the generated image as a PDF file for convenient saving and sharing.
 
 # How to Use
 
@@ -41,17 +41,17 @@ By following these steps, you should be able to run the Facetcher app on your An
 # Project Structure
 
 ```
-├──  android 
-|    └── app/ - This folder contains the main Android application code.
-|    └── gradle/wrapper/ - This folder contains the Gradle wrapper and related files.
+├──  android - This folder contains the main Android application code with the Gradle wrapper file.
+|    └── app/
+|    └── gradle/wrapper/
 │    
 │
 ├──  assets/fonts/ - This folder contains the fonts used in the app.
 │    
 │
-├──  ios
-│    └── Flutter/ - This folder contains the Flutter engine code that is used to build and run the app on iOS.
-|    └── Runner/ - This folder contains the main iOS application code, resources, and configurations.
+├──  ios - This folder contains the Flutter engine code for the app on iOS.
+│    └── Flutter/
+|    └── Runner/
 │    
 │
 ├──  lang - This folder contains the languages used in the app.
