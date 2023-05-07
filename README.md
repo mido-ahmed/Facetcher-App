@@ -20,7 +20,7 @@ Certainly! To run the Facetcher app, you will need to follow a few steps:
 - Download and install Android Studio on your computer.
 - Download or clone [Facetcher app](https://github.com/henry-azer/facetcher-app) repository by using the link below:
 ```
-https://github.com/zubairehman/flutter-boilerplate-project.git
+git clone https://github.com/henry-azer/facetcher-app
 ```
 - Open Android Studio and select "Open an existing Android Studio project" from the welcome screen.
 - Navigate to the directory where you cloned the Facetcher app repository and select the project folder.
@@ -38,7 +38,7 @@ flutter run
 
 By following these steps, you should be able to run the Facetcher app on your Android device or emulator without any issues. However, keep in mind that the exact process may vary depending on your specific setup and the version of Android Studio you are using.
 
-# Folder Structure
+# Project Structure
 
 ```
 ├──  android 
@@ -50,7 +50,7 @@ By following these steps, you should be able to run the Facetcher app on your An
 │    
 │
 ├──  ios
-│    └── Flutter/ - This folder contains the Flutter engine and framework code that is used to build and run the app on iOS.
+│    └── Flutter/ - This folder contains the Flutter engine code that is used to build and run the app on iOS.
 |    └── Runner/ - This folder contains the main iOS application code, resources, and configurations.
 │    
 │
@@ -90,13 +90,22 @@ Here is a summary of the features Facetcher provides:
 
 # Libraries & Tools Used
 
-- [Dio](https://github.com/cfug/dio)
-- [Database](https://github.com/tekartik/sembast.dart)
-- [MobX](https://github.com/mobxjs/mobx.dart)
-- [Provider](https://github.com/rrousselGit/provider)
-- [Encryption](https://github.com/xxtea/xxtea-dart)
-- [Validation](https://github.com/dart-league/validators)
-- [Logging](https://github.com/zubairehman/Flogs)
-- [Notifications](https://github.com/AndreHaueisen/flushbar)
-- [Json Serialization](https://github.com/google/json_serializable.dart)
-- [Dependency Injection](https://github.com/fluttercommunity/get_it)
+- get it
+- dio
+- Dependency Injection
+- Bloc (Cubit)
+- dartz
+- equatable
+- clean architecture
+- validation, logging
+- scrible drawer
+- localization
+- permission handler
+- pdf
+- path provider
+- shared perefences
+
+# Contribution
+
+The development team for Facetcher app consisted of three developers: Henry , Mohamed, and Martina. Henry made the largest contribution to the project. He was instrumental in designing the app architecture, implementing complex features, and conducting extensive testing to ensure the app was stable and performant.
+Together, this team of developers worked tirelessly to create an app that was both functional and user-friendly, and that met the needs of our users. Their combined efforts resulted in a high-quality app that has been well-received by our users and has helped us achieve our business goals.
