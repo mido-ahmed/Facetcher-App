@@ -4,7 +4,7 @@ Facetcher is a mobile app to turn your hand drawing sketch into a realistic face
 
 # Screens
 
-<img src="https://user-images.githubusercontent.com/102770811/236679131-363a632c-d8bb-4d55-a9be-85ddd96dafaf.png" alt="Image description" width="300"/>   <img src="https://user-images.githubusercontent.com/102770811/236679188-d6800318-43c1-409e-9f54-e85220cf0bf3.png" alt="Image description" width="300"/>   <img src="https://user-images.githubusercontent.com/102770811/236679209-2ee0b6bf-8047-4e25-a01e-714d0c8abab2.png" alt="Image description" width="300"/>
+<img src="https://user-images.githubusercontent.com/102770811/236689485-db05beca-716e-4e9a-ada1-1b2ecac1e5da.jpg" alt="Image description" width="250"/>   <img src="https://user-images.githubusercontent.com/102770811/236689495-03db2313-624d-49e4-9f3e-ce2a4e540468.jpg" alt="Image description" width="250"/>   <img src="https://user-images.githubusercontent.com/102770811/236689502-c43f0f44-c080-4024-83a2-6bb3bda9bd03.jpg" alt="Image description" width="250"/>
 
 # Getting Started
 
@@ -18,15 +18,61 @@ The app also provides a history screen that displays all the cases submitted by 
 Certainly! To run the Facetcher app, you will need to follow a few steps:
 
 - Download and install Android Studio on your computer.
-- Clone the Facetcher app repository from a Git hosting service like GitHub or GitLab to your computer.
+- Download or clone [Facetcher app](https://github.com/henry-azer/facetcher-app) repository by using the link below:
+```
+https://github.com/zubairehman/flutter-boilerplate-project.git
+```
 - Open Android Studio and select "Open an existing Android Studio project" from the welcome screen.
 - Navigate to the directory where you cloned the Facetcher app repository and select the project folder.
+- Go to project root and execute the following command in console to get the required dependencies:
+```
+flutter pub get
+```
 - Once the project has finished loading, you can either connect your Android device to your computer using a USB cable or create an emulator in Android Studio.
 - If you're using a physical device, make sure to enable USB debugging mode on your phone by going to "Developer options" in your phone's settings and toggling the "USB debugging" option.
 - Select the device you want to run the app on by clicking on the device dropdown menu in Android Studio.
-- Finally, click on the "Run" button to start the app on your device or emulator.
+- Finally, Run the app.
+```
+flutter run
+```
 
 By following these steps, you should be able to run the Facetcher app on your Android device or emulator without any issues. However, keep in mind that the exact process may vary depending on your specific setup and the version of Android Studio you are using.
+
+# Folder Structure
+
+```
+├──  android 
+|    └── app/ - This folder contains the main Android application code.
+|    └── gradle/wrapper/ - This folder contains the Gradle wrapper and related files.
+│    
+│
+├──  assets/fonts/ - This folder contains the fonts used in the app.
+│    
+│
+├──  ios
+│    └── Flutter/ - This folder contains the Flutter engine and framework code that is used to build and run the app on iOS.
+|    └── Runner/ - This folder contains the main iOS application code, resources, and configurations.
+│    
+│
+├──  lang - This folder contains the languages used in the app.
+│    └── ar.json 
+│    └── en.json  
+|
+|
+├──  lib - This folder contains the Dart source code for the app's user interface and business logic.
+│    └── config/
+|    └── core/
+|    └── data/
+|    └── features/
+|    └── app.dart
+|    └── bloc_observer.dart
+|    └── injection_container.dart
+|    └── main.dart
+│
+│
+├──  test - The "test" folder in a Flutter project contains the test code for the app.
+     └── widget_test.dart
+```
 
 # Features
 
@@ -43,3 +89,14 @@ Here is a summary of the features Facetcher provides:
 - Profile management: Users can manage their personal data, log out, and change their password.
 
 # Libraries & Tools Used
+
+- [Dio](https://github.com/cfug/dio)
+- [Database](https://github.com/tekartik/sembast.dart)
+- [MobX](https://github.com/mobxjs/mobx.dart)
+- [Provider](https://github.com/rrousselGit/provider)
+- [Encryption](https://github.com/xxtea/xxtea-dart)
+- [Validation](https://github.com/dart-league/validators)
+- [Logging](https://github.com/zubairehman/Flogs)
+- [Notifications](https://github.com/AndreHaueisen/flushbar)
+- [Json Serialization](https://github.com/google/json_serializable.dart)
+- [Dependency Injection](https://github.com/fluttercommunity/get_it)
