@@ -73,10 +73,16 @@ class NavigatorState extends State<NavigationBarWrapper> {
                         color: AppColors.navigatorFont,
                         size: 21,
                       )),
-                  Icon(
-                    FontAwesomeIcons.linkedinIn,
-                    color: AppColors.navigatorFont,
-                    size: 21,
+                  GestureDetector(
+                    onTap: () {
+                      launch(
+                          "https://www.youtube.com/watch?v=nrshlpYEjtk&pp=ygUJZmFjZXRjaGVy");
+                    },
+                    child: Icon(
+                      FontAwesomeIcons.youtube,
+                      color: AppColors.navigatorFont,
+                      size: 21,
+                    ),
                   ),
                   Icon(
                     Icons.messenger_outline_sharp,
