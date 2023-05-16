@@ -1,13 +1,15 @@
 import 'package:facetcher/features/user-profile/presentation/cubit/signout_state.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_colors.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../config/routes/app_routes.dart';
-import '../../../features/user-profile/presentation/cubit/signout_cubit.dart';
 import '../../utils/constants.dart';
 import 'navigation_bar_widget.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../features/user-profile/presentation/cubit/signout_cubit.dart';
 
 class NavigationBarWrapper extends StatefulWidget {
   final bool toggleNavigationBar;
