@@ -1,7 +1,12 @@
+import 'package:facetcher/features/user-profile/presentation/cubit/signout_state.dart';
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../config/routes/app_routes.dart';
+import '../../../features/user-profile/presentation/cubit/signout_cubit.dart';
+import '../../utils/constants.dart';
 import 'navigation_bar_widget.dart';
 
 class NavigationBarWrapper extends StatefulWidget {
@@ -94,11 +99,43 @@ class NavigatorState extends State<NavigationBarWrapper> {
                     color: AppColors.navigatorFont,
                     size: 22,
                   ),
-                  Icon(
-                    Icons.logout_outlined,
-                    color: AppColors.navigatorFont,
-                    size: 22,
-                  ),
+                  BlocConsumer<SignoutCubit, SignoutState>(
+                    builder: ((context, state) {
+                      if (state is SignoutLoading) {
+                        return Icon(
+                          Icons.logout_outlined,
+                          color: AppColors.navigatorFont,
+                          size: 22,
+                        );
+                      } else {
+                        return GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<SignoutCubit>(context).signout();
+                          },
+                          child: Icon(
+                            Icons.logout_outlined,
+                            color: AppColors.navigatorFont,
+                            size: 22,
+                          ),
+                        );
+                      }
+                    }),
+                    listener: ((context, state) {
+                      if (state is SignoutSuccess) {
+                        Constants.showSnackBar(
+                            context: context,
+                            message: state.signoutResponse.message);
+                        Navigator.pushReplacementNamed(
+                            context, Routes.appSignin);
+                      }
+                      if (state is SignoutError) {
+                        Constants.showSnackBar(
+                            context: context, message: state.message);
+                        Navigator.pushReplacementNamed(
+                            context, Routes.appSignin);
+                      }
+                    }),
+                  )
                 ],
               ),
             ),
