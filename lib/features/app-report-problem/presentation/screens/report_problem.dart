@@ -4,6 +4,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
+import '../../../app-home-screen/presentation/screen/home_screen.dart';
 import '../widgets/report_problem_form.dart';
 
 class ReportProblemScreen extends StatefulWidget {
@@ -37,9 +38,12 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
               children: [
                 AppBarWidget(
                   leftChild: IconButton(
-                    icon: Icon(Icons.arrow_back, color: AppColors.white),
-                    onPressed: () => Navigator.pop(context),
-                  ),
+                      icon: Icon(Icons.arrow_back, color: AppColors.white),
+                      onPressed: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (c) => HomeScreen()),
+                            (route) => false);
+                      }),
                   rightChild: AnimatedIconButton(
                     icon: AnimatedIcons.menu_close,
                     color: AppColors.fontPrimary,
