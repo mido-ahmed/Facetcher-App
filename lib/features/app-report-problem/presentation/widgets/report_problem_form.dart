@@ -18,7 +18,7 @@ class ReportProblemForm extends StatefulWidget {
 class _ReportProblemFormState extends State<ReportProblemForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late ReportProblemRequest reportProblemRequest = ReportProblemRequest();
-  bool isFormEnabled = true;
+  final bool isFormEnabled = true;
 
   @override
   Widget build(BuildContext context) {
