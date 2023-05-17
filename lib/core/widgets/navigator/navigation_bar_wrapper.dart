@@ -91,10 +91,15 @@ class NavigatorState extends State<NavigationBarWrapper> {
                       size: 21,
                     ),
                   ),
-                  Icon(
-                    Icons.messenger_outline_sharp,
-                    color: AppColors.navigatorFont,
-                    size: 22,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/app-message-us');
+                    },
+                    child: Icon(
+                      Icons.messenger_outline_sharp,
+                      color: AppColors.navigatorFont,
+                      size: 22,
+                    ),
                   ),
                   Icon(
                     Icons.info_outlined,
