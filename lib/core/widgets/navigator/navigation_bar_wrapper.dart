@@ -93,7 +93,7 @@ class NavigatorState extends State<NavigationBarWrapper> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed('/app-message-us');
+                      Navigator.of(context).pushNamed('/app-report-problem');
                     },
                     child: Icon(
                       Icons.messenger_outline_sharp,
