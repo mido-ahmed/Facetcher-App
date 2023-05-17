@@ -40,12 +40,8 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                   leftChild: IconButton(
                       icon: Icon(Icons.arrow_back, color: AppColors.white),
                       onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                              maintainState: true,
-                              builder: (c) => HomeScreen(),
-                            ),
-                            (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, "/app-home", ModalRoute.withName('/'));
                       }),
                   rightChild: AnimatedIconButton(
                     icon: AnimatedIcons.menu_close,
