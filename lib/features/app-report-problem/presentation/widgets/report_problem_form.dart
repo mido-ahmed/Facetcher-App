@@ -91,11 +91,6 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                           context: context, message: "Title can't be blank");
                       return;
                     }
-                    if (reportProblemRequest.gender == "NULL") {
-                      Constants.showSnackBar(
-                          context: context, message: "Gender must be assigned");
-                      return;
-                    }
                     if (reportProblemRequest.description.isEmpty) {
                       Constants.showSnackBar(
                           context: context,
