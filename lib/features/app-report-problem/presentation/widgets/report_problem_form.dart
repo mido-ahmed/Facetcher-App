@@ -7,6 +7,7 @@ import '../../../../core/validation/validation_types.dart';
 import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/forms/text_field_widget.dart';
 import '../../../drawing-details/domain/entities/drawing_details_request.dart';
+import '../../domain/entities/Report_problem_request.dart';
 
 class ReportProblemForm extends StatefulWidget {
   const ReportProblemForm({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class ReportProblemForm extends StatefulWidget {
 
 class _ReportProblemFormState extends State<ReportProblemForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late DrawingDetailsRequest drawingDetailsRequest = DrawingDetailsRequest();
+  late ReportProblemRequest reportProblemRequest = ReportProblemRequest();
   bool isFormEnabled = true;
 
   @override
@@ -47,7 +48,7 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                 cursorColor: AppColors.textSecondary,
                 secureText: false,
                 onSave: (value) {
-                  drawingDetailsRequest.title = value;
+                  reportProblemRequest.title = value;
                 },
                 contentPadding: const EdgeInsets.only(
                   top: 12,
@@ -72,7 +73,7 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                   cursorColor: AppColors.textSecondary,
                   secureText: false,
                   onSave: (value) {
-                    drawingDetailsRequest.description = value;
+                    reportProblemRequest.description = value;
                   },
                   contentPadding: const EdgeInsets.only(
                     top: 40,
@@ -85,17 +86,17 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                 onPress: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState?.save();
-                    if (drawingDetailsRequest.title.isEmpty) {
+                    if (reportProblemRequest.title.isEmpty) {
                       Constants.showSnackBar(
                           context: context, message: "Title can't be blank");
                       return;
                     }
-                    if (drawingDetailsRequest.gender == "NULL") {
+                    if (reportProblemRequest.gender == "NULL") {
                       Constants.showSnackBar(
                           context: context, message: "Gender must be assigned");
                       return;
                     }
-                    if (drawingDetailsRequest.description.isEmpty) {
+                    if (reportProblemRequest.description.isEmpty) {
                       Constants.showSnackBar(
                           context: context,
                           message: "Description can't be blank");
