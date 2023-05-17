@@ -2,6 +2,7 @@ import 'package:facetcher/features/app-get-started/presentation/screens/intro_da
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_draw_screen.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_permissions_screen.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_start_screen.dart';
+import 'package:facetcher/features/app-report-problem/presentation/screens/report_problem.dart';
 import 'package:facetcher/features/drawing-result/presentation/screens/drawing_result_screen.dart';
 import 'package:facetcher/features/user-change-password/presentation/screens/user_change_password_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class AppRoutes {
       case Routes.initial:
         return MaterialPageRoute(
             builder: (context) {
-              return const SplashScreen();
+              return const ReportProblemScreen();
             },
             settings: routeSettings);
 
@@ -53,6 +54,13 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const IntroStartScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appReportProblem:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const ReportProblemScreen();
             },
             settings: routeSettings);
 
