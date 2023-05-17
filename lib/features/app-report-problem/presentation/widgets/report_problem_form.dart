@@ -27,83 +27,86 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
       child: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         key: _formKey,
-        child: Column(
-          children: [
-            TextFieldWidget(
-              enabled: isFormEnabled,
-              hintText: 'Title',
-              hintTextStyle: AppTextStyle.drawingDetailsField,
-              keyboardType: TextInputType.emailAddress,
-              validateType: ValidationTypes.drawingDetailsTitle,
-              errorStyle: AppTextStyle.loginFieldErrorText,
-              errorBorderColor: AppColors.error,
-              borderColor: AppColors.border,
-              borderWidth: 1,
-              maxLines: 1,
-              textAlign: TextAlign.start,
-              style: AppTextStyle.loginFieldText,
-              cursorColor: AppColors.textSecondary,
-              secureText: false,
-              onSave: (value) {
-                drawingDetailsRequest.title = value;
-              },
-              contentPadding: const EdgeInsets.only(
-                top: 12,
-                left: 30,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: TextFieldWidget(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 60),
+          child: Column(
+            children: [
+              TextFieldWidget(
                 enabled: isFormEnabled,
-                hintText: 'Description',
+                hintText: 'Title',
                 hintTextStyle: AppTextStyle.drawingDetailsField,
                 keyboardType: TextInputType.emailAddress,
-                validateType: ValidationTypes.drawingDetailsDescription,
+                validateType: ValidationTypes.drawingDetailsTitle,
                 errorStyle: AppTextStyle.loginFieldErrorText,
                 errorBorderColor: AppColors.error,
                 borderColor: AppColors.border,
                 borderWidth: 1,
-                maxLines: 10,
+                maxLines: 1,
                 textAlign: TextAlign.start,
                 style: AppTextStyle.loginFieldText,
                 cursorColor: AppColors.textSecondary,
                 secureText: false,
                 onSave: (value) {
-                  drawingDetailsRequest.description = value;
+                  drawingDetailsRequest.title = value;
                 },
                 contentPadding: const EdgeInsets.only(
-                  top: 40,
+                  top: 12,
                   left: 30,
                 ),
               ),
-            ),
-            ButtonWidget(
-              backgroundColor: AppColors.button,
-              onPress: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState?.save();
-                  if (drawingDetailsRequest.title.isEmpty) {
-                    Constants.showSnackBar(
-                        context: context, message: "Title can't be blank");
-                    return;
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: TextFieldWidget(
+                  enabled: isFormEnabled,
+                  hintText: 'Description',
+                  hintTextStyle: AppTextStyle.drawingDetailsField,
+                  keyboardType: TextInputType.emailAddress,
+                  validateType: ValidationTypes.drawingDetailsDescription,
+                  errorStyle: AppTextStyle.loginFieldErrorText,
+                  errorBorderColor: AppColors.error,
+                  borderColor: AppColors.border,
+                  borderWidth: 1,
+                  maxLines: 10,
+                  textAlign: TextAlign.start,
+                  style: AppTextStyle.loginFieldText,
+                  cursorColor: AppColors.textSecondary,
+                  secureText: false,
+                  onSave: (value) {
+                    drawingDetailsRequest.description = value;
+                  },
+                  contentPadding: const EdgeInsets.only(
+                    top: 40,
+                    left: 30,
+                  ),
+                ),
+              ),
+              ButtonWidget(
+                backgroundColor: AppColors.button,
+                onPress: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState?.save();
+                    if (drawingDetailsRequest.title.isEmpty) {
+                      Constants.showSnackBar(
+                          context: context, message: "Title can't be blank");
+                      return;
+                    }
+                    if (drawingDetailsRequest.gender == "NULL") {
+                      Constants.showSnackBar(
+                          context: context, message: "Gender must be assigned");
+                      return;
+                    }
+                    if (drawingDetailsRequest.description.isEmpty) {
+                      Constants.showSnackBar(
+                          context: context,
+                          message: "Description can't be blank");
+                      return;
+                    }
                   }
-                  if (drawingDetailsRequest.gender == "NULL") {
-                    Constants.showSnackBar(
-                        context: context, message: "Gender must be assigned");
-                    return;
-                  }
-                  if (drawingDetailsRequest.description.isEmpty) {
-                    Constants.showSnackBar(
-                        context: context,
-                        message: "Description can't be blank");
-                    return;
-                  }
-                }
-              },
-              child: Text("Send"),
-            )
-          ],
+                },
+                child: Text("Send"),
+              )
+            ],
+          ),
         ),
       ),
     );
