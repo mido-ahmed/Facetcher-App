@@ -11,6 +11,20 @@ class ReportProblemInitial extends ReportProblemState {}
 
 class ReportProblemLoading extends ReportProblemState {}
 
-class ReportProblemSuccess extends ReportProblemState {}
+class ReportProblemSuccess extends ReportProblemState {
+  final ResponseModel<MessageUs> userSubmission;
 
-class ReportProblemError extends ReportProblemState {}
+  const ReportProblemSuccess({required this.userSubmission});
+
+  @override
+  List<Object> get props => [userSubmission];
+}
+
+class ReportProblemError extends ReportProblemState {
+  final String message;
+
+  const ReportProblemError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
