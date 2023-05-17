@@ -112,7 +112,23 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                     }
                   }
                 },
-                child: Text("Send"),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Next",
+                      style: AppTextStyle.buttonText,
+                    ),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_sharp,
+                      color: AppColors.textPrimary,
+                      size: 20,
+                    ),
+                  ],
+                ),
               )
             ],
           ),
