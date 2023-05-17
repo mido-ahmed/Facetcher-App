@@ -31,6 +31,7 @@ class Routes {
   static const String appDrawingResult = '/app-drawing-result';
   static const String appDrawingReport = '/app-drawing-report';
   static const String appDrawingDetails = '/app-drawing-details';
+  static const String appReportProblem = '/app-report-problem';
 
   static const String appIntroStartScreen = '/app-intro-start';
   static const String appIntroDrawScreen = '/app-intro-draw';
