@@ -1,7 +1,11 @@
 part of 'report_problem_cubit.dart';
 
 @immutable
-abstract class ReportProblemState {}
+abstract class ReportProblemState extends Equatable {
+  const ReportProblemState();
+
+  List<Object> get props => [];
+}
 
 class ReportProblemInitial extends ReportProblemState {}
 
