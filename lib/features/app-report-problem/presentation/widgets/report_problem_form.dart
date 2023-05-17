@@ -6,7 +6,6 @@ import '../../../../core/utils/constants.dart';
 import '../../../../core/validation/validation_types.dart';
 import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/forms/text_field_widget.dart';
-import '../../../drawing-details/domain/entities/drawing_details_request.dart';
 import '../../domain/entities/Report_problem_request.dart';
 
 class ReportProblemForm extends StatefulWidget {
