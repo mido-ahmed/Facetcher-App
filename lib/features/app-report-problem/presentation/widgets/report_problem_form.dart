@@ -30,34 +30,46 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 60),
+          padding: const EdgeInsets.symmetric(vertical: 70.0),
           child: Column(
             children: [
-              TextFieldWidget(
-                enabled: isFormEnabled,
-                hintText: 'Title',
-                hintTextStyle: AppTextStyle.drawingDetailsField,
-                keyboardType: TextInputType.emailAddress,
-                validateType: ValidationTypes.drawingDetailsTitle,
-                errorStyle: AppTextStyle.loginFieldErrorText,
-                errorBorderColor: AppColors.error,
-                borderColor: AppColors.border,
-                borderWidth: 1,
-                maxLines: 1,
-                textAlign: TextAlign.start,
-                style: AppTextStyle.loginFieldText,
-                cursorColor: AppColors.textSecondary,
-                secureText: false,
-                onSave: (value) {
-                  reportProblemRequest.title = value;
-                },
-                contentPadding: const EdgeInsets.only(
-                  top: 12,
-                  left: 30,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Text(
+                  "Get in Touch",
+                  style: AppTextStyle.drawingScreenTitle,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
+                child: TextFieldWidget(
+                  enabled: isFormEnabled,
+                  hintText: 'Title',
+                  hintTextStyle: AppTextStyle.drawingDetailsField,
+                  keyboardType: TextInputType.emailAddress,
+                  validateType: ValidationTypes.drawingDetailsTitle,
+                  errorStyle: AppTextStyle.loginFieldErrorText,
+                  errorBorderColor: AppColors.error,
+                  borderColor: AppColors.border,
+                  borderWidth: 1,
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
+                  style: AppTextStyle.loginFieldText,
+                  cursorColor: AppColors.textSecondary,
+                  secureText: false,
+                  onSave: (value) {
+                    reportProblemRequest.title = value;
+                  },
+                  contentPadding: const EdgeInsets.only(
+                    top: 12,
+                    left: 30,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 20.0),
                 child: TextFieldWidget(
                   enabled: isFormEnabled,
                   hintText: 'Description',

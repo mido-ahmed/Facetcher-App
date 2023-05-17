@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
