@@ -168,7 +168,7 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                 } else if (state is ReportProblemSuccess) {
                   Constants.showSnackBar(
                       context: context, message: state.userSubmission.message);
-                  Navigator.pushReplacementNamed(context, Routes.userProfile);
+                  Navigator.pushReplacementNamed(context, Routes.appReportProblem);
                 }
                 if (state is ReportProblemLoading) {
                   setState(() {

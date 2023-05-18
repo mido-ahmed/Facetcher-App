@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:facetcher/data/datasources/message-us/message-us-local-datasource.dart';
 import 'package:facetcher/data/repositories/user-submission/user_submission_repository.dart';
 import 'package:facetcher/features/app-get-started/data/usecases/app_get_started_usecase.dart';
 import 'package:facetcher/features/app-get-started/presentation/cubit/app_get_started_cubit.dart';
+import 'package:facetcher/features/app-report-problem/presentation/cubit/report_problem_cubit.dart';
 import 'package:facetcher/features/app-signin/domain/usecases/signin_usecase.dart';
 import 'package:facetcher/features/app-signin/presentation/cubit/signin_cubit.dart';
 import 'package:facetcher/features/drawing-details/domain/usecases/create_or_update_user_submission_usecase.dart';
@@ -30,6 +32,8 @@ import 'data/datasources/user/user_local_datasource.dart';
 import 'data/datasources/user/user_remote_datasource.dart';
 import 'data/repositories/authentication/authentication_repository.dart';
 import 'data/repositories/authentication/authentication_repository_impl.dart';
+import 'data/repositories/message-us/message_us_repository.dart';
+import 'data/repositories/message-us/message_us_repository_impl.dart';
 import 'data/repositories/user-submission/user_submission_repository_impl.dart';
 import 'data/repositories/user-trial/user_trial_repository.dart';
 import 'data/repositories/user-trial/user_trial_repository_impl.dart';
@@ -38,6 +42,7 @@ import 'data/repositories/user/user_repository_impl.dart';
 import 'data/datasources/localization/localization_local_data_source.dart';
 import 'data/repositories/localization/localization_repository_impl.dart';
 import 'data/repositories/localization/localization_repository.dart';
+import 'features/app-report-problem/domain/usecase/create_message_us_usecase.dart';
 import 'features/app-splash/domain/usecases/change_lang_usecase.dart';
 import 'features/app-splash/domain/usecases/get_saved_lang_usecase.dart';
 import 'features/app-splash/presentation/cubit/localization_cubit.dart';
@@ -75,6 +80,9 @@ Future<void> init() async {
   // user trial
   sl.registerLazySingleton<CreateUserTrialCubit>(() => CreateUserTrialCubit(userTrialUseCase: sl()));
   sl.registerLazySingleton<SubmitUserTrialCubit>(() => SubmitUserTrialCubit(submitUserTrialUseCase: sl()));
+  // Report Problem
+  sl.registerLazySingleton<ReportProblemCubit>(() => ReportProblemCubit(messageUsUseCase: sl()));
+
 
 
   // !---- Use cases ----!
@@ -97,6 +105,9 @@ Future<void> init() async {
   // user trial
   sl.registerLazySingleton<CreateUserTrialUseCase>(() => CreateUserTrialUseCase(userTrialRepository: sl()));
   sl.registerLazySingleton<SubmitUserTrialUseCase>(() => SubmitUserTrialUseCase(userTrialRepository: sl()));
+  //Report Problem
+  sl.registerLazySingleton<CreateMessageUsUseCase>(() => CreateMessageUsUseCase(messageUsRepository: sl()));
+
 
 
   // !---- Repository ----!
@@ -110,6 +121,8 @@ Future<void> init() async {
   sl.registerLazySingleton<UserSubmissionRepository>(() => UserSubmissionRepositoryImpl(networkInfo: sl(), userSubmissionLocalDataSource: sl(), userSubmissionRemoteDataSource: sl(),));
   // user trial
   sl.registerLazySingleton<UserTrialRepository>(() => UserTrialRepositoryImpl(networkInfo: sl(), userTrialLocalDataSource: sl(), userTrialRemoteDataSource: sl(),));
+  // Report Problem
+  sl.registerLazySingleton<MessageUsRepository>(() => MessageUsRepositoryImpl(networkInfo: sl(), messageUsLocalDataSourceImpl: sl(), messageUsRemoteDataSourceImpl: sl(),));
 
 
   // !---- Data Sources ----!
@@ -127,6 +140,9 @@ Future<void> init() async {
   // user submission
   sl.registerLazySingleton<UserTrialRemoteDataSource>(() => UserTrialRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UserTrialLocalDataSource>(() => UserTrialLocalDataSourceImpl(sharedPreferences: sl()));
+  //Report Problem
+  sl.registerLazySingleton<MessageUsLocalDataSource>(() => MessageUsLocalDataSourceImpl(sharedPreferences: sl()));
+
 
 
   // !---- Core ----!
