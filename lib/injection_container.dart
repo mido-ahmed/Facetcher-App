@@ -24,6 +24,7 @@ import 'core/api/dio_consumer.dart';
 import 'core/network/network_info.dart';
 import 'data/datasources/authentication/authentication_local_datasource.dart';
 import 'data/datasources/authentication/authentication_remote_datasource.dart';
+import 'data/datasources/message-us/message-us-remote-datasource.dart';
 import 'data/datasources/user-submission/user_submission_local_datasource.dart';
 import 'data/datasources/user-submission/user_submission_remote_datasource.dart';
 import 'data/datasources/user-trial/user_trial_local_datasource.dart';
@@ -142,6 +143,7 @@ Future<void> init() async {
   sl.registerLazySingleton<UserTrialLocalDataSource>(() => UserTrialLocalDataSourceImpl(sharedPreferences: sl()));
   //Report Problem
   sl.registerLazySingleton<MessageUsLocalDataSource>(() => MessageUsLocalDataSourceImpl(sharedPreferences: sl()));
+  sl.registerLazySingleton<MessageUsRemoteDataSource>(() => MessageUsRemoteDataSourceImpl(apiConsumer: sl()));
 
 
 
