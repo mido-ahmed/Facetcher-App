@@ -102,7 +102,7 @@ class NavigatorState extends State<NavigationBarWrapper> {
                     ),
                   ),
                   Icon(
-                    Icons.info_outlined,
+                    Icons.people,
                     color: AppColors.navigatorFont,
                     size: 22,
                   ),
