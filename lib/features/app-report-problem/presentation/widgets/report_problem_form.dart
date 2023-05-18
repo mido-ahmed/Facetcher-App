@@ -10,6 +10,7 @@ import '../../../../core/validation/validation_types.dart';
 import '../../../../core/widgets/buttons/button_form_widget.dart';
 import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/forms/text_field_widget.dart';
+import '../../../../data/entities/message-us/message_us.dart';
 import '../../domain/entities/Report_problem_request.dart';
 import '../cubit/report_problem_cubit.dart';
 
@@ -22,9 +23,7 @@ class ReportProblemForm extends StatefulWidget {
 
 class _ReportProblemFormState extends State<ReportProblemForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late ReportProblemRequest reportProblemRequest = ReportProblemRequest(
-      title: reportProblemRequest.title,
-      description: reportProblemRequest.description);
+  late final ReportProblemRequest reportProblemRequest = ReportProblemRequest();
   final bool isFormEnabled = true;
 
   //bool _toggleNavigationBar = false;
@@ -137,27 +136,12 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                           return;
                         }
                         BlocProvider.of<ReportProblemCubit>(context)
-                            .createUserMessageUs(ReportProblemRequest(
-                                title: reportProblemRequest.title,
-                                description: reportProblemRequest.description));
+                            .createUserMessageUs(ReportProblemRequest());
                       }
                     },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Next",
-                          style: AppTextStyle.buttonText,
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Icon(
-                          Icons.arrow_forward_sharp,
-                          color: AppColors.textPrimary,
-                          size: 20,
-                        ),
-                      ],
+                    child: Text(
+                      "Submit",
+                      style: AppTextStyle.buttonText,
                     ),
                   );
                 }
@@ -168,7 +152,7 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                 } else if (state is ReportProblemSuccess) {
                   Constants.showSnackBar(
                       context: context, message: state.userSubmission.message);
-                  Navigator.pushReplacementNamed(context, Routes.appReportProblem);
+                  Navigator.pushReplacementNamed(context, Routes.appHome);
                 }
                 if (state is ReportProblemLoading) {
                   setState(() {
