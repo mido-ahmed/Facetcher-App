@@ -1,3 +1,4 @@
+import 'package:facetcher/features/about-us/presentation/screens/about-us.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_data_screen.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_draw_screen.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_permissions_screen.dart';
@@ -44,7 +45,7 @@ class AppRoutes {
       case Routes.initial:
         return MaterialPageRoute(
             builder: (context,) {
-              return const SplashScreen();
+              return const AboutUsScreen();
             },
             settings: routeSettings);
 
