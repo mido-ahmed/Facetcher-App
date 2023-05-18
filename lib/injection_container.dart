@@ -122,7 +122,7 @@ Future<void> init() async {
   // user trial
   sl.registerLazySingleton<UserTrialRepository>(() => UserTrialRepositoryImpl(networkInfo: sl(), userTrialLocalDataSource: sl(), userTrialRemoteDataSource: sl(),));
   // Report Problem
-  sl.registerLazySingleton<MessageUsRepository>(() => MessageUsRepositoryImpl(networkInfo: sl(), messageUsLocalDataSourceImpl: sl(), messageUsRemoteDataSourceImpl: sl(),));
+  sl.registerLazySingleton<MessageUsRepository>(() => MessageUsRepositoryImpl(networkInfo: sl(), messageUsLocalDataSource: sl(), messageUsRemoteDataSource: sl(),));
 
 
   // !---- Data Sources ----!
