@@ -12,13 +12,13 @@ import 'message_us_repository.dart';
 
 class MessageUsRepositoryImpl implements MessageUsRepository {
   final NetworkInfo networkInfo;
-  final MessageUsLocalDataSourceImpl messageUsLocalDataSourceImpl;
-  final MessageUsRemoteDataSourceImpl messageUsRemoteDataSourceImpl;
+  final MessageUsLocalDataSource messageUsLocalDataSource;
+  final MessageUsRemoteDataSource messageUsRemoteDataSource;
 
   MessageUsRepositoryImpl({
     required this.networkInfo,
-    required this.messageUsLocalDataSourceImpl,
-    required this.messageUsRemoteDataSourceImpl,
+    required this.messageUsLocalDataSource,
+    required this.messageUsRemoteDataSource,
   });
 
   @override
@@ -26,7 +26,7 @@ class MessageUsRepositoryImpl implements MessageUsRepository {
       MessageUsRequest messageUsRequest) async {
     if (await networkInfo.isConnected) {
       try {
-        final messageUs = await messageUsRemoteDataSourceImpl
+        final messageUs = await messageUsRemoteDataSource
             .createUserMessage(messageUsRequest);
         return Right(messageUs);
       } on GenericException catch (exception) {
