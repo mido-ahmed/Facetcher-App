@@ -92,15 +92,11 @@ class NavigatorState extends State<NavigationBarWrapper> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/app-report-problem');
-                    },
-                    child: Icon(
-                      Icons.messenger_outline_sharp,
-                      color: AppColors.navigatorFont,
-                      size: 22,
-                    ),
-                  ),
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/app-report-problem');
+                      },
+                      child: Image.network(
+                          "https://d178ormcbshsy5.cloudfront.net/message-us-icon.png")),
                   Icon(
                     Icons.people,
                     color: AppColors.navigatorFont,
