@@ -14,10 +14,10 @@ class MessageUs extends Equatable {
   });
 
   MessageUs.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['userId'];
-    title = json['title'];
-    message = json['message'];
+    id = json['id'] ?? 0;
+    userId = json['userId'] ?? 0;
+    title = json['title'] ?? "";
+    message = json['message'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -30,5 +30,5 @@ class MessageUs extends Equatable {
   }
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [id];
 }
