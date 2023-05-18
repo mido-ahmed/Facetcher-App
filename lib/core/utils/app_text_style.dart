@@ -282,4 +282,24 @@ class AppTextStyle with Diagnosticable {
     color: AppColors.textPrimary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
+  static TextStyle? aboutUsBar = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+    fontFamily: AppStrings.fontFamilyCenturtGothicBold,
+
+  );
+  static TextStyle? aboutUsDetails = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothic,
+  );
+
+  static TextStyle? aboutUsTitle= TextStyle(
+    fontSize:30,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textSecondary,
+    fontFamily: AppStrings.fontFamilyCenturtGothicBold,
+  );
 }

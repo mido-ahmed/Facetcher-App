@@ -4,7 +4,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
-import '../widgets/about_us_selected_state.dart';
+import '../widgets/about_us_selected.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
