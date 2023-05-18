@@ -5,6 +5,7 @@ import 'package:facetcher/core/error/exceptions.dart';
 import 'package:facetcher/core/models/response_model.dart';
 import 'package:facetcher/data/entities/message-us/message_us.dart';
 import 'package:facetcher/data/models/message-us/message-us.dart';
+import 'package:facetcher/features/app-report-problem/domain/entities/Report_problem_request.dart';
 import 'package:facetcher/features/app-report-problem/domain/usecase/create_message_us_usecase.dart';
 import 'package:meta/meta.dart';
 
@@ -16,12 +17,14 @@ class ReportProblemCubit extends Cubit<ReportProblemState> {
   ReportProblemCubit({required this.messageUsUseCase})
       : super(ReportProblemInitial());
 
-  Future<void> createUserMessageUs(MessageUsRequest messageUsRequest) async {
+  Future<void> createUserMessageUs(
+      ReportProblemRequest reportProblemRequest) async {
     emit(ReportProblemInitial());
     emit(ReportProblemLoading());
     Either<GenericException, ResponseModel<MessageUs>> response =
         await messageUsUseCase(MessageUsRequest(
-            title: messageUsRequest.title, message: messageUsRequest.message));
+            title: reportProblemRequest.title,
+            message: reportProblemRequest.description));
     emit(response.fold(
         (exception) => ReportProblemError(message: exception.message),
         (userSubmission) =>
