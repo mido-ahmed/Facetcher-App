@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
-import '../../../app-home-screen/presentation/screen/home_screen.dart';
 import '../widgets/report_problem_form.dart';
 
 class ReportProblemScreen extends StatefulWidget {
@@ -40,10 +40,8 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                 AppBarWidget(
                   leftChild: IconButton(
                       icon: Icon(Icons.arrow_back, color: AppColors.white),
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, "/app-home", ModalRoute.withName('/'));
-                      }),
+                      onPressed: () {Navigator.pushReplacementNamed(context, Routes.appHome);}
+                  ),
                   rightChild: AnimatedIconButton(
                     icon: AnimatedIcons.menu_close,
                     color: AppColors.fontPrimary,
@@ -53,7 +51,22 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                     end: 1.0,
                   ),
                 ),
-                const ReportProblemForm()
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                  child: Column(
+                    children: [
+                      Text("Get In Touch", style: AppTextStyle.drawingScreenTitle,),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
+                        child: Text("Stay connected with us and reach us anytime",
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.drawingScreenTitleDetails,
+                        ),
+                      ),
+                      const ReportProblemForm(),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

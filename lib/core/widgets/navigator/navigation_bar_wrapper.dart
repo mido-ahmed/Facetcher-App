@@ -2,6 +2,7 @@ import 'package:facetcher/features/user-profile/presentation/cubit/signout_state
 import 'package:flutter/material.dart';
 import 'package:facetcher/core/utils/app_colors.dart';
 import '../../../config/routes/app_routes.dart';
+import '../../utils/assets_manager.dart';
 import '../../utils/constants.dart';
 import 'navigation_bar_widget.dart';
 
@@ -16,11 +17,7 @@ class NavigationBarWrapper extends StatefulWidget {
   final String? path;
   final Widget child;
 
-  const NavigationBarWrapper(
-      {super.key,
-      required this.toggleNavigationBar,
-      this.path,
-      required this.child});
+  const NavigationBarWrapper({super.key, required this.toggleNavigationBar, this.path, required this.child});
 
   @override
   NavigatorState createState() => NavigatorState();
@@ -34,9 +31,7 @@ class NavigatorState extends State<NavigationBarWrapper> {
   void didUpdateWidget(covariant NavigationBarWrapper oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.toggleNavigationBar) {
-      setState(() {
-        _isNavigationBarToggled = !_isNavigationBarToggled;
-      });
+      setState(() { _isNavigationBarToggled = !_isNavigationBarToggled;});
     }
   }
 
@@ -71,71 +66,40 @@ class NavigatorState extends State<NavigationBarWrapper> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
-                      onTap: () {
-                        launch(
-                            "https://github.com/henry-azer/facetcher-app/tree/master");
-                      },
-                      child: Icon(
-                        FontAwesomeIcons.github,
-                        color: AppColors.navigatorFont,
-                        size: 21,
-                      )),
-                  GestureDetector(
-                    onTap: () {
-                      launch(
-                          "https://www.youtube.com/watch?v=nrshlpYEjtk&pp=ygUJZmFjZXRjaGVy");
-                    },
-                    child: Icon(
-                      FontAwesomeIcons.youtube,
-                      color: AppColors.navigatorFont,
-                      size: 21,
-                    ),
+                      onTap: () {launch("https://github.com/henry-azer/facetcher-app");},
+                      child: Icon(FontAwesomeIcons.github, color: AppColors.navigatorFont, size: 21,)
                   ),
                   GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed('/app-report-problem');
-                      },
-                      child: Image.network(
-                          "https://d178ormcbshsy5.cloudfront.net/message-us-icon.png")),
-                  Icon(
-                    Icons.people,
-                    color: AppColors.navigatorFont,
-                    size: 22,
+                    onTap: () {launch("https://www.youtube.com/@SeniorsTeam");},
+                    child: Icon(FontAwesomeIcons.youtube, color: AppColors.navigatorFont, size: 21,),
+                  ),
+                  GestureDetector(
+                      onTap: () {Navigator.of(context).pushNamed(Routes.appReportProblem);},
+                      child: Image.network(ImageNetwork.messageUsIcon)
+                  ),
+                  GestureDetector(
+                      onTap: () {Navigator.of(context).pushNamed(Routes.appAboutUs);},
+                      child: Icon(Icons.people, color: AppColors.navigatorFont, size: 22,),
                   ),
                   BlocConsumer<SignoutCubit, SignoutState>(
                     builder: ((context, state) {
                       if (state is SignoutLoading) {
-                        return Icon(
-                          Icons.logout_outlined,
-                          color: AppColors.navigatorFont,
-                          size: 22,
-                        );
+                        return Icon(Icons.logout_outlined, color: AppColors.navigatorFont, size: 22,);
                       } else {
                         return GestureDetector(
-                          onTap: () {
-                            BlocProvider.of<SignoutCubit>(context).signout();
-                          },
-                          child: Icon(
-                            Icons.logout_outlined,
-                            color: AppColors.navigatorFont,
-                            size: 22,
-                          ),
+                          onTap: () {BlocProvider.of<SignoutCubit>(context).signout();},
+                          child: Icon(Icons.logout_outlined, color: AppColors.navigatorFont, size: 22,),
                         );
                       }
                     }),
                     listener: ((context, state) {
                       if (state is SignoutSuccess) {
-                        Constants.showSnackBar(
-                            context: context,
-                            message: state.signoutResponse.message);
-                        Navigator.pushReplacementNamed(
-                            context, Routes.appSignin);
+                        Constants.showSnackBar(context: context, message: state.signoutResponse.message);
+                        Navigator.pushReplacementNamed(context, Routes.appSignin);
                       }
                       if (state is SignoutError) {
-                        Constants.showSnackBar(
-                            context: context, message: state.message);
-                        Navigator.pushReplacementNamed(
-                            context, Routes.appSignin);
+                        Constants.showSnackBar(context: context, message: state.message);
+                        Navigator.pushReplacementNamed(context, Routes.appSignin);
                       }
                     }),
                   )
@@ -153,10 +117,7 @@ class NavigatorState extends State<NavigationBarWrapper> {
               width: MediaQuery.of(context).size.width,
               height: 120,
               color: AppColors.navigatorBackground,
-              child: Center(
-                child: NavigationBarWidget(
-                  path: widget.path,
-                ),
+              child: Center(child: NavigationBarWidget(path: widget.path,),
               ),
             ),
           ),

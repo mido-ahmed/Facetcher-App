@@ -109,3 +109,5 @@ Here is a summary of the features Facetcher provides:
 
 The development team for Facetcher app consisted of three developers: Henry , Mohamed, and Martina. Henry made the largest contribution to the project. He was instrumental in designing the app architecture, implementing complex features, and conducting extensive testing to ensure the app was stable and performant.
 Together, this team of developers worked tirelessly to create an app that was both functional and user-friendly, and that met the needs of our users. Their combined efforts resulted in a high-quality app that has been well-received by our users and has helped us achieve our business goals.
+
+Written by [@Alber Ashraf](https://github.com/Alber-Ashraf)

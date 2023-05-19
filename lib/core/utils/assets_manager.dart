@@ -25,4 +25,11 @@ class ImageNetwork {
   static const String binIcon = 'https://d178ormcbshsy5.cloudfront.net/eraser_draw_icon.png';
   static const String eraserIcon = 'https://d178ormcbshsy5.cloudfront.net/eraser_2_draw_icon.png';
   static const String eraserFilledIcon = 'https://d178ormcbshsy5.cloudfront.net/eraser_filled_draw_icon_2.png';
+  static const String messageUsIcon = "https://d178ormcbshsy5.cloudfront.net/message-us-icon.png";
+
+  static const String teamMido = 'https://d178ormcbshsy5.cloudfront.net/team-mido.jpg';
+  static const String teamMartina = 'https://d178ormcbshsy5.cloudfront.net/team-martina.jpg';
+  static const String teamHenry = 'https://d178ormcbshsy5.cloudfront.net/team-henry.jpg';
+  static const String teamAlber = 'https://d178ormcbshsy5.cloudfront.net/team-alber.jpg';
+  static const String teamBavly = 'https://d178ormcbshsy5.cloudfront.net/team-bavly.jpg';
 }
