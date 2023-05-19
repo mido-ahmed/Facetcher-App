@@ -32,8 +32,8 @@ dependencies:
   image: ^3.0.2
   pdf: ^3.6.0
   path_provider: ^2.0.14
-  full_screen_image: ^2.0.0
-  scroll_snap_list: ^0.9.1
+  url_launcher: ^6.1.11
+
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:

@@ -21,10 +21,12 @@ class UserTrialRepositoryImpl implements UserTrialRepository {
       required this.userTrialRemoteDataSource});
 
   @override
-  Future<Either<GenericException, ResponseModel<UserTrial>>> createUserTrial(UserTrialRequest userTrialRequest) async {
+  Future<Either<GenericException, ResponseModel<UserTrial>>> createUserTrial(
+      UserTrialRequest userTrialRequest) async {
     if (await networkInfo.isConnected) {
       try {
-        final responseUserSubmission = await userTrialRemoteDataSource.createUserTrial(userTrialRequest);
+        final responseUserSubmission =
+            await userTrialRemoteDataSource.createUserTrial(userTrialRequest);
         return Right(responseUserSubmission);
       } on GenericException catch (exception) {
         return Left(exception);
@@ -35,10 +37,12 @@ class UserTrialRepositoryImpl implements UserTrialRepository {
   }
 
   @override
-  Future<Either<GenericException, ResponseModel<NoParams>>> submitUserTrial(int userTrialId) async {
+  Future<Either<GenericException, ResponseModel<NoParams>>> submitUserTrial(
+      int userTrialId) async {
     if (await networkInfo.isConnected) {
       try {
-        final submittedUserTrial = await userTrialRemoteDataSource.submitUserTrial(userTrialId);
+        final submittedUserTrial =
+            await userTrialRemoteDataSource.submitUserTrial(userTrialId);
         return Right(submittedUserTrial);
       } on GenericException catch (exception) {
         return Left(exception);

@@ -1,4 +1,3 @@
-import 'package:facetcher/features/about-us/presentation/screens/about-us.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_data_screen.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_draw_screen.dart';
 import 'package:facetcher/features/app-get-started/presentation/screens/intro_permissions_screen.dart';
@@ -11,6 +10,8 @@ import 'package:facetcher/features/app-home-screen/presentation/screen/home_scre
 import 'package:facetcher/features/user-history/presentation/screens/user_history_screen.dart';
 
 import '../../core/utils/app_strings.dart';
+import '../../features/app-about-us/presentation/screens/about_us_screen.dart';
+import '../../features/app-report-problem/presentation/screens/report_problem_screen.dart';
 import '../../features/app-signin/presentation/screens/signin_screen.dart';
 import '../../features/app-splash/presentation/screens/splash_screen.dart';
 import '../../features/drawing-details/presentation/screens/drawing_details_screen.dart';
@@ -22,6 +23,7 @@ class Routes {
   static const String initial = '/';
   static const String appHome = '/app-home';
   static const String appSignin = '/app-signin';
+  static const String appAboutUs = '/app-about-us';
 
   static const String userProfile = '/user-profile';
   static const String userChangePassword = '/user-change-password';
@@ -32,6 +34,7 @@ class Routes {
   static const String appDrawingResult = '/app-drawing-result';
   static const String appDrawingReport = '/app-drawing-report';
   static const String appDrawingDetails = '/app-drawing-details';
+  static const String appReportProblem = '/app-report-problem';
 
   static const String appIntroStartScreen = '/app-intro-start';
   static const String appIntroDrawScreen = '/app-intro-draw';
@@ -45,7 +48,7 @@ class AppRoutes {
       case Routes.initial:
         return MaterialPageRoute(
             builder: (context,) {
-              return const AboutUsScreen();
+              return const SplashScreen();
             },
             settings: routeSettings);
 
@@ -143,6 +146,20 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) {
               return const UserChangePasswordScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appReportProblem:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const ReportProblemScreen();
+            },
+            settings: routeSettings);
+
+      case Routes.appAboutUs:
+        return MaterialPageRoute(
+            builder: (context) {
+              return const AboutUsScreen();
             },
             settings: routeSettings);
 

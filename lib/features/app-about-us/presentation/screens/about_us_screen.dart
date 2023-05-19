@@ -1,12 +1,15 @@
+import 'package:facetcher/core/utils/media_query_values.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
+import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
-import '../widgets/ProgrammerInfoList.dart';
-import '../widgets/programers_card_details.dart';
+import '../widgets/programmer_info_list.dart';
+import '../widgets/programmers_card_details.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
@@ -26,25 +29,6 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
-    final List<ProgrammerInfo> programmerInfo = [
-      const ProgrammerInfo(
-        programmerName: 'Tota',
-        programmerImage:
-            'https://cdn.shopify.com/s/files/1/0310/3571/9739/files/Best_Model_Poses_Female_-_Female_Photoshoot_Poses_for_Girls_-_Medium_Shot_-_Sunny_16_2048x2048.jpg?v=1620704328',
-      ),
-      const ProgrammerInfo(
-        programmerName: 't',
-        programmerImage:
-            'https://cdn.shopify.com/s/files/1/0310/3571/9739/files/Best_Model_Poses_Female_-_Female_Photoshoot_Poses_for_Girls_-_Medium_Shot_-_Sunny_16_2048x2048.jpg?v=1620704328',
-      ),
-      const ProgrammerInfo(
-        programmerName: 'A',
-        programmerImage:
-            'https://cdn.shopify.com/s/files/1/0310/3571/9739/files/Best_Model_Poses_Female_-_Female_Photoshoot_Poses_for_Girls_-_Medium_Shot_-_Sunny_16_2048x2048.jpg?v=1620704328',
-      )
-    ];
     return NavigationBarWrapper(
       toggleNavigationBar: _toggleNavigationBar,
       path: ModalRoute.of(context)?.settings.name,
@@ -59,7 +43,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                   AppBarWidget(
                     leftChild: IconButton(
                       icon: Icon(Icons.arrow_back, color: AppColors.white),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => Navigator.pushReplacementNamed(context, Routes.appHome),
                     ),
                     rightChild: AnimatedIconButton(
                       icon: AnimatedIcons.menu_close,
@@ -75,42 +59,31 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Center(
-                          child: Text(
-                            "About Us",
-                            style: AppTextStyle.drawingScreenTitle,
-                          ),
-                        )
+                        Center(child: Text("About Us", style: AppTextStyle.drawingScreenTitle,),)
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 45, vertical: 20),
+                    padding: const EdgeInsets.only(left: 45, right: 45, top: 10, bottom: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                          ),
+                          padding: const EdgeInsets.only(top: 10,),
                           child: Text(
                             'Facetcher is an app designed to generating '
                             'images of human face based on hand drawing '
                             'sketches. The app has a user-friendly '
                             'interface that makes it easy for users '
-                            'to create facial sketches and generate '
-                            'images of suspects.',
+                            'to create facial sketches and generate images.',
                             style: AppTextStyle.aboutUsDetails,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                          ),
+                          padding: const EdgeInsets.only(top: 10,),
                           child: Text(
-                            'To use the app, users first provide basic case details such as the title, gender, and description. They can then begin drawing the facial sketch using the app'
-                            's intuitive drawing tools. Once the sketch is complete, the app generates an image of the suspect based on the sketch. Users can edit the sketch until they are happy with the result.',
+                            'To use the app, users first provide basic case details such as the title, gender, and description. They can then begin drawing the facial sketch using the app''s '
+                            'intuitive drawing tools. Once the sketch is complete, the app generates an image of the suspect based on the sketch.',
                             style: AppTextStyle.aboutUsDetails,
                           ),
                         ),
@@ -118,7 +91,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                     ),
                   ),
                   Container(
-                    height: size.height - 400,
+                    height: context.height * 0.6,
                     decoration:  BoxDecoration(
                       borderRadius: BorderRadius.circular(50)
                     ),
@@ -126,46 +99,42 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, bottom: 10, left: 35, right: 35),
+                          padding: const EdgeInsets.only(top: 10, bottom: 10, left: 35, right: 35),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(
-                                "Team Members",
-                                style: AppTextStyle.drawingScreenTitle,
-                              ),
+                              Text("Team Members", style: AppTextStyle.drawingScreenTitle,),
                             ],
                           ),
                         ),
                         const ProgrammerInfoList(
                           programmerInfo: [
                             ProgrammerInfo(
-                              programmerName: 'Bavly Ashraf',
-                              programmerImage:
-                                  'https://d178ormcbshsy5.cloudfront.net/team-bavly.jpg',
+                                programmerName: 'Bavly Ashraf',
+                                programmerImage: ImageNetwork.teamBavly,
+                                programmerGithubUrl: 'https://github.com/Bavly001',
                             ),
                             ProgrammerInfo(
-                              programmerName: 'Alber Ashraf',
-                              programmerImage:
-                                  'https://d178ormcbshsy5.cloudfront.net/team-alber.jpg',
+                                programmerName: 'Mohamed Ahmed',
+                                programmerImage: ImageNetwork.teamMido,
+                                programmerGithubUrl: 'https://github.com/mido-ahmed',
                             ),
                             ProgrammerInfo(
-                              programmerName: 'Mohamed Ahmed',
-                              programmerImage:
-                                  'https://d178ormcbshsy5.cloudfront.net/team-mido.jpg',
+                                programmerName: 'Henry Azer',
+                                programmerImage: ImageNetwork.teamHenry,
+                                programmerGithubUrl: 'https://github.com/henry-azer',
                             ),
                             ProgrammerInfo(
-                              programmerName: 'Henry Azer',
-                              programmerImage:
-                                  'https://d178ormcbshsy5.cloudfront.net/team-henry.jpg',
+                                programmerName: 'Martina Kamal',
+                                programmerImage: ImageNetwork.teamMartina,
+                                programmerGithubUrl: 'https://github.com/Tota6',
                             ),
                             ProgrammerInfo(
-                              programmerName: 'Martina Kamal',
-                              programmerImage:
-                                  'https://d178ormcbshsy5.cloudfront.net/team-martina.jpg',
+                                programmerName: 'Alber Ashraf',
+                                programmerImage: ImageNetwork.teamAlber,
+                                programmerGithubUrl: 'https://github.com/Alber-Ashraf',
                             ),
-                          ],
+                           ],
                         ),
                       ],
                     ),

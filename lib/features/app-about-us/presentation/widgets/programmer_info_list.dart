@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:facetcher/core/utils/app_text_style.dart';
-import 'package:facetcher/features/about-us/presentation/widgets/programers_card_details.dart';
+import 'package:facetcher/core/utils/media_query_values.dart';
+import 'package:facetcher/features/app-about-us/presentation/widgets/programmers_card_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/utils/app_colors.dart';
 
@@ -67,8 +69,6 @@ class _ProgrammerInfoListState extends State<ProgrammerInfoList> {
   }
 
   Widget carouselCard(ProgrammerInfo info) {
-    var size = MediaQuery.of(context).size;
-
     return Column(
       children: <Widget>[
         Expanded(
@@ -76,32 +76,22 @@ class _ProgrammerInfoListState extends State<ProgrammerInfoList> {
             color: AppColors.background,
             padding: const EdgeInsets.symmetric(vertical: 30.0),
             width: 210,
-            height: size.height-100,
+            height: 200,
             child: Hero(
               tag: info.programmerName,
-              child: GestureDetector(
-                onTap: () {},
-                child: Card(
-                  color: AppColors.background,
-                  clipBehavior: Clip.hardEdge,
-                  elevation: 12,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+              child: Card(
+                color: AppColors.background,
+                clipBehavior: Clip.hardEdge,
+                elevation: 12,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  child: GestureDetector(
+                    onTap: () {launch(info.programmerGithubUrl);},
                     child: Column(
                       children: [
-                        Image.network(
-                          info.programmerImage,
-                          fit: BoxFit.fill,
-                          width: size.width,
-                          height: 210,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          info.programmerName,
-                          style: AppTextStyle.aboutUsTitle,
-                        ),
+                        Image.network(info.programmerImage, fit: BoxFit.fill, width: context.width, height: 210,),
+                        const SizedBox(height: 20,),
+                        Text(info.programmerName, style: AppTextStyle.aboutUsTitle,),
                       ],
                     ),
                   ),
