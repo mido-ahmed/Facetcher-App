@@ -22,12 +22,10 @@ class MessageUsRepositoryImpl implements MessageUsRepository {
   });
 
   @override
-  Future<Either<GenericException, ResponseModel<MessageUs>>> createUserMessage(
-      MessageUsRequest messageUsRequest) async {
+  Future<Either<GenericException, ResponseModel<MessageUs>>> createUserMessage(MessageUsRequest messageUsRequest) async {
     if (await networkInfo.isConnected) {
       try {
-        final messageUs = await messageUsRemoteDataSource
-            .createUserMessage(messageUsRequest);
+        final messageUs = await messageUsRemoteDataSource.createUserMessage(messageUsRequest);
         return Right(messageUs);
       } on GenericException catch (exception) {
         return Left(exception);

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:facetcher/core/utils/app_text_style.dart';
 import 'package:facetcher/core/utils/media_query_values.dart';
-import 'package:facetcher/features/app-about-us/presentation/widgets/programmers_card_details.dart';
+import 'package:facetcher/features/app-about-us/domain/entities/programmers_card_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
