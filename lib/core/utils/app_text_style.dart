@@ -290,14 +290,14 @@ class AppTextStyle with Diagnosticable {
 
   );
   static TextStyle? aboutUsDetails = TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothic,
   );
 
   static TextStyle? aboutUsTitle= TextStyle(
-    fontSize:30,
+    fontSize:20,
     fontWeight: FontWeight.w700,
     color: AppColors.textSecondary,
     fontFamily: AppStrings.fontFamilyCenturtGothicBold,
