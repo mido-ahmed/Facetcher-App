@@ -7,7 +7,6 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_text_style.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../core/validation/validation_types.dart';
-import '../../../../core/widgets/buttons/button_form_widget.dart';
 import '../../../../core/widgets/buttons/button_widget.dart';
 import '../../../../core/widgets/forms/text_field_widget.dart';
 import '../../domain/entities/Report_problem_request.dart';
@@ -81,8 +80,9 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
               if (state is ReportProblemLoading) {
                 return AbsorbPointer(
                   absorbing: true,
-                  child: ButtonFormWidget(
+                  child: ButtonWidget(
                     onPress: () {},
+                    backgroundColor: AppColors.button,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 5),
                       child: LoadingAnimationWidget.staggeredDotsWave(
@@ -106,7 +106,7 @@ class _ReportProblemFormState extends State<ReportProblemForm> {
                         Constants.showSnackBar(context: context, message: "Description can't be blank");
                         return;
                       }
-                      BlocProvider.of<ReportProblemCubit>(context).createUserMessageUs(ReportProblemRequest());
+                      BlocProvider.of<ReportProblemCubit>(context).createUserMessageUs(reportProblemRequest);
                     }
                   },
                   child: Text("Submit", style: AppTextStyle.buttonText,

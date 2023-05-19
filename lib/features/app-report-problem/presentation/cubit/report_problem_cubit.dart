@@ -14,20 +14,14 @@ part 'report_problem_state.dart';
 class ReportProblemCubit extends Cubit<ReportProblemState> {
   final CreateMessageUsUseCase messageUsUseCase;
 
-  ReportProblemCubit({required this.messageUsUseCase})
-      : super(ReportProblemInitial());
+  ReportProblemCubit({required this.messageUsUseCase}) : super(ReportProblemInitial());
 
-  Future<void> createUserMessageUs(
-      ReportProblemRequest reportProblemRequest) async {
+  Future<void> createUserMessageUs(ReportProblemRequest reportProblemRequest) async {
     emit(ReportProblemInitial());
     emit(ReportProblemLoading());
-    Either<GenericException, ResponseModel<MessageUs>> response =
-        await messageUsUseCase(MessageUsRequest(
-            title: reportProblemRequest.title,
-            message: reportProblemRequest.description));
-    emit(response.fold(
-        (exception) => ReportProblemError(message: exception.message),
-        (userSubmission) =>
-            ReportProblemSuccess(userSubmission: userSubmission)));
+    Either<GenericException, ResponseModel<MessageUs>> response = await messageUsUseCase(
+            MessageUsRequest(title: reportProblemRequest.title, message: reportProblemRequest.description));
+    emit(response.fold((exception) => ReportProblemError(message: exception.message),
+        (userSubmission) => ReportProblemSuccess(userSubmission: userSubmission)));
   }
 }

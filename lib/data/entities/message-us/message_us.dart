@@ -7,7 +7,7 @@ class MessageUsRequest extends Equatable {
   const MessageUsRequest({required this.title, required this.message});
 
   @override
-  List<Object?> get props => [title,message];
+  List<Object?> get props => [title, message];
 
   Map<String, dynamic> toJson() => {"title": title, "message": message};
 }

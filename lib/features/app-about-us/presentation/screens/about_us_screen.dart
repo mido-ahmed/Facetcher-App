@@ -9,7 +9,7 @@ import '../../../../core/widgets/app_bar_widget.dart';
 import '../../../../core/widgets/icons/animated_icon_button.dart';
 import '../../../../core/widgets/navigator/navigation_bar_wrapper.dart';
 import '../widgets/programmer_info_list.dart';
-import '../widgets/programmers_card_details.dart';
+import '../../domain/entities/programmers_card_details.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({Key? key}) : super(key: key);

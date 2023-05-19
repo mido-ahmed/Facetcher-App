@@ -19,10 +19,8 @@ class MessageUsRemoteDataSourceImpl implements MessageUsRemoteDataSource {
   MessageUsRemoteDataSourceImpl({required this.apiConsumer});
 
   @override
-  Future<ResponseModel<MessageUs>> createUserMessage(
-      MessageUsRequest messageUsRequest) async {
-    final response = await apiConsumer.post(EndPoints.userMessage,
-        body: messageUsRequest.toJson());
+  Future<ResponseModel<MessageUs>> createUserMessage(MessageUsRequest messageUsRequest) async {
+    final response = await apiConsumer.post(EndPoints.userMessage, body: messageUsRequest.toJson());
     if (response[AppStrings.success].toString() == AppStrings.boolFalse) {
       throw GenericException(message: response[AppStrings.message]);
     } else {
