@@ -27,7 +27,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //submissionId = ModalRoute.of(context)?.settings.arguments as int?;
+    submissionId = ModalRoute.of(context)?.settings.arguments as int?;
     return NavigationBarWrapper(
       toggleNavigationBar: _toggleNavigationBar,
       path: ModalRoute.of(context)?.settings.name,
