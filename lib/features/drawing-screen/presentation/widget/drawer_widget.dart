@@ -94,10 +94,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 backgroundColor: AppColors.navigatorItem,
                 onPress: () {
                   const PopupLoader().showPopupLoader(context);
-                  Future.delayed(Duration(seconds: 10000), () => {});
-                  //_renderImage(context).then((image) => {
-                  //   BlocProvider.of<CreateUserTrialCubit>(context).createUserTrial(DrawingTrialRequest(image, widget.submissionId))
-                 // });
+                  _renderImage(context).then((image) => {
+                    BlocProvider.of<CreateUserTrialCubit>(context).createUserTrial(DrawingTrialRequest(image, widget.submissionId))
+                 });
                 },
                 child: Text("Process", style: AppTextStyle.buttonText,),
               );
